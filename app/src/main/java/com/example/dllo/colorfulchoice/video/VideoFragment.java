@@ -10,7 +10,6 @@ import com.example.dllo.colorfulchoice.base.BaseFragment;
 
 public class VideoFragment extends BaseFragment {
     // 视频 fragment
-    //注意命名规范  大小写
 
     @Override
     protected int setLayout() {
