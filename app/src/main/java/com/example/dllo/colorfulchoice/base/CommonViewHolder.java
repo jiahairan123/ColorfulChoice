@@ -1,10 +1,15 @@
 package com.example.dllo.colorfulchoice.base;
 
+import android.graphics.Bitmap;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.example.dllo.colorfulchoice.R;
 
 /**
  * Coder: JiaHaiRan
@@ -64,6 +69,12 @@ public class CommonViewHolder {
     public void setText(int id, String text) {
         TextView textView = getView(id);
         textView.setText(text);
+    }
+
+    public void setImage(int id , String url){
+        ImageView imageView = getView(id);
+        Glide.with(MyApp.getContext()).load(url).crossFade().into(imageView);
+
     }
 
 }
