@@ -84,6 +84,7 @@ public class RecommendFragment extends BaseFragment {
 
         public RecommendAdapter(List<VideoBean.ResultBean> beanList, Context context, int id, List<Integer> integerList) {
             super(beanList, context, id, integerList);
+            notifyDataSetChanged();
         }
 
         @Override

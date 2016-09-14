@@ -21,16 +21,29 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     private int convertViewId;
     private List<Integer> integerList;
 
-    public CommonAdapter(List<T> beanList, Context context, int id,List<Integer> integerList){
+
+    public CommonAdapter(List<T> beanList, Context context, int id, List<Integer> integerList) {
         this.beanList = beanList;
         inflater = LayoutInflater.from(context);
         convertViewId = id;
         this.integerList = integerList;
     }
 
+    public CommonAdapter(List<T> beanList, Context context, int id) {
+        this.beanList = beanList;
+        inflater = LayoutInflater.from(context);
+        convertViewId = id;
+
+    }
+
     @Override
     public int getCount() {
-        return integerList == null ? 0 : integerList.size();
+        if (integerList != null) {
+            return integerList == null ? 0 : integerList.size();
+        } else {
+            return beanList == null ? 0 : beanList.size();
+        }
+
     }
 
     @Override
@@ -47,9 +60,13 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        CommonViewHolder commonViewHolder = CommonViewHolder.getHolder(convertView,inflater,convertViewId,parent);
+        CommonViewHolder commonViewHolder = CommonViewHolder.getHolder(convertView, inflater, convertViewId, parent);
         commonViewHolder.setPosition(position);
-        setData(beanList.get(integerList.get(position)), commonViewHolder);
+        if (integerList != null) {
+            setData(beanList.get(integerList.get(position)), commonViewHolder);
+        } else {
+            setData(beanList.get(position) , commonViewHolder);
+        }
         return commonViewHolder.getConvertView();
 
     }
