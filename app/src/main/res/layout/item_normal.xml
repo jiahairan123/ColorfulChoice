@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="#000"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/item_daily_cover_images"
+        android:id="@+id/item_normal_cover_images"
         android:src="@mipmap/jiazai"
         android:layout_gravity="center"
         android:scaleType="fitXY"
@@ -14,7 +12,7 @@
         android:layout_height="280dp" />
 
     <TextView
-        android:id="@+id/item_daily_name_describe"
+        android:id="@+id/item_normal_name_describe"
         android:textColor="#838484"
         android:padding="5dp"
         android:text="jdkfjsk"
@@ -33,7 +31,7 @@
         android:layout_height="100dp" >
 
         <ImageView
-            android:id="@+id/item_daily_avatar_url"
+            android:id="@+id/item_normal_avatar_url"
             android:src="@mipmap/jiazai"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
@@ -41,53 +39,54 @@
             android:layout_height="50dp" />
 
         <LinearLayout
-            android:layout_toRightOf="@+id/item_daily_avatar_url"
+            android:layout_toRightOf="@+id/item_normal_avatar_url"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
 
-        <TextView
-            android:id="@+id/item_daily_name"
-            android:text="sdfs"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textSize="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="25dp"
-            android:textColor="#9d9d9d"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/item_normal_name"
+                android:text="sdfs"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="25dp"
+                android:textColor="#9d9d9d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/item_daily_lable"
-            android:text="sdfsdf"
-            android:textColor="#5c5c5c"
-            android:textSize="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/item_normal_lable"
+                android:text="sdfsdf"
+                android:textColor="#5c5c5c"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/item_normal_cry_iv"
             android:src="@mipmap/cry"
             android:layout_marginTop="25dp"
-            android:layout_toLeftOf="@+id/item_daily_shuxian"
+            android:layout_toLeftOf="@+id/item_normal_shuxian"
             android:layout_width="45dp"
             android:layout_height="45dp" />
 
         <ImageView
-            android:id="@+id/item_daily_shuxian"
+            android:id="@+id/item_normal_shuxian"
             android:background="#484848"
             android:layout_marginTop="33dp"
             android:src="@mipmap/shuxian"
-            android:layout_toLeftOf="@+id/item_daily_smail_iv"
+            android:layout_toLeftOf="@+id/item_normal_smail_iv"
             android:layout_width="1dp"
             android:layout_height="30dp" />
 
         <ImageView
-            android:id="@+id/item_daily_smail_iv"
+            android:id="@+id/item_normal_smail_iv"
             android:src="@mipmap/smile"
             android:layout_marginTop="25dp"
             android:layout_alignParentRight="true"
@@ -95,6 +94,7 @@
             android:layout_height="45dp" />
 
     </RelativeLayout>
+
 
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import com.example.dllo.colorfulchoice.nettool.URLValue;
 public class ThingsAdapter extends FragmentPagerAdapter{
 
     String[] strings = new String[]{"Daily", "首饰", "包袋", "鞋履", "Men", "配饰", "其他"};
+
     final String url[] = {URLValue.DAILYA_url, URLValue.JEWELLERY_URL, URLValue.BAGS_URL,
     URLValue.SHOES_URL, URLValue.MEN_URL, URLValue.ACC_URL, URLValue.OTHER_URL};
 

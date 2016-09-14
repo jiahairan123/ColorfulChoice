@@ -3,6 +3,7 @@ package com.example.dllo.colorfulchoice.goodthing;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.dllo.colorfulchoice.R;
@@ -42,6 +43,22 @@ public class GoodThingFragment extends BaseFragment {
     @Override
     protected void initData() {
 
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Log.d("GoodThingFragment", "tab.getPosition():" + tab.getPosition());
 
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }
