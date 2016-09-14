@@ -4,6 +4,7 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -18,6 +19,16 @@ public class CommonViewHolder {
     private SparseArray<View> views;
 
     private View convertView; //行布局
+
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     //返回行布局
     public View getConvertView() {
@@ -64,6 +75,11 @@ public class CommonViewHolder {
     public void setText(int id, String text) {
         TextView textView = getView(id);
         textView.setText(text);
+    }
+
+    public void setImage(int id,int resid){
+        ImageView imageView = getView(id);
+        imageView.setBackgroundResource(resid);
     }
 
 }
