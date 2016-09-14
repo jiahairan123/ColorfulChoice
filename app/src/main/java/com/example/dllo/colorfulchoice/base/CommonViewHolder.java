@@ -73,7 +73,7 @@ public class CommonViewHolder {
 
     public void setImage(int id , String url){
         ImageView imageView = getView(id);
-        Glide.with(MyApp.getContext()).load(url).into(imageView);
+        Glide.with(MyApp.getContext()).load(url).crossFade().into(imageView);
 
     }
 
