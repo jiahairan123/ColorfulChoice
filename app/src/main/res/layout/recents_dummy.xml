@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal|top"
+        android:background="#f4f4f7"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/dummy_p_iv"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/ic_media_pause"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/dummy_p_nickname"
+            android:gravity="center_horizontal"
+            android:text="梦游也不枉擦墨镜的小编"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/dummy_title"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="这个幸福的女人收起灵力的锋芒,把家的柔软做成了包"
+            android:textSize="21sp"
+            android:textColor="#252020"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/dummy_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="温柔妈妈为那才行贴心设计的柔软包包"
+            android:textSize="15sp"
+            android:textColor="#252020"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/dummy_iv"
+            android:padding="10dp"
+            android:background="@drawable/ic_media_pause"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -58,11 +58,11 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
 
     ValueAnimator.AnimatorUpdateListener mRequestUpdateClippingListener =
             new ValueAnimator.AnimatorUpdateListener() {
-        @Override
-        public void onAnimationUpdate(ValueAnimator animation) {
-            requestUpdateStackViewsClip();
-        }
-    };
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    requestUpdateStackViewsClip();
+                }
+            };
 
     public OverviewStackView(Context context, OverviewAdapter adapter, OverviewConfiguration config) {
         super(context);
@@ -120,10 +120,10 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
     }
 
     private boolean updateStackTransforms(ArrayList<OverviewCardTransform> cardTransforms,
-                                       int itemCount,
-                                       float stackScroll,
-                                       int[] visibleRangeOut,
-                                       boolean boundTranslationsToRect) {
+                                          int itemCount,
+                                          float stackScroll,
+                                          int[] visibleRangeOut,
+                                          boolean boundTranslationsToRect) {
         // XXX: We should be intelligent about where to look for the visible stack range using the
         //      current stack scroll.
         // XXX: We should log extra cases like the ones below where we don't expect to hit very often
@@ -326,11 +326,11 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
                 mTmpRect.setEmpty();
             }
             tv.measure(
-                MeasureSpec.makeMeasureSpec(
-                        mLayoutAlgorithm.mTaskRect.width() + mTmpRect.left + mTmpRect.right,
-                        MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(
-                        mLayoutAlgorithm.mTaskRect.height() + mTmpRect.top + mTmpRect.bottom, MeasureSpec.EXACTLY));
+                    MeasureSpec.makeMeasureSpec(
+                            mLayoutAlgorithm.mTaskRect.width() + mTmpRect.left + mTmpRect.right,
+                            MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(
+                            mLayoutAlgorithm.mTaskRect.height() + mTmpRect.top + mTmpRect.bottom, MeasureSpec.EXACTLY));
         }
 
         setMeasuredDimension(width, height);
@@ -343,7 +343,7 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
      */
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-       // Layout each of the children
+        // Layout each of the children
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             OverviewCard tv = (OverviewCard) getChildAt(i);

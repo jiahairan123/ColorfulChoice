@@ -51,7 +51,7 @@ public class MainActivity extends BaseAty implements RadioGroup.OnCheckedChangeL
         switch (checkedId){
             //画报 PictureFragment
             case R.id.main_radbtn_picture :
-                fragmentTransaction.replace(R.id.main_frame_layout, new PictureFragment());
+                fragmentTransaction.add(R.id.main_frame_layout, new PictureFragment());
                 break;
 
             //有货 GoodThingFragment

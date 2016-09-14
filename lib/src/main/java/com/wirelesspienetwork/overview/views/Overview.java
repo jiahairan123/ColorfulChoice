@@ -24,7 +24,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.wirelesspienetwork.overview.misc.OverviewConfiguration;
-import com.wirelesspienetwork.overview.misc.ReferenceCountedTrigger;
 import com.wirelesspienetwork.overview.model.OverviewAdapter;
 
 public class Overview extends FrameLayout implements OverviewStackView.Callbacks {
@@ -35,6 +34,8 @@ public class Overview extends FrameLayout implements OverviewStackView.Callbacks
     public interface RecentsViewCallbacks {
         public void onCardDismissed(int position);
         public void onAllCardsDismissed();
+
+        void onTrimMemory(int level);
     }
 
     OverviewStackView mStackView;    //堆视图
@@ -101,7 +102,7 @@ public class Overview extends FrameLayout implements OverviewStackView.Callbacks
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
-        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int width = MeasureSpec.getSize(widthMeasureSpec );
         int height = MeasureSpec.getSize(heightMeasureSpec);
 
         if (mStackView != null) {
