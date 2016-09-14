@@ -24,6 +24,16 @@ public class CommonViewHolder {
 
     private View convertView; //行布局
 
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     //返回行布局
     public View getConvertView() {
         return convertView;
@@ -71,9 +81,16 @@ public class CommonViewHolder {
         textView.setText(text);
     }
 
-    public void setImage(int id , String url){
+
+    public void setImage(int id , String url) {
         ImageView imageView = getView(id);
         Glide.with(MyApp.getContext()).load(url).crossFade().into(imageView);
+    }
+
+
+    public void setBackground(int id,int resid){
+        ImageView imageView = getView(id);
+        imageView.setBackgroundResource(resid);
 
     }
 
