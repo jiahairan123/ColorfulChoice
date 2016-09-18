@@ -1,5 +1,6 @@
 package com.example.dllo.colorfulchoice.goodthing;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -29,8 +30,13 @@ public class NormalFragment extends BaseFragment {
     private GridView mGridView;
     int i = 1;
     private LinearLayout llPop;
+    private Context mContext;
 
-
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
 
     public static NormalFragment getInstance(String tab){
         Bundle bundle = new Bundle();
@@ -87,7 +93,7 @@ public class NormalFragment extends BaseFragment {
             @Override
             public void onSuccess(NormalBean normalBean) {
                mPullRefreshGridView.setAdapter(new CommonAdapter<NormalBean.DataBean.ProductsBean>(normalBean.getData().getProducts(),
-                       getContext(), R.layout.item_normal) {
+                       mContext, R.layout.item_normal) {
                    @Override
                    public void setData(NormalBean.DataBean.ProductsBean productsBean, CommonViewHolder viewHolder) {
                        mPullRefreshGridView.onRefreshComplete();

@@ -59,7 +59,7 @@ public class RecommendFragment extends BaseFragment {
                             }
                         }
                     }
-                    recommendAdapter = new RecommendAdapter(videoBean.getResult(), getContext(), R.layout.fragment_video_child_listview, integerList);
+                    recommendAdapter = new RecommendAdapter(videoBean.getResult(), mContext, R.layout.fragment_video_child_listview, integerList);
                 }
 
                 @Override

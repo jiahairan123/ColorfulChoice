@@ -74,7 +74,7 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
         for (int i = 0; i < 45; ++i) {
             Random random = new Random();
             random.setSeed(i);
-            models.add(0xffffffff);
+            models.add(0xffffff);
         }
 
         stack = new OverviewAdapter<ViewHolder<View, Integer>, Integer>(models) {

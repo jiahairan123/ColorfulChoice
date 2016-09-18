@@ -40,7 +40,7 @@ public class DailyFragment extends BaseFragment {
         netTool.getNetData(URLValue.DAILYA_url, DailyBean.class, new NetTool.NetListener<DailyBean>() {
             @Override
             public void onSuccess(DailyBean dailyBean) {
-                listView.setAdapter(new CommonAdapter<DailyBean.DataBean.ProductsBean>(dailyBean.getData().getProducts(), getContext(), R.layout.item_daily) {
+                listView.setAdapter(new CommonAdapter<DailyBean.DataBean.ProductsBean>(dailyBean.getData().getProducts(), mContext, R.layout.item_daily) {
                     @Override
                     public void setData(DailyBean.DataBean.ProductsBean bean, CommonViewHolder viewHolder) {
                         viewHolder.setText(R.id.item_daily_name, bean.getDesigner().getName());
