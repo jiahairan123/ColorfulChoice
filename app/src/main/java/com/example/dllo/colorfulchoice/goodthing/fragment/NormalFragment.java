@@ -1,6 +1,6 @@
-package com.example.dllo.colorfulchoice.goodthing;
+package com.example.dllo.colorfulchoice.goodthing.fragment;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.format.DateUtils;
@@ -20,6 +20,9 @@ import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
 import com.example.dllo.colorfulchoice.custom.GrapeGridView;
+import com.example.dllo.colorfulchoice.goodthing.EventBusPosition;
+import com.example.dllo.colorfulchoice.goodthing.bean.NormalBean;
+import com.example.dllo.colorfulchoice.goodthing.bean.PopBean;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -44,6 +47,8 @@ public class NormalFragment extends BaseFragment {
     private View contentView;
     private PopBean.DataBean.CategoriesBean categoriesBean;
     private String name;
+    private NormalBean normalBean;
+    private int[] ids = {-1,3,1,2,65,4,54};
 
     public static NormalFragment getInstance(String tab) {
         Bundle bundle = new Bundle();
@@ -82,10 +87,23 @@ public class NormalFragment extends BaseFragment {
         // PopUpWindow的布局
         contentView = LayoutInflater.from(getContext()).inflate(R.layout.goodthing_popupwindow, null);
         myPopUpWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT,
-                300, true);
+                ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
         mPullRefreshGridView = bindView(R.id.pull_refresh_grid);
+        // 点击跳转二级界面
+        mPullRefreshGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), GoodThingActivity.class);
+                // 传递id
+                int id1 = normalBean.getData().getProducts().get(i).getId();
+                intent.putExtra("id",id1);
+                startActivity(intent);
+                Toast.makeText(getContext(), "点击了" + id1, Toast.LENGTH_SHORT).show();
+            }
+        });
         mGridView = mPullRefreshGridView.getRefreshableView();
+
         // popupWindow;
         llPop = bindView(R.id.normal_fragment_pop_ll);
         llPop.setOnClickListener(new View.OnClickListener() {
@@ -113,53 +131,18 @@ public class NormalFragment extends BaseFragment {
 
     private void showPopUpWindow(View view) {
 
-        final GrapeGridView gridView = (GrapeGridView) contentView.findViewById(R.id.goodthing_pop_gv);
-        netTool.getNetData(URLValue.GOODTHINTS_POP, PopBean.class, new NetTool.NetListener<PopBean>() {
-            @Override
-            public void onSuccess(PopBean popBean) {
-                for (int i1 = 0; i1 < popBean.getData().getCategories().size(); i1++) {
-                    categoriesBean = popBean.getData().getCategories().get(i1);
-                    name = categoriesBean.getName();
+        GrapeGridView gridView = (GrapeGridView) contentView.findViewById(R.id.goodthing_pop_gv);
+
+        PopBean.DataBean.CategoriesBean bean = NotmalTab.getInstance().getBeanFormPos(ids[position]);
+        if(bean!=null) {
+            gridView.setAdapter(new CommonAdapter<PopBean.DataBean.CategoriesBean.SubCategoriesBean>(bean.getSub_categories(),mContext,R.layout.item_pop) {
+
+                @Override
+                public void setData(PopBean.DataBean.CategoriesBean.SubCategoriesBean subCategoriesBean, CommonViewHolder viewHolder) {
+                    viewHolder.setText(R.id.goodthing_pop_gridview_tv,subCategoriesBean.getName());
                 }
-
-                gridView.setAdapter(new CommonAdapter<PopBean.DataBean.CategoriesBean.SubCategoriesBean>(categoriesBean.getSub_categories(),
-                        getContext(), R.layout.item_pop) {
-                    @Override
-                    public void setData(PopBean.DataBean.CategoriesBean.SubCategoriesBean subCategoriesBean, CommonViewHolder viewHolder) {
-                        switch (name) {
-                            // 首饰
-                            case "首饰":
-                                viewHolder.setText(R.id.goodthing_pop_gridview_tv, subCategoriesBean.getName());
-                                break;
-                            // 包袋
-                            case "包袋":
-                                viewHolder.setText(R.id.goodthing_pop_gridview_tv, subCategoriesBean.getName());
-                                break;
-                            // 鞋履
-                            case "鞋履":
-                                viewHolder.setText(R.id.goodthing_pop_gridview_tv, subCategoriesBean.getName());
-                                break;
-                            // 配饰
-                            case "配饰":
-                                viewHolder.setText(R.id.goodthing_pop_gridview_tv, subCategoriesBean.getName());
-                                break;
-                            // 其他
-                            case "其他":
-                                viewHolder.setText(R.id.goodthing_pop_gridview_tv, subCategoriesBean.getName());
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onError(String errorMsg) {
-                Toast.makeText(mContext, "网络连接错误", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+            });
+        }
         myPopUpWindow.setFocusable(true);
         myPopUpWindow.setOutsideTouchable(true);
         myPopUpWindow.setBackgroundDrawable(getResources().getDrawable(R.mipmap.se));

@@ -47,8 +47,8 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public T getItem(int position) {
+        return beanList.get(position);
     }
 
     @Override

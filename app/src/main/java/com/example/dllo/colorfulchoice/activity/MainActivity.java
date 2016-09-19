@@ -8,7 +8,8 @@ import android.widget.RadioGroup;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseAty;
 import com.example.dllo.colorfulchoice.designer.DesignerFragment;
-import com.example.dllo.colorfulchoice.goodthing.GoodThingFragment;
+import com.example.dllo.colorfulchoice.goodthing.fragment.GoodThingFragment;
+import com.example.dllo.colorfulchoice.goodthing.fragment.NotmalTab;
 import com.example.dllo.colorfulchoice.me.MeFragment;
 import com.example.dllo.colorfulchoice.picture.PictureFragment;
 import com.example.dllo.colorfulchoice.video.VideoFragment;
@@ -34,7 +35,7 @@ public class MainActivity extends BaseAty implements RadioGroup.OnCheckedChangeL
 
     @Override
     protected void initData() {
-
+        NotmalTab.getInstance();
     }
 
     @Override

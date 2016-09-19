@@ -1,9 +1,11 @@
-package com.example.dllo.colorfulchoice.goodthing;
+package com.example.dllo.colorfulchoice.goodthing.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.dllo.colorfulchoice.goodthing.fragment.DailyFragment;
+import com.example.dllo.colorfulchoice.goodthing.fragment.NormalFragment;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 
 /**
@@ -13,7 +15,7 @@ public class ThingsAdapter extends FragmentPagerAdapter{
 
     String[] strings = new String[]{"Daily", "首饰", "包袋", "鞋履", "Men", "配饰", "其他"};
 
-    final String url[] = {URLValue.DAILYA_url, URLValue.JEWELLERY_URL, URLValue.BAGS_URL,
+    final String url[] = {URLValue.DAILY_URL, URLValue.JEWELLERY_URL, URLValue.BAGS_URL,
     URLValue.SHOES_URL, URLValue.MEN_URL, URLValue.ACC_URL, URLValue.OTHER_URL};
 
     Fragment[] fragments;
