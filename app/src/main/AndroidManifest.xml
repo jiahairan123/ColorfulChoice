@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".picture.PictureContentActivity"/>
+        <activity android:name=".picture.onclickpicture.PictureContentActivity"/>
 
     </application>
 

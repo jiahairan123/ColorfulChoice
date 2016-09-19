@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<com.example.dllo.colorfulchoice.picture.onclickpicture.HtmlTextView
+    android:id="@+id/tv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
 </LinearLayout>
