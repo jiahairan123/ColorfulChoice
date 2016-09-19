@@ -22,7 +22,6 @@ import com.example.dllo.colorfulchoice.nettool.URLValue;
 public class DailyFragment extends BaseFragment {
 
     private ListView listView;
-    private DailyBean dailyBean;
     private int id1;
     private CommonAdapter<DailyBean.DataBean.ProductsBean> adapter;
 
@@ -38,7 +37,6 @@ public class DailyFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), GoodDailyActivity.class);
-//                dailyBean = new DailyBean();
                 id1 = adapter.getItem(position).getId();
                 intent.putExtra("dailyId",id1);
                 Log.d("DailyFragment", "id1:" + id1);

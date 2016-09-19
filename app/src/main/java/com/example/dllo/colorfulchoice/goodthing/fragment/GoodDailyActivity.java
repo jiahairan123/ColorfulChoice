@@ -5,8 +5,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseAty;
+import com.example.dllo.colorfulchoice.base.MyApp;
 import com.example.dllo.colorfulchoice.goodthing.bean.TwoDailyBean;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 
@@ -21,7 +23,6 @@ public class GoodDailyActivity extends BaseAty{
     private TextView name;
     private TextView desc;
     private ImageView images;
-    private TwoDailyBean twoDailyBean;
     private int aa;
 
 
@@ -45,7 +46,7 @@ public class GoodDailyActivity extends BaseAty{
         aa = intent.getIntExtra("dailyId", 1246);
         String upUrl = "http://design.zuimeia.com/api/v1/product/";
         String downUrl = "/?device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=54289&token=4ff-c8707efb1ab1d1555ba5&package_name=com.zuiapps.zuiworld";
-        String finalUrl = upUrl + aa + downUrl;
+        final String finalUrl = upUrl + aa + downUrl;
         netTool.getNetData(finalUrl, TwoDailyBean.class, new NetTool.NetListener<TwoDailyBean>() {
             @Override
             public void onSuccess(TwoDailyBean twoDailyBean) {
@@ -53,6 +54,8 @@ public class GoodDailyActivity extends BaseAty{
                 name.setText(twoDailyBean.getData().getName());
                 desc.setText(twoDailyBean.getData().getDesc());
 
+                Glide.with(MyApp.getContext()).load(twoDailyBean.getData().getCover_images().get(0)).into(coverImages);
+                Glide.with(MyApp.getContext()).load(twoDailyBean.getData().getImages()).into(images);
             }
 
             @Override

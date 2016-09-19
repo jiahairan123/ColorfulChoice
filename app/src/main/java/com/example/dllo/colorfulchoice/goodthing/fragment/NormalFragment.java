@@ -90,18 +90,6 @@ public class NormalFragment extends BaseFragment {
                 ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
         mPullRefreshGridView = bindView(R.id.pull_refresh_grid);
-        // 点击跳转二级界面
-        mPullRefreshGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), GoodThingActivity.class);
-                // 传递id
-                int id1 = normalBean.getData().getProducts().get(i).getId();
-                intent.putExtra("id",id1);
-                startActivity(intent);
-                Toast.makeText(getContext(), "点击了" + id1, Toast.LENGTH_SHORT).show();
-            }
-        });
         mGridView = mPullRefreshGridView.getRefreshableView();
 
         // popupWindow;
@@ -110,7 +98,6 @@ public class NormalFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 showPopUpWindow(view);
-                Toast.makeText(mContext, "position:" + position, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -194,13 +181,6 @@ public class NormalFragment extends BaseFragment {
                             @Override
                             public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {
                                 // 下拉刷新
-                                Log.d("NormalFragment", "刷新");
-                                // 获取上次刷新的时间
-                                String lable = DateUtils.formatDateTime(getContext(),
-                                        System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE
-                                                | DateUtils.FORMAT_ABBREV_ALL);
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(lable);
-
                                 netTool.getNetData(url, NormalBean.class, new NetTool.NetListener<NormalBean>() {
                                     @Override
                                     public void onSuccess(NormalBean normalBean) {
