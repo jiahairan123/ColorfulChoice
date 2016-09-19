@@ -30,6 +30,7 @@ public class MeFragment extends BaseFragment {
         wishList = bindView(R.id.me_wish_list);
         newsCenter = bindView(R.id.me_news_center);
         adviceAndQuestion = bindView(R.id.me_advice_question);
+
 //        mDrawerLayout = bindView(R.id.me_drawer_layout);
 //        mFrameLayout = bindView(R.id.me_right_framelayout);
 //        //DrawerLayout手势滑动
