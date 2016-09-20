@@ -15,14 +15,7 @@ import java.util.Vector;
 
 /**
  * 当前类注释: HtmlTagHandler
- * 项目名：FastDevTest
- * 包名：com.jwenfeng.fastdev.view.htmltextview
- * 作者：jinwenfeng on 16/1/27 11:20
- * 邮箱：823546371@qq.com
- * QQ： 823546371
- * 公司：南京穆尊信息科技有限公司
- * © 2016 jinwenfeng
- * ©版权所有，未经允许不得传播
+ *
  */
 public class HtmlTagHandler implements Html.TagHandler {
 

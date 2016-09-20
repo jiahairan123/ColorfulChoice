@@ -72,7 +72,7 @@ public class OverviewStackViewLayoutAlgorithm {
         //这里设置cardview之间的各种参数
         //TODO  当前卡片显示多少时 ,开始拉动第二个卡片
 
-        float visibleTaskPct = 0.6f;//第一个卡片拉到什么位置以后,第二个卡片开始动
+        float visibleTaskPct = 0.8f;//第一个卡片拉到什么位置以后,第二个卡片开始动
         mWithinAffiliationOffset = 0;
         mBetweenAffiliationOffset = (int) (visibleTaskPct * mTaskRect.height());
     }

@@ -1,5 +1,6 @@
 package com.example.dllo.colorfulchoice.picture.onclickpicture;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -14,14 +15,12 @@ import com.example.dllo.colorfulchoice.nettool.NetTool;
 
 // http://design.zuimeia.com/api/v1/article/72/?device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=54289&token=4ff-c8707efb1ab1d1555ba5&package_name=com.zuiapps.zuiworld
 
-public class PictureContentActivity extends BaseAty{
+public class PictureContentActivity extends BaseAty {
 
     static String startUrl = "http://design.zuimeia.com/api/v1/article/";
     static String endUrl = "/?device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=54289&token=4ff-c8707efb1ab1d1555ba5&package_name=com.zuiapps.zuiworld";
-    int num = 72;
-
-    String myUrl = startUrl + num + endUrl;
     private HtmlTextView tv;
+    private int pos;
 
     @Override
     protected int setLayout() {
@@ -30,12 +29,16 @@ public class PictureContentActivity extends BaseAty{
 
     @Override
     protected void initView() {
-        LinearLayout linearLayout = bindView(R.id.picture_content_ll);
-        tv = bindView(R.id.tv);
+        Intent intent = getIntent();
+        pos = intent.getIntExtra("pos", 0);
+        tv = bindView(R.id.picture_content_tv);
+
     }
 
     @Override
     protected void initData() {
+        int num = 75 - pos;
+        String myUrl = startUrl + num + endUrl;
         NetTool netTool = new NetTool();
         netTool.getNetData(myUrl, PictureDetailBean.class, new NetTool.NetListener<PictureDetailBean>() {
             @Override
@@ -50,7 +53,7 @@ public class PictureContentActivity extends BaseAty{
                 html = html.replace("</ul>", "");
                 html = html.replace("</li>", "");
                 html = html.replace("<li>", "");
-                tv.setHtmlFromString(html,false);
+                tv.setHtmlFromString(html, false);
             }
 
             @Override

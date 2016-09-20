@@ -90,7 +90,6 @@ public class Overview extends FrameLayout implements OverviewStackView.Callbacks
         mStackView.setCallbacks(this);
         //不透明
         mStackView.setAlpha(1.f);
-//        mStackView.animate().alpha(1.f).setStartDelay(2000).setDuration(3500).start();
 
         //所以说 OverviewStackView 才是重点
         addView(mStackView);

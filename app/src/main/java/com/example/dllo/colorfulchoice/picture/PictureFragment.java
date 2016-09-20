@@ -139,6 +139,7 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
         public void onClick(View view) {
             Toast.makeText(mContext, "pos:" + pos, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(),PictureContentActivity.class);
+            intent.putExtra("pos", pos);
             getActivity().startActivity(intent);
         }
     }
