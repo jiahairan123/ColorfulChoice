@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
-import com.example.dllo.colorfulchoice.goodthing.EventBusPosition;
+import com.example.dllo.colorfulchoice.goodthing.eventbus.EventBusPosition;
 import com.example.dllo.colorfulchoice.goodthing.adapter.ThingsAdapter;
 
 import org.greenrobot.eventbus.EventBus;

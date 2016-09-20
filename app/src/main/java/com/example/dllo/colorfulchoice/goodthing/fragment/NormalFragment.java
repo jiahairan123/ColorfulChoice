@@ -1,10 +1,7 @@
 package com.example.dllo.colorfulchoice.goodthing.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +17,10 @@ import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
 import com.example.dllo.colorfulchoice.custom.GrapeGridView;
-import com.example.dllo.colorfulchoice.goodthing.EventBusPosition;
+import com.example.dllo.colorfulchoice.goodthing.eventbus.EventBusPosition;
 import com.example.dllo.colorfulchoice.goodthing.bean.NormalBean;
 import com.example.dllo.colorfulchoice.goodthing.bean.PopBean;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
-import com.example.dllo.colorfulchoice.nettool.URLValue;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 
@@ -45,9 +41,8 @@ public class NormalFragment extends BaseFragment {
     private PopupWindow myPopUpWindow;
     private int position;
     private View contentView;
-    private PopBean.DataBean.CategoriesBean categoriesBean;
-    private String name;
-    private NormalBean normalBean;
+    private CommonAdapter<NormalBean.DataBean.ProductsBean> adapter;
+
     private int[] ids = {-1,3,1,2,65,4,54};
 
     public static NormalFragment getInstance(String tab) {
@@ -212,12 +207,12 @@ public class NormalFragment extends BaseFragment {
                             public void onPullUpToRefresh(PullToRefreshBase<GridView> refreshView) {
                                 // 上拉加载
                                 String newPage = "p" + i;
-                                String newUrl = url.replace("p1", newPage);
                                 i += 1;
+                                String newUrl = url.replace("p1", newPage);
                                 netTool.getNetData(newUrl, NormalBean.class, new NetTool.NetListener<NormalBean>() {
                                     @Override
                                     public void onSuccess(NormalBean normalBean) {
-                                        mPullRefreshGridView.setAdapter(new CommonAdapter<NormalBean.DataBean.ProductsBean>(normalBean.getData().getProducts(),
+                                        adapter = new CommonAdapter<NormalBean.DataBean.ProductsBean>(normalBean.getData().getProducts(),
                                                 getContext(), R.layout.item_normal) {
                                             @Override
                                             public void setData(NormalBean.DataBean.ProductsBean productsBean, CommonViewHolder viewHolder) {
@@ -228,7 +223,9 @@ public class NormalFragment extends BaseFragment {
                                                 viewHolder.setImage(R.id.item_normal_cover_images, productsBean.getCover_images().get(0));
                                                 mPullRefreshGridView.onRefreshComplete();
                                             }
-                                        });
+                                        };
+
+                                        mPullRefreshGridView.setAdapter(adapter);
                                     }
 
                                     @Override

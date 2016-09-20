@@ -1,4 +1,4 @@
-package com.example.dllo.colorfulchoice.goodthing;
+package com.example.dllo.colorfulchoice.goodthing.eventbus;
 
 /**
  * Created by mayinling on 16/9/18.
