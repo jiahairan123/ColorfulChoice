@@ -5,14 +5,11 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-
 import com.bumptech.glide.Glide;
 import com.example.dllo.colorfulchoice.base.MyApp;
 import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

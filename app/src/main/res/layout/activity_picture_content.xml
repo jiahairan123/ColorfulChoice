@@ -1,13 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:gravity="center"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="3dp">
 
-<com.example.dllo.colorfulchoice.picture.onclickpicture.HtmlTextView
-    android:id="@+id/picture_content_tv"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
 
-</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/picture_content_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="不想做设计师的演员不是好双生"
+                android:textColor="#111"
+                android:textSize="25sp" />
+
+
+            <TextView
+                android:id="@+id/picture_content_sub_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/picture_content_title"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="看 Olsen 双生姐妹花玩转角色转换"
+                android:textColor="#282525"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/picture_content_designer_img"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_below="@+id/picture_content_sub_title"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:id="@+id/no_use_at_all"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/picture_content_designer_img"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#fdfbfb"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/picture_content_author_sign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:gravity="center"
+                    android:text="在设计的世界撒欢儿的野马"
+                    android:textColor="#121212"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/picture_content_author_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/picture_content_sub_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="360dp" />
+
+
+            <com.example.dllo.colorfulchoice.picture.onclickpicture.HtmlTextView
+                android:id="@+id/picture_content_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="#121212"
+                android:textSize="19sp"
+                android:layout_marginBottom="70dp"
+                android:gravity="center"
+                android:layout_below="@+id/no_use_at_all" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/picture_content_user_img"
+            android:layout_width="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="match_parent"/>
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/picture_content_user_et"
+            android:layout_width="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="match_parent"
+            android:background="#f2f0f0"
+            android:hint="说点什么" />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

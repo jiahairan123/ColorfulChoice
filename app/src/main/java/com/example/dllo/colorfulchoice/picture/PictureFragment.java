@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,23 +42,6 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
     protected void initView() {
         mRecentsView =bindView(R.id.recents_view);
 
-        //unknown
-        mRecentsView.setCallbacks(new Overview.RecentsViewCallbacks() {
-            @Override
-            public void onCardDismissed(int position) {
-                Toast.makeText(mContext, "Card被移除" + position, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAllCardsDismissed() {
-
-            }
-
-            @Override
-            public void onTrimMemory(int level) {
-
-            }
-        });
 
     }
 
@@ -104,7 +88,10 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
 
                 Glide.with(PictureFragment.this.getActivity()).load(articles.get(position).getImage_url()).into(contentImg);
                 Glide.with(PictureFragment.this.getActivity()).load(articles.get(position).getAuthor().getAvatar_url()).into(userImg);
-                viewHolder.itemView.setOnClickListener(new MyOnClickListener(position));
+                int id = articles.get(position).getId();
+
+                viewHolder.itemView.setOnClickListener(new MyOnClickListener(id));
+
 
             }
         };
@@ -130,6 +117,7 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
     class MyOnClickListener implements View.OnClickListener{
         int pos;
 
+
         public MyOnClickListener(int pos) {
             this.pos = pos;
         }
@@ -140,6 +128,7 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
             Toast.makeText(mContext, "pos:" + pos, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(),PictureContentActivity.class);
             intent.putExtra("pos", pos);
+            intent.putExtra("max", 76);
             getActivity().startActivity(intent);
         }
     }

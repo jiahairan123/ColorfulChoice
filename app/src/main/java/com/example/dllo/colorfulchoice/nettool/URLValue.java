@@ -55,7 +55,12 @@ public final class URLValue {
     //视频 ——— 推荐
     public static final String VIDEO_RECOMMEND_URL = "http://124.243.203.100/Website/channel/news-list-for-channel?platform=1&infinite=true&cstart=0&group_fromid=g184&cend=50&appid=xiaomi&cv=3.7.0&last_docid=0EPdgyex&distribution=app.xiaomi.com&refresh=1&channel_id=100172697768&fields=docid&fields=date&fields=image&fields=image_urls&fields=like&fields=source&fields=title&fields=url&fields=comment_count&fields=up&fields=down&version=020108&net=wifi";
 
-
+    //网址 开头
+    public static final String BEGIN_URL = "http://design.zuimeia.com/api/v1/products/designer/";
+    //网址结尾
+    public static final String THEME_END_URL = "/?page=1&page_size=30&user_id=0&device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=56867&token=4fh-b2e25365c65615102ddb&package_name=com.zuiapps.zuiworld";
+    public static final String ONLINE_END_URL = "/?device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=56867&token=4fh-b2e25365c65615102ddb&package_name=com.zuiapps.zuiworld";
+    public static final String TURNERPAGER_END_URL = "/?device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=56867&token=4fh-b2e25365c65615102ddb&package_name=com.zuiapps.zuiworld";
 
 
 }

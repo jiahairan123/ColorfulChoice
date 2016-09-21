@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/designer_detail_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="420dp"
+                android:scaleType="fitXY" />
+
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/designer_detail_designer_pic"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-35dp" />
+
+            <TextView
+                android:id="@+id/designer_detail_designer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:text="Morgan Bogle"
+                android:textColor="#000"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/designer_detail_designer_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="Freedom of Animals 创世人"
+                android:textColor="#615b5b"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/designer_detail_designer_words"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="设计有时候需要创造假象"
+                android:textColor="#2d2a2a"
+                android:textSize="21sp" />
+
+            <Button
+
+                android:id="@+id/designer_detail_sign_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background"
+                android:text="关注"
+                android:textColor="#fff" />
+
+            <TextView
+                android:textSize="15sp"
+                android:textColor="#615b5b"
+                android:id="@+id/designer_detail_designer_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

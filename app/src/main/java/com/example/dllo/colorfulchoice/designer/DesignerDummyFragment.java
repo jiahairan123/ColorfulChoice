@@ -1,10 +1,12 @@
 package com.example.dllo.colorfulchoice.designer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
-
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
@@ -14,6 +16,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 /**
  * Coder: JiaHaiRan
  * created on 16/9/18 11:24
+ * <p>
+ * 设计fragment的 -- 复用
  */
 
 public class DesignerDummyFragment extends BaseFragment {
@@ -46,7 +50,9 @@ public class DesignerDummyFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        //gridView
         gridView = bindView(R.id.designer_pull_to_refresh);
+        //转圈的小方块
         mGridView = gridView.getRefreshableView();
 
     }
@@ -56,14 +62,26 @@ public class DesignerDummyFragment extends BaseFragment {
 
         Bundle bundle = getArguments();
         final String url = bundle.getString(KEY, "default");
-        //获取网络数据
+
+        //网络请求
         netTool.getNetData(url, DesignerBean.class, new NetTool.NetListener<DesignerBean>() {
             @Override
             public void onSuccess(final DesignerBean designerBean) {
-                //加网络数据的时候  在这里获取当前用户
+
                 adapter = new DummyAdapter();
-                gridView.setAdapter(adapter);
                 adapter.setDesignerBean(designerBean);
+                gridView.setAdapter(adapter);
+
+                // Item 监听
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        Intent intent = new Intent(getActivity(), DesignerDetailsActivity.class);
+                        intent.putExtra("id", designerBean.getData().getDesigners().get(position).getId());
+                        getActivity().startActivity(intent);
+                    }
+                });
 
             }
 
@@ -73,7 +91,7 @@ public class DesignerDummyFragment extends BaseFragment {
             }
         });
 
-        //GridView 加刷新
+        // 刷新
         gridView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<GridView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {
@@ -83,7 +101,7 @@ public class DesignerDummyFragment extends BaseFragment {
                                 | DateUtils.FORMAT_ABBREV_ALL);
                 gridView.getLoadingLayoutProxy().setLastUpdatedLabel(lastRefreshTime);
 
-                //下拉刷新
+                //下拉
                 netTool.getNetData(url, DesignerBean.class, new NetTool.NetListener<DesignerBean>() {
                     @Override
                     public void onSuccess(DesignerBean designerBean) {
@@ -101,10 +119,10 @@ public class DesignerDummyFragment extends BaseFragment {
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<GridView> refreshView) {
 
-                //上拉加载
-                        sum += 10;
-                        String part = "size=" + sum;
-                        String newUrl = url.replace("size=30", part);
+                //上拉
+                sum += 10;
+                String part = "size=" + sum;
+                String newUrl = url.replace("size=30", part);
 
                 netTool.getNetData(newUrl, DesignerBean.class, new NetTool.NetListener<DesignerBean>() {
                     @Override
