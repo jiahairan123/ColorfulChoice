@@ -16,6 +16,7 @@ import com.example.dllo.colorfulchoice.base.CommonViewHolder;
 import com.example.dllo.colorfulchoice.base.MyApp;
 import com.example.dllo.colorfulchoice.goodthing.bean.TwoDailyBean;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
+import com.example.dllo.colorfulchoice.nettool.URLValue;
 
 import java.util.List;
 
@@ -23,21 +24,20 @@ import java.util.List;
 /**
  * Created by mayinling on 16/9/19.
  */
-public class GoodDailyActivity extends BaseAty{
+public class GoodDailyActivity extends BaseAty {
 
     private ImageView coverImages;
     private TextView digest;
     private TextView name;
     private TextView desc;
     private ImageView images;
-    private int aa;
+
     private ImageView avatar;
     private TextView nameTwo;
     private TextView lable;
     private TextView description;
     private GridView gridView;
-
-
+    private int aa;
 
     @Override
     protected int setLayout() {
@@ -64,8 +64,8 @@ public class GoodDailyActivity extends BaseAty{
     protected void initData() {
         Intent intent = getIntent();
         aa = intent.getIntExtra("dailyId", 1246);
-        String upUrl = "http://design.zuimeia.com/api/v1/product/";
-        String downUrl = "/?device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=54289&token=4ff-c8707efb1ab1d1555ba5&package_name=com.zuiapps.zuiworld";
+        String upUrl = URLValue.TWO_GOODTHING_UP;
+        String downUrl = URLValue.TWO_GOODTHING_DOWN;
         final String finalUrl = upUrl + aa + downUrl;
         netTool.getNetData(finalUrl, TwoDailyBean.class, new NetTool.NetListener<TwoDailyBean>() {
             @Override
@@ -80,21 +80,19 @@ public class GoodDailyActivity extends BaseAty{
 
                 // 获取网络图片
                 Glide.with(getApplicationContext()).load(twoDailyBean.getData().getCover_images().get(0)).into(coverImages);
-                List<String> imgUrls =twoDailyBean.getData().getImages();
+                List<String> imgUrls = twoDailyBean.getData().getImages();
                 Glide.with(getApplicationContext()).load(imgUrls.get(0)).into(images);
                 Glide.with(getApplicationContext()).load(twoDailyBean.getData().getDesigner().getAvatar_url()).into(avatar);
 
                 // 下面的相关链接
                 gridView.setAdapter(new CommonAdapter<TwoDailyBean.DataBean.ReferProductsBean>(twoDailyBean
-                .getData().getRefer_products(), getApplicationContext(), R.layout.item_daily_lianjie) {
+                        .getData().getRefer_products(), getApplicationContext(), R.layout.item_daily_lianjie) {
                     @Override
                     public void setData(TwoDailyBean.DataBean.ReferProductsBean referProductsBean, CommonViewHolder viewHolder) {
                         for (int i = 0; i < twoDailyBean.getData().getRefer_products().size(); i++) {
-                            List<String> images = twoDailyBean.getData().getRefer_products().get(i).getImages();
+                            List<String> images = twoDailyBean.getData().getRefer_products().get(i).getCover_images();
                             for (int j = 0; j < images.size(); j++) {
                                 viewHolder.setImage(R.id.lianjie_iv, images.get(j));
-                                Log.d("GoodDailyActivity", images.get(j));
-
                             }
                         }
                     }
@@ -108,8 +106,10 @@ public class GoodDailyActivity extends BaseAty{
         });
     }
 
+
     @Override
     public void onClick(View v) {
 
     }
+
 }

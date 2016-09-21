@@ -8,6 +8,7 @@ import java.util.List;
 public class PopBean {
 
 
+
     private DataBean data;
 
     private int result;
@@ -41,6 +42,7 @@ public class PopBean {
         }
 
         public static class CategoriesBean {
+
             private int id;
             private String name;
 

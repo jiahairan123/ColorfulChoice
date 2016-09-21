@@ -21,7 +21,6 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     private int convertViewId;
     private List<Integer> integerList;
 
-
     public CommonAdapter(List<T> beanList, Context context, int id, List<Integer> integerList) {
         this.beanList = beanList;
         inflater = LayoutInflater.from(context);

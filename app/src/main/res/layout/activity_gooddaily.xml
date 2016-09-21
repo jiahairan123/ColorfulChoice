@@ -12,14 +12,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-
-            <ImageView
+            <android.support.v4.view.ViewPager
                 android:id="@+id/activity_goodthing_daily_cover_images"
-                android:src="@mipmap/ic_launcher"
-                android:scaleType="fitXY"
+                android:scaleType="center"
+                android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="300dp" />
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:id="@+id/dotcantaint"
+               android:layout_marginTop="-30dp"
+               android:layout_gravity="center"
+               android:layout_width="match_parent"
+               android:layout_height="20dp">
+
+           </LinearLayout>
 
             <TextView
                 android:id="@+id/activity_goodthing_daily_digest"
@@ -60,8 +68,8 @@
             <ImageView
                 android:id="@+id/activity_goodthing_daily_images"
                 android:layout_width="match_parent"
-                android:scaleType="fitXY"
-
+                android:scaleType="center"
+                android:layout_margin="5dp"
                 android:layout_height="300dp" />
 
             <TextView
@@ -129,10 +137,10 @@
             <GridView
                 android:id="@+id/activity_goodthing_lianjie"
                 android:numColumns="2"
-                android:background="#dd43429e"
+                android:background="#000"
                 android:layout_width="match_parent"
                 android:stretchMode="columnWidth"
-                android:layout_height="3000dp">
+                android:layout_height="1000dp">
 
             </GridView>
 

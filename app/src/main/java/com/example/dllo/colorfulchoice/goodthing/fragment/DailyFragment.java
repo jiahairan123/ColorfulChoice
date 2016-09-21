@@ -39,7 +39,6 @@ public class DailyFragment extends BaseFragment {
                 Intent intent = new Intent(getContext(), GoodDailyActivity.class);
                 id1 = adapter.getItem(position).getId();
                 intent.putExtra("dailyId",id1);
-                Log.d("DailyFragment", "id1:" + id1);
                 getActivity().startActivity(intent);
             }
         });

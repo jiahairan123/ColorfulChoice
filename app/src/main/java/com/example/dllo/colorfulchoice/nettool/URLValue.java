@@ -48,4 +48,12 @@ public final class URLValue {
     // 有物页的二级网址拼接
     public static final String TWO_GOODTHING_UP = "http://design.zuimeia.com/api/v1/product/";
     public static final String TWO_GOODTHING_DOWN = "/?device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=54289&token=4ff-c8707efb1ab1d1555ba5&package_name=com.zuiapps.zuiworld";
+
+    // 有物页pop的二级跳转
+    public static final String PopTwo_ONE = "http://design.zuimeia.com/api/v1/products/category/";
+    public static final String PopTwo_two = "/?page=1&page_size=30&device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=56867&token=4fh-b2e25365c65615102ddb&package_name=com.zuiapps.zuiworld";
+
+    // 有物页 -- 复用的二级跳转
+    public static final String NROMAL_ONE = "http://design.zuimeia.com/api/v1/product/";
+    public static final String NORMAL_TWO = "/?device_id=860076039322200&platform=android&lang=zh&appVersion=1.1.9&appVersionCode=10190&systemVersion=23&countryCode=CN&user_id=56867&token=4fi-d3ee768bd49d1239de90&package_name=com.zuiapps.zuiworld";
 }

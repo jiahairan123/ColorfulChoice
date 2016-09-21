@@ -4,6 +4,8 @@ import com.example.dllo.colorfulchoice.goodthing.bean.PopBean;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 
+import java.util.List;
+
 /**
  * Created by mayinling on 16/9/19.
  */
@@ -47,4 +49,6 @@ public class NotmalTab {
         }
         return null;
     }
+
+
 }
