@@ -3,6 +3,8 @@ package com.example.dllo.colorfulchoice.designer.detail;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +36,8 @@ public class DesignerDetailsActivity extends BaseAty {
     private CircleImageView designerPic;
     private TextView designerName, designerPosition, designerWords, designerHistory;
     private Button signBtn;
+    private ViewPager centerVp;
+    private TabLayout tabLayout;
 
 
     @Override
@@ -52,6 +56,9 @@ public class DesignerDetailsActivity extends BaseAty {
         designerHistory = bindView(R.id.designer_detail_designer_history);
         signBtn = bindView(R.id.designer_detail_sign_btn);
         signBtn.setOnClickListener(this);
+
+        tabLayout = bindView(R.id.designer_detail_center_tablayout);
+        centerVp = bindView(R.id.designer_detail_center_viewpager);
     }
 
     @Override

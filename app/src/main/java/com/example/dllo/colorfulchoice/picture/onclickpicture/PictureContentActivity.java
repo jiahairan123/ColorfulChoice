@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,9 +28,13 @@ public class PictureContentActivity extends BaseAty {
     private HtmlTextView tv;
     private int pos;
     private TextView title, subTitle, userName, sign;
-    private CircleImageView userImg, authorImg;
+    private CircleImageView userImg, authorImg, backBtn,person;
     private ImageView bigImg;
     private EditText userEt;
+    private RelativeLayout personTitleDetail;
+
+
+
 
     @Override
     protected int setLayout() {
@@ -50,6 +55,9 @@ public class PictureContentActivity extends BaseAty {
         userImg = bindView(R.id.picture_content_user_img);
         userEt = bindView(R.id.picture_content_user_et);
         bigImg = bindView(R.id.picture_content_designer_img);
+        backBtn = bindView(R.id.picture_content_back_circle_btn);
+        person = bindView(R.id.picture_content_person_pic);
+        backBtn.setOnClickListener(this);
 
 
     }
@@ -91,10 +99,18 @@ public class PictureContentActivity extends BaseAty {
 
             }
         });
+        person.setDisableCircularTransformation(false);
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.picture_content_back_circle_btn :
+                finish();
+                break;
 
+            default:
+                break;
+        }
     }
 }

@@ -84,43 +84,81 @@
                 android:id="@+id/picture_content_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/no_use_at_all"
+                android:layout_marginBottom="70dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:textColor="#121212"
-                android:textSize="19sp"
-                android:layout_marginBottom="70dp"
                 android:gravity="center"
-                android:layout_below="@+id/no_use_at_all" />
+                android:textColor="#121212"
+                android:textSize="19sp" />
 
         </RelativeLayout>
 
     </ScrollView>
 
     <LinearLayout
-        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
+        android:background="#fffff1"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/picture_content_user_img"
             android:layout_width="45dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:layout_height="match_parent"/>
+            android:layout_marginTop="5dp" />
 
         <EditText
-            android:layout_marginTop="10dp"
             android:id="@+id/picture_content_user_et"
             android:layout_width="120dp"
-            android:layout_marginLeft="10dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:background="#f2f0f0"
             android:hint="说点什么" />
 
 
-
     </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/picture_content_back_circle_btn"
+            android:background="@mipmap/circle_back"
+            android:alpha="128"
+            android:layout_margin="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+
+        <RelativeLayout
+            android:id="@+id/picture_content_person_title"
+            android:alpha="128"
+            android:background="@drawable/person_title"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="120dp"
+            android:layout_height="50dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:padding="2dp"
+                android:id="@+id/picture_content_person_pic"
+                android:background="@mipmap/ic_launcher"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
