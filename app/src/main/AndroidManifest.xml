@@ -31,8 +31,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".goodthing.fragment.GoodDailyActivity"/>
-        <activity android:name=".goodthing.fragment.NormalTwoActivity"/>
+        <activity android:name=".goodthing.activity.GoodDailyActivity"/>
+        <activity android:name=".goodthing.activity.NormalTwoActivity"/>
     </application>
 
 

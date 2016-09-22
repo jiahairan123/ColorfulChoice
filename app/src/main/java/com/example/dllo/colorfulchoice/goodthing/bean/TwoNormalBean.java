@@ -1,4 +1,4 @@
-package com.example.dllo.colorfulchoice.goodthing.fragment;
+package com.example.dllo.colorfulchoice.goodthing.bean;
 
 import java.util.List;
 

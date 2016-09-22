@@ -1,7 +1,6 @@
 package com.example.dllo.colorfulchoice.goodthing.fragment;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,6 +10,7 @@ import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
+import com.example.dllo.colorfulchoice.goodthing.activity.GoodDailyActivity;
 import com.example.dllo.colorfulchoice.goodthing.bean.DailyBean;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;

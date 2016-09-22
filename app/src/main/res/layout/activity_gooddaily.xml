@@ -23,7 +23,7 @@
                android:orientation="horizontal"
                android:id="@+id/dotcantaint"
                android:layout_marginTop="-30dp"
-               android:layout_gravity="center"
+               android:gravity="center_horizontal"
                android:layout_width="match_parent"
                android:layout_height="20dp">
 

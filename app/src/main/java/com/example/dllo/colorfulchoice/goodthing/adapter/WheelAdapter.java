@@ -1,4 +1,4 @@
-package com.example.dllo.colorfulchoice.goodthing.fragment;
+package com.example.dllo.colorfulchoice.goodthing.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -9,11 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.dllo.colorfulchoice.R;
-import com.example.dllo.colorfulchoice.goodthing.bean.TwoDailyBean;
-
-
-
-import java.util.ArrayList;
+import com.example.dllo.colorfulchoice.goodthing.bean.TwoNormalBean;
 
 /**
  * Created by mayinling on 16/9/21.
@@ -25,11 +21,9 @@ public class WheelAdapter extends PagerAdapter{
 
     public WheelAdapter(Context context) {
         this.context = context;
+
     }
 
-    public void getCount(int count){
-        int size = bean.getData().getCover_images().size();
-    }
 
     public void setBean(TwoNormalBean bean) {
         this.bean = bean;
@@ -63,8 +57,4 @@ public class WheelAdapter extends PagerAdapter{
         return view == object;
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return super.getPageTitle(position);
-    }
 }
