@@ -35,7 +35,7 @@
 
         <activity android:name=".picture.onclickpicture.PictureContentActivity"/>
 
-        <activity android:name=".designer.DesignerDetailsActivity"/>
+        <activity android:name=".designer.detail.DesignerDetailsActivity"/>
     </application>
 
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -14,12 +15,16 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.v4.view.ViewPager
+            <com.jude.rollviewpager.RollPagerView
+                android:padding="2dp"
                 android:id="@+id/designer_detail_view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="420dp"
-                android:scaleType="fitXY" />
-
+                android:scaleType="fitXY"
+                app:rollviewpager_hint_paddingBottom="390dp"
+                app:rollviewpager_hint_gravity="center"
+                app:rollviewpager_play_delay="5000"
+                />
 
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -34,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:text="Morgan Bogle"
                 android:textColor="#000"
                 android:textSize="23sp" />
@@ -53,7 +58,9 @@
                 android:id="@+id/designer_detail_designer_words"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
                 android:text="设计有时候需要创造假象"
                 android:textColor="#2d2a2a"
@@ -71,12 +78,14 @@
                 android:textColor="#fff" />
 
             <TextView
-                android:textSize="15sp"
-                android:textColor="#615b5b"
                 android:id="@+id/designer_detail_designer_history"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="#615b5b"
+                android:textSize="15sp" />
 
 
         </LinearLayout>

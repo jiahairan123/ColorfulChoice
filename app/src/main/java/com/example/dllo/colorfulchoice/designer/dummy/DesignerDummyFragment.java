@@ -1,14 +1,17 @@
-package com.example.dllo.colorfulchoice.designer;
+package com.example.dllo.colorfulchoice.designer.dummy;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
+import com.example.dllo.colorfulchoice.designer.bean.DesignerBean;
+import com.example.dllo.colorfulchoice.designer.detail.DesignerDetailsActivity;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
@@ -78,7 +81,9 @@ public class DesignerDummyFragment extends BaseFragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                         Intent intent = new Intent(getActivity(), DesignerDetailsActivity.class);
-                        intent.putExtra("id", designerBean.getData().getDesigners().get(position).getId());
+                        final int id1 = designerBean.getData().getDesigners().get(position).getId();
+                        Log.d("DesignerDummyFragment", "id1:" + id1);
+                        intent.putExtra("id", id1);
                         getActivity().startActivity(intent);
                     }
                 });

@@ -1,10 +1,11 @@
-package com.example.dllo.colorfulchoice.designer;
+package com.example.dllo.colorfulchoice.designer.fragment;
 
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.dllo.colorfulchoice.designer.dummy.DesignerDummyFragment;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 
 /**
@@ -24,6 +25,7 @@ public class DesignerAdapter extends FragmentPagerAdapter {
     }
 
     /**
+     *
      * Return the Fragment associated with a specified position.
      *
      * @param position

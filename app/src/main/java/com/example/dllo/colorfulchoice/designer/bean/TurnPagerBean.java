@@ -1,4 +1,4 @@
-package com.example.dllo.colorfulchoice.designer;
+package com.example.dllo.colorfulchoice.designer.bean;
 
 import java.util.List;
 
@@ -9,25 +9,26 @@ import java.util.List;
 
 public class TurnPagerBean {
 
+
     /**
-     * follow_num : 88
-     * city : 埃因霍温
-     * concept : 设计创意的本质上是对我们的行为和生活方式的反思
+     * follow_num : 386
+     * city : 伦敦
+     * concept : 我是有个人主见的设计师而不是一味地追逐潮流趋势
      * article_num : 0
-     * name : Marko Macura & Ingeborg van Uden
-     * product_num : 4
-     * label : Studio Macura 联合创始人
-     * introduce_images : ["http://dstatic.zuimeia.com/common/image/2016/9/21/cba39fd4-6a53-412f-abdb-21da4a8ec3ff_800x800.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/20/12747799-dcfe-45c0-98ee-941612d17ab7_1000x1000.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/21/fbbf32f8-dda3-45d8-9957-05d4f6b74cc3_1000x1000.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/21/fa47585d-595e-43a9-a821-f4ea031897f1_1000x1000.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/21/5c4d8f0d-c9b1-4a67-b30d-c4f5cebd88dc_800x800.jpeg"]
-     * avatar_url : http://dstatic.zuimeia.com/designer/avatar/2016/9/21/fea75b4d-60cf-4d2c-9106-02dbe186952a.jpg
+     * name : Lulu Guinness
+     * product_num : 10
+     * label : Lulu Guinness 创始人
+     * introduce_images : ["http://dstatic.zuimeia.com/common/image/2016/9/11/f4d403c3-86f0-453c-b0bf-643f6fdf918c_1000x1000.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/11/40cb5741-af1d-4b44-b86f-5af9a9409292_1080x1080.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/11/8f9acd16-4b57-423e-ba24-c97c750291d5_1080x1080.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/11/63752df0-f129-46f6-ac03-fbec581c6592_1080x1080.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/11/1a25cedf-f01f-480f-be13-fa7b46ef20c0_1000x1000.jpeg"]
+     * avatar_url : http://dstatic.zuimeia.com/designer/avatar/2016/9/7/3ec2eb12-5812-4fc9-9004-103f358dd9c1.jpg
      * is_followed : 0
-     * id : 120
-     * categories : [{"id":12,"name":"极简"},{"id":27,"name":"家居"},{"id":30,"name":"独立设计师"},{"id":53,"name":"埃因霍温"}]
-     * description : Ingeborg 和 Macura 2010 年共同创立了家居配饰设计品牌Studio Macura. 他们有各自不同的专业背景：平面设计和产品设计。区别于公式化的设计风格，他们从叙事和文化的角度去进行创造。Studio Macura的工作室在荷兰的埃因霍温，那里汇集了一大批欧洲的手工匠人和传统制造商们。
+     * id : 115
+     * categories : [{"id":3,"name":"包袋"},{"id":28,"name":"伦敦"},{"id":30,"name":"独立设计师"}]
+     * description : Lulu Guinness 在29岁的时候创立了Lulu Guinness，她希望设计出复古如玫瑰般的手提包，后来她的包包已经超越时尚配饰的角色，被称为：“明日的珍宝”。2006年 Lulu 获得 0BE 大奖，2009 年，她荣获了独立手包设计大奖 ICONCLAST。
      */
 
     private DataBean data;
     /**
-     * data : {"follow_num":88,"city":"埃因霍温","concept":"设计创意的本质上是对我们的行为和生活方式的反思","article_num":0,"name":"Marko Macura & Ingeborg van Uden","product_num":4,"label":"Studio Macura 联合创始人","introduce_images":["http://dstatic.zuimeia.com/common/image/2016/9/21/cba39fd4-6a53-412f-abdb-21da4a8ec3ff_800x800.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/20/12747799-dcfe-45c0-98ee-941612d17ab7_1000x1000.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/21/fbbf32f8-dda3-45d8-9957-05d4f6b74cc3_1000x1000.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/21/fa47585d-595e-43a9-a821-f4ea031897f1_1000x1000.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/21/5c4d8f0d-c9b1-4a67-b30d-c4f5cebd88dc_800x800.jpeg"],"avatar_url":"http://dstatic.zuimeia.com/designer/avatar/2016/9/21/fea75b4d-60cf-4d2c-9106-02dbe186952a.jpg","is_followed":0,"id":120,"categories":[{"id":12,"name":"极简"},{"id":27,"name":"家居"},{"id":30,"name":"独立设计师"},{"id":53,"name":"埃因霍温"}],"description":"Ingeborg 和 Macura 2010 年共同创立了家居配饰设计品牌Studio Macura. 他们有各自不同的专业背景：平面设计和产品设计。区别于公式化的设计风格，他们从叙事和文化的角度去进行创造。Studio Macura的工作室在荷兰的埃因霍温，那里汇集了一大批欧洲的手工匠人和传统制造商们。"}
+     * data : {"follow_num":386,"city":"伦敦","concept":"我是有个人主见的设计师而不是一味地追逐潮流趋势","article_num":0,"name":"Lulu Guinness","product_num":10,"label":"Lulu Guinness 创始人","introduce_images":["http://dstatic.zuimeia.com/common/image/2016/9/11/f4d403c3-86f0-453c-b0bf-643f6fdf918c_1000x1000.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/11/40cb5741-af1d-4b44-b86f-5af9a9409292_1080x1080.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/11/8f9acd16-4b57-423e-ba24-c97c750291d5_1080x1080.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/11/63752df0-f129-46f6-ac03-fbec581c6592_1080x1080.jpeg","http://dstatic.zuimeia.com/common/image/2016/9/11/1a25cedf-f01f-480f-be13-fa7b46ef20c0_1000x1000.jpeg"],"avatar_url":"http://dstatic.zuimeia.com/designer/avatar/2016/9/7/3ec2eb12-5812-4fc9-9004-103f358dd9c1.jpg","is_followed":0,"id":115,"categories":[{"id":3,"name":"包袋"},{"id":28,"name":"伦敦"},{"id":30,"name":"独立设计师"}],"description":"Lulu Guinness 在29岁的时候创立了Lulu Guinness，她希望设计出复古如玫瑰般的手提包，后来她的包包已经超越时尚配饰的角色，被称为：\u201c明日的珍宝\u201d。2006年 Lulu 获得 0BE 大奖，2009 年，她荣获了独立手包设计大奖 ICONCLAST。"}
      * result : 1
      */
 
@@ -63,8 +64,8 @@ public class TurnPagerBean {
         private String description;
         private List<String> introduce_images;
         /**
-         * id : 12
-         * name : 极简
+         * id : 3
+         * name : 包袋
          */
 
         private List<CategoriesBean> categories;

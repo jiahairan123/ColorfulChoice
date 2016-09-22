@@ -7,7 +7,7 @@ import android.widget.RadioGroup;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseAty;
-import com.example.dllo.colorfulchoice.designer.DesignerFragment;
+import com.example.dllo.colorfulchoice.designer.fragment.DesignerFragment;
 import com.example.dllo.colorfulchoice.goodthing.GoodThingFragment;
 import com.example.dllo.colorfulchoice.me.MeFragment;
 import com.example.dllo.colorfulchoice.picture.PictureFragment;

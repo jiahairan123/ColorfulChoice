@@ -1,4 +1,4 @@
-package com.example.dllo.colorfulchoice.designer;
+package com.example.dllo.colorfulchoice.designer.bean;
 
 import java.util.List;
 

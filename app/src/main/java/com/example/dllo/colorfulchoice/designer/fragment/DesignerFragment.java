@@ -1,4 +1,4 @@
-package com.example.dllo.colorfulchoice.designer;
+package com.example.dllo.colorfulchoice.designer.fragment;
 
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
-import com.example.dllo.colorfulchoice.goodthing.DailyBean;
 
 /**
  * Coder: JiaHaiRan
