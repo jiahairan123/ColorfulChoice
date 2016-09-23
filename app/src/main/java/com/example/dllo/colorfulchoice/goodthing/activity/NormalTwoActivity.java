@@ -7,14 +7,18 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseAty;
+import com.example.dllo.colorfulchoice.base.CommonAdapter;
+import com.example.dllo.colorfulchoice.base.CommonViewHolder;
 import com.example.dllo.colorfulchoice.base.MyApp;
 import com.example.dllo.colorfulchoice.goodthing.bean.TwoNormalBean;
 import com.example.dllo.colorfulchoice.goodthing.adapter.WheelAdapter;
@@ -45,6 +49,7 @@ public class NormalTwoActivity extends BaseAty {
     private TextView nameTwo;
     private TextView lable;
     private TextView description;
+    private GridView mGridView;
 
     private boolean isRotate = false;
 
@@ -69,6 +74,7 @@ public class NormalTwoActivity extends BaseAty {
         nameTwo = bindView(R.id.activity_goodthing_name_two);
         lable = bindView(R.id.activity_goodthing_lable);
         description = bindView(R.id.activity_goodthing_description);
+        mGridView = bindView(R.id.activity_goodthing_lianjie);
 
         // 圆点
         dotcontant = bindView(R.id.dotcantaint);
@@ -111,9 +117,6 @@ public class NormalTwoActivity extends BaseAty {
                 startRotate();
                 // 添加轮播小点
                 addPoints();
-
-
-
                 viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -137,11 +140,20 @@ public class NormalTwoActivity extends BaseAty {
 
                     }
                 });
+
+                mGridView.setAdapter(new CommonAdapter<TwoNormalBean.DataBean.ReferProductsBean>(twoNormalBean.getData().getRefer_products(),
+                        getApplicationContext(), R.layout.item_daily_lianjie) {
+                    @Override
+                    public void setData(TwoNormalBean.DataBean.ReferProductsBean referProductsBean, CommonViewHolder viewHolder) {
+                        String s = referProductsBean.getImages().get(0);
+                        viewHolder.setImage(R.id.lianjie_iv, s);
+                    }
+                });
             }
 
             @Override
             public void onError(String errorMsg) {
-
+                Toast.makeText(NormalTwoActivity.this, "网络连接错误", Toast.LENGTH_SHORT).show();
             }
         });
 
