@@ -2,10 +2,7 @@ package com.example.dllo.colorfulchoice.goodthing.activity;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -13,22 +10,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.bumptech.glide.Glide;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseAty;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
-import com.example.dllo.colorfulchoice.base.MyApp;
-import com.example.dllo.colorfulchoice.goodthing.bean.TwoNormalBean;
 import com.example.dllo.colorfulchoice.goodthing.adapter.WheelAdapter;
+import com.example.dllo.colorfulchoice.goodthing.bean.TwoNormalBean;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**
@@ -50,11 +42,8 @@ public class NormalTwoActivity extends BaseAty {
     private TextView lable;
     private TextView description;
     private GridView mGridView;
-
     private boolean isRotate = false;
-
     private LinearLayout dotcontant;
-    ArrayList<View> dots;
     private int size;
 
     @Override

@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/lianjie_iv"
         android:src="@mipmap/ic_launcher"
-        android:scaleType="fitXY"
+        android:scaleType="center"
         android:layout_width="175dp"
         android:layout_height="200dp" />
 
