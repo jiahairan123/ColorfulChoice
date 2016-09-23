@@ -75,11 +75,15 @@ public class RecommendFragment extends BaseFragment implements XListView.IXListV
                         }
                         onLoad();
                     }
+<<<<<<< HEAD
                     recommendAdapter = new RecommendAdapter(resultBeanList, getContext(), R.layout.fragment_video_child_listview);
                     Log.d("Exercise", "resultBeanList.size():" + resultBeanList.size());
                     xListView.setAdapter(recommendAdapter);
                     recommendAdapter.notifyDataSetChanged();
                     xListView.setSelection(resultBeanList.size() - 30);
+=======
+                    recommendAdapter = new RecommendAdapter(videoBean.getResult(), mContext, R.layout.fragment_video_child_listview, integerList);
+>>>>>>> feature/jiahairan
                 }
 
                 @Override

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_opinion_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/item_opinion_img"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="17sp"
+            android:textColor="#111"
+            android:id="@+id/item_opinion_nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="泰达米尔" />
+
+        <TextView
+            android:textColor="#111"
+            android:textSize="15sp"
+            android:id="@+id/item_opinion_nick_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_opinion_nick_name"
+            android:layout_marginTop="10dp"
+            android:text="1111111111111" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#111" />
+
+
+        <TextView
+            android:textColor="#121212"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:text="09-17"
+            android:layout_alignParentRight="true"
+            android:id="@+id/item_opinion_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,7 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/me_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ScrollView
+            android:background="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--背景色-->
+                <FrameLayout
+                    android:id="@+id/me_frame_layout_dummy"
+                    android:background="#222"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp">
+
+                </FrameLayout>
+
+                <!--我的画报-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#111111" />
+
+                <LinearLayout
+                    android:id="@+id/me_my_picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="1dp">
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_pic"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="18dp"
+                            android:background="@mipmap/picture_yes" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/iv_pic"
+                            android:text="我的画报"
+                            android:textColor="#252020"
+                            android:textSize="19sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <!--关注的设计师-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#111111" />
+
+                <LinearLayout
+                    android:id="@+id/me_sign_designer"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="1dp">
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_guanzhu"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="18dp"
+                            android:background="@mipmap/sig" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/iv_guanzhu"
+                            android:text="关注的设计师"
+                            android:textColor="#252020"
+                            android:textSize="19sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <!--我的心愿单-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#111111" />
+
+                <LinearLayout
+                    android:id="@+id/me_wish_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="1dp">
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_wodexinyuandan"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="18dp"
+                            android:background="@mipmap/wish" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/iv_wodexinyuandan"
+                            android:text="我的心愿单"
+                            android:textColor="#252020"
+                            android:textSize="19sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <!--消息中心-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#111111" />
+
+                <LinearLayout
+                    android:id="@+id/me_news_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="1dp">
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_xiaoxinzhongxin"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="18dp"
+                            android:background="@mipmap/msg" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/iv_xiaoxinzhongxin"
+                            android:text="消息中心"
+                            android:textColor="#252020"
+                            android:textSize="19sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <!--建议与反馈意见-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#111111" />
+
+                <LinearLayout
+                    android:id="@+id/me_advice_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="1dp">
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_jianyiyufankuiyijian"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="18dp"
+                            android:background="@mipmap/sug" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/iv_jianyiyufankuiyijian"
+                            android:text="建议与反馈意见"
+                            android:textColor="#252020"
+                            android:textSize="19sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#111111" />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/me_circle_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/opt" />
+
+
+    </RelativeLayout>
+
+</android.support.v4.widget.DrawerLayout>

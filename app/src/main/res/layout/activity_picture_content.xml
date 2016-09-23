@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="3dp">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/picture_content_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="不想做设计师的演员不是好双生"
+                android:textColor="#111"
+                android:textSize="25sp" />
+
+
+            <TextView
+                android:id="@+id/picture_content_sub_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/picture_content_title"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="看 Olsen 双生姐妹花玩转角色转换"
+                android:textColor="#282525"
+                android:textSize="17sp" />
+
+
+            <ImageView
+                android:id="@+id/picture_content_designer_img"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_below="@+id/picture_content_sub_title"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:scaleType="fitXY" />
+
+
+            <LinearLayout
+                android:id="@+id/no_use_at_all"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/picture_content_designer_img"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="#fdfbfb"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/picture_content_author_sign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:gravity="center"
+                    android:text="在设计的世界撒欢儿的野马"
+                    android:textColor="#121212"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/picture_content_author_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/picture_content_sub_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="360dp" />
+
+
+            <!--html-->
+            <com.example.dllo.colorfulchoice.picture.onclickpicture.HtmlTextView
+                android:id="@+id/picture_content_html"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/no_use_at_all"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:textColor="#121212"
+                android:textSize="19sp" />
+
+
+            <!--设计师信息-->
+            <RelativeLayout
+                android:id="@+id/picture_content_designer_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/picture_content_html"
+                android:alpha="88">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#111">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:alpha="88"
+                        android:gravity="center_vertical"
+                        android:text="设计师信息"
+                        android:textColor="#fff"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/picture_content_designer_product_img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp" />
+
+                <TextView
+                    android:id="@+id/picture_content_designer_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/picture_content_designer_product_img"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#111"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/picture_content_designer_product_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/picture_content_designer_product_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="职务"
+                    android:textColor="#121010"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/picture_content_designer_product_introduce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/picture_content_designer_product_position"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="David Shabtai 始终认为万事万物都应该保持其本质的简单纯粹，像永恒的乐章一样。Smoke x Mirrors 的产品创意在纽约，但是手工制作却在法国。每件商品都运用高质量的材料和革新的科技最终打造出顶尖的潮流的风格和款式。"
+                    android:textColor="#121010"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+
+            <!--作品的GridView-->
+            <com.example.dllo.colorfulchoice.picture.onclickpicture.MyGridView
+                android:id="@+id/picture_content_designer_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_below="@+id/picture_content_designer_info"
+                android:numColumns="2"
+                android:stretchMode="columnWidth" />
+
+
+            <!--评论列表-->
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/picture_content_designer_gridview"
+                android:background="#111"
+                android:text="评论"
+                android:textSize="18sp" />
+
+            <com.example.dllo.colorfulchoice.picture.onclickpicture.MyGridView
+                android:id="@+id/item_guest_opinion"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_below="@+id/picture_content_designer_gridview"
+                android:layout_marginTop="40dp"
+                android:numColumns="1"
+                android:stretchMode="columnWidth" />
+
+
+            <!--设置距离底部距离-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/item_guest_opinion"
+                android:alpha="88"
+                android:textColor="#111" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+    <!--最下面的信息-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fffff1"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/picture_content_user_img"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp" />
+
+        <EditText
+            android:id="@+id/picture_content_user_et"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#f2f0f0"
+            android:hint="说点什么" />
+
+
+    </LinearLayout>
+
+
+    <!--返回 button-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/picture_content_back_circle_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:alpha="128"
+            android:background="@mipmap/circle_back" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

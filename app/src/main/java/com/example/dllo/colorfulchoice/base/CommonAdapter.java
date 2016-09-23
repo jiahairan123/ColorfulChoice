@@ -1,6 +1,7 @@
 package com.example.dllo.colorfulchoice.base;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,9 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
     public CommonAdapter(List<T> beanList, Context context, int id, List<Integer> integerList) {
         this.beanList = beanList;
+        if(context == null){
+            Log.d("CommonAdapter", "llll");
+        }
         inflater = LayoutInflater.from(context);
         convertViewId = id;
         this.integerList = integerList;
@@ -31,6 +35,9 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
     public CommonAdapter(List<T> beanList, Context context, int id) {
         this.beanList = beanList;
+        if(context == null){
+            Log.d("CommonAdapter", "llll");
+        }
         inflater = LayoutInflater.from(context);
         convertViewId = id;
 

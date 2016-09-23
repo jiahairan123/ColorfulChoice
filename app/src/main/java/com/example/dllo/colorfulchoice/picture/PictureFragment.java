@@ -1,8 +1,10 @@
 package com.example.dllo.colorfulchoice.picture;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +14,7 @@ import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
+import com.example.dllo.colorfulchoice.picture.onclickpicture.PictureContentActivity;
 import com.wirelesspienetwork.overview.model.OverviewAdapter;
 import com.wirelesspienetwork.overview.model.ViewHolder;
 import com.wirelesspienetwork.overview.views.Overview;
@@ -39,27 +42,6 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
     protected void initView() {
         mRecentsView =bindView(R.id.recents_view);
 
-        mRecentsView.setCallbacks(new Overview.RecentsViewCallbacks() {
-            @Override
-            public void onCardDismissed(int position) {
-                Toast.makeText(mContext, "Card被移除" + position, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAllCardsDismissed() {
-
-            }
-
-            @Override
-            public void onTrimMemory(int level) {
-
-            }
-        });
-
-        //设置视图的可见度
-//        mRecentsView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-////                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-//                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 
     }
 
@@ -74,7 +56,7 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
         for (int i = 0; i < 45; ++i) {
             Random random = new Random();
             random.setSeed(i);
-            models.add(0xffffffff);
+            models.add(0xffffff);
         }
 
         stack = new OverviewAdapter<ViewHolder<View, Integer>, Integer>(models) {
@@ -106,7 +88,11 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
 
                 Glide.with(PictureFragment.this.getActivity()).load(articles.get(position).getImage_url()).into(contentImg);
                 Glide.with(PictureFragment.this.getActivity()).load(articles.get(position).getAuthor().getAvatar_url()).into(userImg);
-                viewHolder.itemView.setOnClickListener(new MyOnClickListener(position));
+                int id = articles.get(position).getId();
+
+                viewHolder.itemView.setOnClickListener(new MyOnClickListener(id));
+
+
             }
         };
 
@@ -131,13 +117,19 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
     class MyOnClickListener implements View.OnClickListener{
         int pos;
 
+
         public MyOnClickListener(int pos) {
             this.pos = pos;
         }
 
+        //点击item 跳转activity
         @Override
         public void onClick(View view) {
-
+            Toast.makeText(mContext, "pos:" + pos, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(),PictureContentActivity.class);
+            intent.putExtra("pos", pos);
+            intent.putExtra("max", 76);
+            getActivity().startActivity(intent);
         }
     }
 
@@ -172,7 +164,6 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
     public void onStop() {
         super.onStop();
     }
-
 
     @Override
     public void onDestroy() {
