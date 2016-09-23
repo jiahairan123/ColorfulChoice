@@ -43,6 +43,28 @@ public final class URLValue {
     public static final String VIDEO_COOKIE = "JSESSIONID=7PcVbHOBTUgicBmaG1cmOg";
 
     //视频 ——— 推荐
-    public static final String VIDEO_RECOMMEND_URL = "http://124.243.203.100/Website/channel/news-list-for-channel?platform=1&infinite=true&cstart=0&group_fromid=g184&cend=50&appid=xiaomi&cv=3.7.0&last_docid=0EPdgyex&distribution=app.xiaomi.com&refresh=1&channel_id=100172697768&fields=docid&fields=date&fields=image&fields=image_urls&fields=like&fields=source&fields=title&fields=url&fields=comment_count&fields=up&fields=down&version=020108&net=wifi";
+    public static final String VIDEO_RECOMMEND_URL = "http://124.243.203.100/Website/channel/news-list-for-channel?platform=1&infinite=true&cstart=0&group_fromid=g184&cend=50&appid=xiaomi&cv=3.7.0&distribution=app.xiaomi.com&refresh=1&channel_id=100172697768&fields=docid&fields=date&fields=image&fields=image_urls&fields=like&fields=source&fields=title&fields=url&fields=comment_count&fields=up&fields=down&version=020108&net=wifi";
+
+    //视频 ———— 推荐——上拉加载
+    public static final String VIDEO_RECOMMEND_TOP_FIRST_URL = "http://124.243.203.100/Website/channel/news-list-for-channel?platform=1&infinite=true&cstart=";
+    public static final String VIDEO_RECOMMEND_TOP_SECOND_URL = "&group_fromid=g184&cend=";
+    public static final String VIDEO_RECOMMEND_TOP_THIRD_URL = "&appid=xiaomi&cv=3.7.0&distribution=app.xiaomi.com&refresh=1&channel_id=100172697768&fields=docid&fields=date&fields=image&fields=image_urls&fields=like&fields=source&fields=title&fields=url&fields=comment_count&fields=up&fields=down&version=020108&net=wifi";
+
+    //视频 ———— 爆笑
+    public static final String VIDEO_ROFL_FIRST_URL = "http://a1.go2yd.com/Website/channel/news-list-for-channel?platform=1&infinite=true&cstart=";
+    public static final String VIDEO_ROFL_SECOND_URL = "&group_fromid=g184&cend=";
+    public static final String VIDEO_ROFL_THIRD_URL = "&appid=xiaomi&cv=3.7.0&distribution=app.xiaomi.com&refresh=1&channel_id=4368734888&fields=docid&fields=date&fields=image&fields=image_urls&fields=like&fields=source&fields=title&fields=url&fields=comment_count&fields=up&fields=down&version=020108&net=wifi";
+
+    //视频 ———— 综艺范
+    public static final String VIDEO_VARIETY_FIRST_URL = "http://124.243.203.100/Website/channel/news-list-for-channel?platform=1&infinite=true&cstart=";
+    public static final String VIDEO_VARIETY_SECOND_URL = "&group_fromid=g184&cend=";
+    public static final String VIDEO_VARIETY_THIRD_URL = "&appid=xiaomi&cv=3.7.0&distribution=app.xiaomi.com&refresh=1&channel_id=4368734904&fields=docid&fields=date&fields=image&fields=image_urls&fields=like&fields=source&fields=title&fields=url&fields=comment_count&fields=up&fields=down&version=020108&net=wifi";
+
+    //视频 ———— 微电影
+    public static final String VIDEO_SMALLMOVIE_FIRST_URL = "http://124.243.203.100/Website/channel/news-list-for-channel?platform=1&infinite=true&cstart=";
+    public static final String VIDEO_SMALLMOVIE_SECOND_URL = "&group_fromid=g184&cend=";
+    public static final String VIDEO_SMALLMOVIE_THIRD_URL = "&appid=xiaomi&cv=3.7.0&distribution=app.xiaomi.com&refresh=1&channel_id=4368734920&fields=docid&fields=date&fields=image&fields=image_urls&fields=like&fields=source&fields=title&fields=url&fields=comment_count&fields=up&fields=down&version=020108&net=wifi";
+
+
 
 }

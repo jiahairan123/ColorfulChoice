@@ -33,7 +33,7 @@ public class CollectBean {
     }
 
     public void setResultBeanList(ResultBean resultBean){
-
+        resultBeanList.add(resultBean);
     }
 
     public class ResultBean{
