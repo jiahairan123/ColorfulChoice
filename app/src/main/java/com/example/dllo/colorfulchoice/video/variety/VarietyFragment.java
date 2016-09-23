@@ -14,8 +14,8 @@ import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
-import com.example.dllo.colorfulchoice.video.CollectBean;
-import com.example.dllo.colorfulchoice.video.JudgeCollectChange;
+import com.example.dllo.colorfulchoice.video.collect.CollectBean;
+import com.example.dllo.colorfulchoice.video.collect.JudgeCollectChange;
 import com.example.dllo.colorfulchoice.video.VideoBean;
 import com.example.dllo.colorfulchoice.video.xlistview.XListView;
 

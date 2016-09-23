@@ -1,4 +1,4 @@
-package com.example.dllo.colorfulchoice.video.rofl;
+package com.example.dllo.colorfulchoice.video.codereuse;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,17 +6,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 
 import com.example.dllo.colorfulchoice.R;
-import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
+import com.example.dllo.colorfulchoice.video.VideoBean;
 import com.example.dllo.colorfulchoice.video.collect.CollectBean;
 import com.example.dllo.colorfulchoice.video.collect.JudgeCollectChange;
-import com.example.dllo.colorfulchoice.video.VideoBean;
 import com.example.dllo.colorfulchoice.video.xlistview.XListView;
 
 import java.io.IOException;
@@ -27,41 +25,26 @@ import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 
 /**
- * Created by ${马庭凯} on 16/9/13.
+ * Created by ${马庭凯} on 16/9/23.
  */
 
-public class RoflFragment extends BaseFragment implements XListView.IXListViewListener {
-    private RoflAdapter roflAdapter;
-    private XListView xListView;
+public class CodeReuse {
+    private CodeReuseAdapter codeReuseAdapter;
     private List<VideoBean.ResultBean> resultBeanList;
-    private int informationQuantity = 0;
+    private NetTool netTool;
+    private Context mContext;
+    private XListView xListView;
+    private int addNum;
 
-    @Override
-    protected int setLayout() {
-        return R.layout.fragment_video_child;
-    }
-
-    @Override
-    protected void initView() {
-        xListView = bindView(R.id.fragment_video_child_list_view);
+    public CodeReuse (Context mContext,XListView xListView,int addNum){
+        this.mContext = mContext;
+        this.xListView = xListView;
+        this.addNum = addNum;
         resultBeanList = new ArrayList<>();
+        netTool = new NetTool();
     }
 
-    @Override
-    protected void initData() {
-        xListView.setPullLoadEnable(true);
-        xListView.setXListViewListener(this);
-        String url = URLValue.VIDEO_ROFL_FIRST_URL + informationQuantity + URLValue.VIDEO_ROFL_SECOND_URL + (informationQuantity += 20) + URLValue.VIDEO_ROFL_THIRD_URL;
-        getBean(url, URLValue.VIDEO_COOKIE);
-        xListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
-    }
-
-    private void getBean(String url, String cookie) {
+    public void getBean(String url, String cookie) {
         try {
             netTool.post(url, cookie, VideoBean.class, new NetTool.NetListener<VideoBean>() {
                 @Override
@@ -76,11 +59,11 @@ public class RoflFragment extends BaseFragment implements XListView.IXListViewLi
                         }
                         onLoad();
                     }
-                    roflAdapter = new RoflAdapter(resultBeanList, getContext(), R.layout.fragment_video_child_listview);
+                    codeReuseAdapter = new CodeReuseAdapter(resultBeanList, mContext, R.layout.fragment_video_child_listview);
                     Log.d("Exercise", "resultBeanList.size():" + resultBeanList.size());
-                    xListView.setAdapter(roflAdapter);
-                    roflAdapter.notifyDataSetChanged();
-                    xListView.setSelection(resultBeanList.size() - 5);
+                    xListView.setAdapter(codeReuseAdapter);
+                    codeReuseAdapter.notifyDataSetChanged();
+                    xListView.setSelection(resultBeanList.size() - addNum);
                 }
 
                 @Override
@@ -93,30 +76,27 @@ public class RoflFragment extends BaseFragment implements XListView.IXListViewLi
         }
     }
 
-    private void onLoad() {
+    public void onLoad() {
         xListView.stopRefresh();
         xListView.stopLoadMore();
     }
 
-    @Override
-    public void onRefresh() {
+    public void onRefresh(String url){
         resultBeanList.clear();
-        getBean(URLValue.VIDEO_RECOMMEND_URL, URLValue.VIDEO_COOKIE);
-    }
-
-    @Override
-    public void onLoadMore() {
-        String url = URLValue.VIDEO_ROFL_FIRST_URL + informationQuantity + URLValue.VIDEO_ROFL_SECOND_URL + (informationQuantity += 5) + URLValue.VIDEO_ROFL_THIRD_URL;
         getBean(url, URLValue.VIDEO_COOKIE);
     }
 
-    public class RoflAdapter extends CommonAdapter<VideoBean.ResultBean> {
+    public void onLoadMore(String url){
+        getBean(url,URLValue.VIDEO_COOKIE);
+    }
+
+    public class CodeReuseAdapter extends CommonAdapter<VideoBean.ResultBean> {
         private Handler mHandler;
         private Handler handler;
         private Context context;
         private CommonViewHolder videoViewHolder = null;
 
-        public RoflAdapter(List<VideoBean.ResultBean> beanList, Context context, int id) {
+        public CodeReuseAdapter(List<VideoBean.ResultBean> beanList, Context context, int id) {
             super(beanList, context, id);
             this.context = context;
         }
@@ -203,4 +183,5 @@ public class RoflFragment extends BaseFragment implements XListView.IXListViewLi
             });
         }
     }
+
 }

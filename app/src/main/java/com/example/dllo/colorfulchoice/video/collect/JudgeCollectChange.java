@@ -1,4 +1,4 @@
-package com.example.dllo.colorfulchoice.video;
+package com.example.dllo.colorfulchoice.video.collect;
 
 import android.os.Handler;
 import android.os.Message;
