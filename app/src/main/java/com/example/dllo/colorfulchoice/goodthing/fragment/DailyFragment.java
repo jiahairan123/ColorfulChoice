@@ -53,7 +53,6 @@ public class DailyFragment extends BaseFragment {
             @Override
             public void onSuccess(DailyBean dailyBean) {
 
-                listView.setAdapter(new CommonAdapter<DailyBean.DataBean.ProductsBean>(dailyBean.getData().getProducts(), mContext, R.layout.item_daily) {
 
                 adapter = new CommonAdapter<DailyBean.DataBean.ProductsBean>(dailyBean.getData().getProducts(), getContext(), R.layout.item_daily) {
 

@@ -13,7 +13,7 @@ import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseAty;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
-import com.example.dllo.colorfulchoice.goodthing.NormalBean;
+
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.picture.PictureBean;
 
