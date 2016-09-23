@@ -22,7 +22,6 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     private int convertViewId;
     private List<Integer> integerList;
 
-
     public CommonAdapter(List<T> beanList, Context context, int id, List<Integer> integerList) {
         this.beanList = beanList;
         if(context == null){
@@ -54,8 +53,8 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public T getItem(int position) {
+        return beanList.get(position);
     }
 
     @Override

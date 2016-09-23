@@ -9,6 +9,7 @@
     <LinearLayout
         android:id="@+id/normal_fragment_pop_ll"
         android:orientation="horizontal"
+        android:background="#212121"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

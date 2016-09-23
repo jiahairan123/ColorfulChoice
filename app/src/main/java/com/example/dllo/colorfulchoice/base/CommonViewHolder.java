@@ -1,6 +1,8 @@
 package com.example.dllo.colorfulchoice.base;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,7 +86,15 @@ public class CommonViewHolder {
 
     public void setImage(int id , String url) {
         ImageView imageView = getView(id);
-        Glide.with(MyApp.getContext()).load(url).crossFade().into(imageView);
+        Log.d("CommonViewHolder", url);
+//        if (imageView.getResources() == null){
+//            imageView.setTag(position,url);
+            Glide.with(MyApp.getContext()).load(url).crossFade().into(imageView);
+//        }else {
+//            url = (String) imageView.getTag(position);
+//            Glide.with(MyApp.getContext()).load(url).crossFade().into(imageView);
+//        }
+
     }
 
 

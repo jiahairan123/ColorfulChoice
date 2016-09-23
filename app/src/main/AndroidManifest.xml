@@ -44,6 +44,9 @@
 
         <activity android:name=".picture.onclickpicture.PictureContentActivity"/>
         <activity android:name=".designer.detail.DesignerDetailsActivity"/>
+        <activity android:name=".goodthing.activity.GoodDailyActivity"/>
+        <activity android:name=".goodthing.activity.NormalTwoActivity"/>
+
     </application>
 
 

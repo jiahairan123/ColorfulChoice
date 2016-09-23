@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/activity_goodthing_daily_cover_images"
+                android:scaleType="center"
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:id="@+id/dotcantaint"
+               android:layout_marginTop="-30dp"
+               android:gravity="center_horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="20dp">
+
+           </LinearLayout>
+
+            <TextView
+                android:id="@+id/activity_goodthing_daily_digest"
+                android:layout_width="match_parent"
+                android:textSize="18dp"
+                android:textColor="#000"
+                android:lineSpacingMultiplier="1.5"
+                android:text="今天超开心"
+                android:textStyle="normal"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:background="#000"
+                android:layout_width="match_parent"
+                android:layout_height="7dp" />
+
+            <TextView
+                android:id="@+id/activity_goodthing_daily_name"
+                android:layout_margin="10dp"
+                android:textSize="20dp"
+                android:text="雏菊项链"
+                android:textColor="#000"
+                android:textStyle="italic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/activity_goodthing_daily_desc"
+                android:text="dfs"
+                android:textSize="15dp"
+                android:textColor="#201f1f"
+                android:lineSpacingExtra="8dp"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/activity_goodthing_daily_images"
+                android:layout_width="match_parent"
+                android:scaleType="center"
+                android:layout_margin="5dp"
+                android:layout_height="300dp" />
+
+            <TextView
+                android:background="#000"
+                android:text="    设计师  作品"
+                android:textColor="#fff"
+                android:textSize="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <LinearLayout
+                android:background="#fff"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/activity_goodthing_avatar_url"
+                    android:layout_gravity="center"
+                    android:layout_width="70dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="70dp" />
+
+                <TextView
+                    android:id="@+id/activity_goodthing_name_two"
+                    android:textSize="18dp"
+                    android:textColor="#000"
+                    android:layout_gravity="center"
+                    android:textStyle="italic"
+                    android:text="sdfsf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/activity_goodthing_lable"
+                    android:textColor="#313131"
+                    android:textSize="15dp"
+                    android:text="sdfds"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:textColor="#fff"
+                    android:background="#000"
+                    android:layout_gravity="center"
+                    android:text=" + 关注"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:id="@+id/activity_goodthing_description"
+                    android:textColor="#302f2f"
+                    android:layout_margin="10dp"
+                    android:text="sdfs"
+                    android:lineSpacingExtra="8dp"
+                    android:textSize="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/activity_goodthing_lianjie"
+                android:numColumns="2"
+                android:background="#000"
+                android:layout_width="match_parent"
+                android:stretchMode="columnWidth"
+                android:layout_height="1000dp">
+
+            </GridView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

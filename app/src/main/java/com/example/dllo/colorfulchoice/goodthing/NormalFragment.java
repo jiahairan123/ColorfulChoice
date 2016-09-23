@@ -16,6 +16,7 @@ import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
+import com.example.dllo.colorfulchoice.goodthing.bean.NormalBean;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;

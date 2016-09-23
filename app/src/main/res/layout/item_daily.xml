@@ -9,7 +9,7 @@
         android:id="@+id/item_daily_cover_images"
         android:src="@mipmap/jiazai"
         android:layout_gravity="center"
-        android:scaleType="fitXY"
+        android:scaleType="center"
         android:layout_width="match_parent"
         android:layout_height="280dp" />
 
@@ -50,6 +50,7 @@
         <TextView
             android:id="@+id/item_daily_name"
             android:text="sdfs"
+            android:maxEms="8"
             android:singleLine="true"
             android:ellipsize="end"
             android:textSize="20dp"
@@ -73,18 +74,12 @@
         <ImageView
             android:src="@mipmap/cry"
             android:layout_marginTop="25dp"
-            android:layout_toLeftOf="@+id/item_daily_shuxian"
+            android:layout_toLeftOf="@+id/item_daily_smail_iv"
             android:layout_width="45dp"
+            android:layout_marginRight="7dp"
             android:layout_height="45dp" />
 
-        <ImageView
-            android:id="@+id/item_daily_shuxian"
-            android:background="#484848"
-            android:layout_marginTop="33dp"
-            android:src="@mipmap/shuxian"
-            android:layout_toLeftOf="@+id/item_daily_smail_iv"
-            android:layout_width="1dp"
-            android:layout_height="30dp" />
+
 
         <ImageView
             android:id="@+id/item_daily_smail_iv"

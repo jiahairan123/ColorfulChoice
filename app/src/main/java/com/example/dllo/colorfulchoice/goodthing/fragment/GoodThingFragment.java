@@ -1,13 +1,16 @@
-package com.example.dllo.colorfulchoice.goodthing;
+package com.example.dllo.colorfulchoice.goodthing.fragment;
 
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
+import com.example.dllo.colorfulchoice.goodthing.eventbus.EventBusPosition;
+import com.example.dllo.colorfulchoice.goodthing.adapter.ThingsAdapter;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Coder: JiaHaiRan
@@ -43,10 +46,16 @@ public class GoodThingFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Log.d("GoodThingFragment", "tab.getPosition():" + tab.getPosition());
+                // 可以获取每个tab的位置 -- tab.getPosition()
+                // 使用eventbus发布一个事件
+                int position = tab.getPosition();
+                EventBusPosition eventBusPosition = new EventBusPosition();
+                eventBusPosition.setPosition(position);
+                EventBus.getDefault().post(eventBusPosition);
+                Log.d("GoodThingFragment", "position:" + position);
 
             }
 
