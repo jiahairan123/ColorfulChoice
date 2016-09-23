@@ -57,9 +57,9 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
         });
 
         //设置视图的可见度
-        mRecentsView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+//        mRecentsView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+////                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+//                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 
     }
 

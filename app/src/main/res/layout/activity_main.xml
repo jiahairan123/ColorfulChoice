@@ -16,11 +16,11 @@
 
     </FrameLayout>
 
+
     <RadioGroup
         android:id="@+id/main_radio_group"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
         android:background="#ffffff"
         android:orientation="horizontal">
 

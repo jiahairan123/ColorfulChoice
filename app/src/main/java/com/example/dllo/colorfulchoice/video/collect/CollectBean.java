@@ -1,4 +1,4 @@
-package com.example.dllo.colorfulchoice.video;
+package com.example.dllo.colorfulchoice.video.collect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class CollectBean {
     }
 
     public void setResultBeanList(ResultBean resultBean){
-
+        resultBeanList.add(resultBean);
     }
 
     public class ResultBean{

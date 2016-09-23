@@ -79,7 +79,7 @@ public class NetTool {
 
     //post请求
     public <T> void post(String url, String cookie, final Class<T> tClass, final NetListener<T> getVideo) throws IOException {
-        Request request = new Request.Builder().url(url)
+        final Request request = new Request.Builder().url(url)
                 .addHeader("Cookie", cookie)
                 .build();
         OkHttpClient client = OKHttp.getInstance();
@@ -95,9 +95,12 @@ public class NetTool {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
+
                     String gsonString = response.body().string();
                     Log.d("GetVideoByOkHttpPost", gsonString);
-                    getVideo.onSuccess(gson.fromJson(gsonString, tClass));
+
+//                    getVideo.onSuccess(gson.fromJson(gsonString, tClass));
+                    handler.post(new HandlerRunnable<>(gson.fromJson(gsonString, tClass),getVideo));
                 } else {
                     Log.d("GetVideoByOkHttpPost", "请检测你的网络是否连接");
                 }
