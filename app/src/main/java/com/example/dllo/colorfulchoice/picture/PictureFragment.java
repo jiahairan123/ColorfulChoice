@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,8 +40,6 @@ public class PictureFragment extends BaseFragment implements Overview.RecentsVie
     @Override
     protected void initView() {
         mRecentsView =bindView(R.id.recents_view);
-
-
     }
 
     @Override

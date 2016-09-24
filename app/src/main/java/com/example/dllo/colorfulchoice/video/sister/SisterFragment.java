@@ -22,27 +22,28 @@ public class SisterFragment extends BaseFragment implements XListView.IXListView
     @Override
     protected void initView() {
         xListView = bindView(R.id.fragment_video_child_list_view);
-        codeReuse = new CodeReuse(mContext,xListView,5);
+        codeReuse = new CodeReuse(mContext,xListView);
     }
 
     @Override
     protected void initData() {
         xListView.setPullLoadEnable(true);
         xListView.setXListViewListener(this);
-        String url = URLValue.VIDEO_VARIETY_FIRST_URL + informationQuantity + URLValue.VIDEO_VARIETY_SECOND_URL + (informationQuantity += 10) + URLValue.VIDEO_VARIETY_THIRD_URL;
+        String url = URLValue.VIDEO_FIRST_URL + informationQuantity + URLValue.VIDEO_SECOND_URL + (informationQuantity += 20) + URLValue.VIDEO_THIRD_URL + URLValue.VIDEO_SISTER + URLValue.VIDEO_FOURTH_URL;
+        codeReuse.setAddNum(20);
         codeReuse.getBean(url,URLValue.VIDEO_COOKIE);
     }
 
     @Override
     public void onRefresh() {
         informationQuantity = 0;
-        String url = URLValue.VIDEO_VARIETY_FIRST_URL + informationQuantity + URLValue.VIDEO_VARIETY_SECOND_URL + (informationQuantity += 10) + URLValue.VIDEO_VARIETY_THIRD_URL;
-        codeReuse.onRefresh(url);
+        String url = URLValue.VIDEO_FIRST_URL + informationQuantity + URLValue.VIDEO_SECOND_URL + (informationQuantity += 20) + URLValue.VIDEO_THIRD_URL + URLValue.VIDEO_SISTER + URLValue.VIDEO_FOURTH_URL;
+        codeReuse.onRefresh(url,20);
     }
 
     @Override
     public void onLoadMore() {
-        String url = URLValue.VIDEO_VARIETY_FIRST_URL + informationQuantity + URLValue.VIDEO_VARIETY_SECOND_URL + (informationQuantity += 10) + URLValue.VIDEO_VARIETY_THIRD_URL;
-        codeReuse.onLoadMore(url);
+        String url = URLValue.VIDEO_FIRST_URL + informationQuantity + URLValue.VIDEO_SECOND_URL + (informationQuantity += 5) + URLValue.VIDEO_THIRD_URL + URLValue.VIDEO_SISTER + URLValue.VIDEO_FOURTH_URL;
+        codeReuse.onLoadMore(url,5);
     }
 }

@@ -34,14 +34,17 @@ public class CodeReuse {
     private NetTool netTool;
     private Context mContext;
     private XListView xListView;
-    private int addNum;
+    private int addNum = 0;
 
-    public CodeReuse (Context mContext,XListView xListView,int addNum){
+    public CodeReuse (Context mContext,XListView xListView){
         this.mContext = mContext;
         this.xListView = xListView;
-        this.addNum = addNum;
         resultBeanList = new ArrayList<>();
         netTool = new NetTool();
+    }
+
+    public void setAddNum(int addNum) {
+        this.addNum = addNum;
     }
 
     public void getBean(String url, String cookie) {
@@ -81,12 +84,14 @@ public class CodeReuse {
         xListView.stopLoadMore();
     }
 
-    public void onRefresh(String url){
+    public void onRefresh(String url,int addNum){
+        this.addNum = addNum;
         resultBeanList.clear();
         getBean(url, URLValue.VIDEO_COOKIE);
     }
 
-    public void onLoadMore(String url){
+    public void onLoadMore(String url,int addNum){
+        this.addNum = addNum;
         getBean(url,URLValue.VIDEO_COOKIE);
     }
 
