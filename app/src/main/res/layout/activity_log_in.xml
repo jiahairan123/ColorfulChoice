@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginLeft="30dp"
+        android:id="@+id/thisone"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="75dp"
+        android:background="@mipmap/ic_launcher" />
+
+    <EditText
+        android:id="@+id/log_in_count_et"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_toRightOf="@+id/thisone"
+        android:hint="输入你的账号"
+        android:maxLength="11"
+        android:textColor="#123121" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginLeft="30dp"
+        android:id="@+id/thistwo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/thisone"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/ic_launcher" />
+
+
+    <EditText
+        android:id="@+id/log_in_password_et"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/thisone"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/thistwo"
+        android:hint="输入你的密码"
+        android:password="true"
+        android:textColor="#123121" />
+
+
+    <Button
+        android:id="@+id/log_in_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/thistwo"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#3669ba"
+        android:text="登录"
+        android:textColor="#fff"
+        android:textSize="25dp" />
+
+
+    <Button
+        android:id="@+id/log_in_register_btn"
+        android:layout_width="80dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/log_in_login_btn"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:text="注册"
+        android:textColor="#252020"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/log_in_guest_btn"
+        android:layout_width="110dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/log_in_login_btn"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:text="游客模式"
+        android:textColor="#252020" />
+
+</RelativeLayout>

@@ -44,6 +44,8 @@
         <activity android:name=".designer.detail.DesignerDetailsActivity"/>
         <activity android:name=".goodthing.activity.GoodDailyActivity"/>
         <activity android:name=".goodthing.activity.NormalTwoActivity"/>
+        <activity android:name=".me.logandregister.LogInActivity"/>
+        <activity android:name=".me.logandregister.RegisterActivity"/>
 
     </application>
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="50dp"
+        android:id="@+id/register_count_img"
+        android:background="@mipmap/ic_launcher"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
+    <EditText
+        android:id="@+id/register_count_et"
+        android:maxLength="11"
+        android:maxLines="1"
+        android:textSize="17sp"
+        android:hint="输入你想使用的账号"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_toRightOf="@+id/register_count_img"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_below="@+id/register_count_img"
+        android:background="@mipmap/ic_launcher"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
+    <EditText
+        android:id="@+id/register_pw_et"
+        android:maxLength="11"
+        android:textSize="17sp"
+        android:password="true"
+        android:hint="输入你的密码"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="130dp"
+        android:layout_toRightOf="@+id/register_count_img"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+    <Button
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="注册完成"
+        android:layout_marginTop="230dp"
+        android:id="@+id/register_register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="55dp" />
+
+</RelativeLayout>
