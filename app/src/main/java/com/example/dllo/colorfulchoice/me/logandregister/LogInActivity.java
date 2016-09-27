@@ -55,7 +55,6 @@ public class LogInActivity extends BaseAty {
 
         switch (v.getId()) {
             case R.id.log_in_login_btn:
-
                 if (countEt.length() == 0) {
                     Toast.makeText(this, "请您输入账号", Toast.LENGTH_SHORT).show();
                 } else if (passwordEt.length() == 0) {
@@ -76,16 +75,13 @@ public class LogInActivity extends BaseAty {
                             }
                         }
                     });
-                    
+
                 }
-
-
                 //点击登录
                 break;
 
 
             case R.id.log_in_guest_btn:
-
                 //游客模式
                 Intent guestIntent = new Intent(LogInActivity.this, MainActivity.class);
                 startActivity(guestIntent);
@@ -93,33 +89,12 @@ public class LogInActivity extends BaseAty {
 
 
             case R.id.log_in_register_btn:
-
                 //点击注册
                 Intent registerIntent = new Intent(LogInActivity.this, RegisterActivity.class);
-                startActivityForResult(registerIntent, 111);
-
+                startActivity(registerIntent);
                 break;
         }
 
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 111:
-                if (requestCode == 17) {
-                    countEt.setText(data.getStringExtra("count"));
-                    passwordEt.setText(data.getStringExtra("password"));
-                }
-
-                break;
-
-            default:
-
-                break;
-        }
-
-    }
 }
