@@ -74,6 +74,7 @@ public class NetTool {
     }
 
     public interface NetListener<T> {
+
         void onSuccess(T t); //请求成功
 
         void onError(String errorMsg); //请求失败

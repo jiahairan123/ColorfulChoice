@@ -25,28 +25,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="io.vov.vitamio.activity.InitActivity"
+        <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+           />
 
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:launchMode="singleTop">
 
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
-        <activity android:name=".picture.onclickpicture.PictureContentActivity"/>
-        <activity android:name=".designer.detail.DesignerDetailsActivity"/>
-        <activity android:name=".goodthing.activity.GoodDailyActivity"/>
-        <activity android:name=".goodthing.activity.NormalTwoActivity"/>
+        <activity android:name=".picture.onclickpicture.PictureContentActivity" />
+        <activity android:name=".designer.detail.DesignerDetailsActivity" />
+        <activity android:name=".goodthing.activity.GoodDailyActivity" />
+        <activity android:name=".goodthing.activity.NormalTwoActivity" />
+        <activity android:name=".me.logandregister.LogInActivity" />
+        <activity android:name=".me.logandregister.RegisterActivity" />
 
     </application>
-
 
 
 </manifest>

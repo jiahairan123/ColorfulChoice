@@ -22,11 +22,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-        compile project(':vitamio')
+    compile project(':vitamio')
     compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.android.support:design:24.2.0'
     compile 'com.android.support:recyclerview-v7:24.2.0'
     compile project(path: ':lib')
@@ -34,5 +32,10 @@ dependencies {
     compile project(path: ':library')
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.jude:rollviewpager:1.4.5'
-
+    compile files('libs/BmobSDK_3.5.1_20160719.jar')
+    compile files('libs/gson-2.6.2.jar')
+    compile files('libs/okhttp-3.3.1.jar')
+    compile files('libs/okio-1.7.0.jar')
+    compile files('libs/rxandroid-1.2.0.jar')
+    compile files('libs/rxjava-1.1.6.jar')
 }
