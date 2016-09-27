@@ -36,7 +36,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.BmobUser;
 
 /**
  * Created by mayinling on 16/9/13.
@@ -56,6 +59,7 @@ public class NormalFragment extends BaseFragment {
     private int[] ids = {-1, 3, 1, 2, 65, 4, 54};
     private String url;
     private List<NormalBean.DataBean.ProductsBean> been;
+    private BmobUser bmobUser;
 
 
     public static NormalFragment getInstance(String tab) {
@@ -110,6 +114,8 @@ public class NormalFragment extends BaseFragment {
                 showPopUpWindow(view);
             }
         });
+
+        bmobUser = BmobUser.getCurrentUser();
     }
 
     private void showPopUpWindow(View view) {
@@ -181,7 +187,7 @@ public class NormalFragment extends BaseFragment {
                 mPullRefreshGridView.setAdapter(new CommonAdapter<NormalBean.DataBean.ProductsBean>(normalBean.getData().getProducts(),
                         getContext(), R.layout.item_normal) {
                     @Override
-                    public void setData(NormalBean.DataBean.ProductsBean productsBean, CommonViewHolder viewHolder) {
+                    public void setData(final NormalBean.DataBean.ProductsBean productsBean, CommonViewHolder viewHolder) {
 
                         viewHolder.setText(R.id.item_normal_name_describe, productsBean.getName());
                         viewHolder.setText(R.id.item_normal_name, productsBean.getDesigner().getName());
@@ -190,11 +196,12 @@ public class NormalFragment extends BaseFragment {
                         viewHolder.setImage(R.id.item_normal_cover_images, productsBean.getCover_images().get(0));
                         been = normalBean.getData().getProducts();
 
-
                         mPullRefreshGridView.onRefreshComplete();
 
-                        ImageView imageCry =  viewHolder.getView(R.id.item_normal_cry_iv);
-                        ImageView imageSmile = viewHolder.getView(R.id.item_normal_smail_iv);
+                        ImageView imageCry = viewHolder.getView(R.id.item_normal_cry_iv);
+                        imageCry.bringToFront();
+                        final ImageView imageSmile = viewHolder.getView(R.id.item_normal_smail_iv);
+                        imageSmile.bringToFront();
                         imageCry.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -205,17 +212,31 @@ public class NormalFragment extends BaseFragment {
                         imageSmile.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                GoodThings goodThings = new GoodThings();
-                                goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
-                                // 插入数据库
-                                DBTools.getInstance(getContext()).insertGoodThing(goodThings);
-                                Log.d("NormalFragment", "goodThings:" + goodThings);
+
+                                if (bmobUser == null) {
+                                    Log.d("TAGGG", "onClick: bmobUser is null");
+                                }
+                                // 点击之后, 先查一遍数据库
+                                ArrayList<GoodThings> goodThingses = new ArrayList<GoodThings>();
+                                DBTools.getInstance(getContext()).queryUser(productsBean.getCover_images().get(0), bmobUser.getUsername(),goodThingses);
+                                if (goodThingses.size() == 0){
+                                    imageSmile.setBackgroundResource(R.mipmap.ic_launcher);
+
+                                    // 存数据库
+                                    GoodThings goodThings = new GoodThings();
+                                    goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
+
+                                    DBTools.getInstance(getContext()).insertGoodThing(goodThings);
+                                    Log.d("NormalFragment", "goodThings:" + goodThings);
+                                } else {
+                                    // 取消收藏
+                                    imageSmile.setBackgroundResource(R.mipmap.smile);
+                                    DBTools.getInstance(getContext()).deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
+                                    Toast.makeText(mContext, "取消收藏", Toast.LENGTH_SHORT).show();
+                                }
 
                             }
                         });
-
-
-
                     }
                 });
 

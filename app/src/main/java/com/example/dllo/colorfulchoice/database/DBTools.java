@@ -6,6 +6,7 @@ import com.example.dllo.colorfulchoice.base.MyApp;
 
 import org.greenrobot.greendao.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -106,7 +107,7 @@ public class DBTools {
     }
 
     //
-    public void queryUser(final String finaUrl, final String finaUser) {
+    public void queryUser(final String finaUrl, final String finaUser, ArrayList<GoodThings> goodThingses) {
         threadPool.execute(new Runnable() {
             @Override
             public void run() {
