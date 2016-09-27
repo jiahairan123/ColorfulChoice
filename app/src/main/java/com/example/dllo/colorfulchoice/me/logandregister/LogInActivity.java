@@ -1,20 +1,26 @@
 package com.example.dllo.colorfulchoice.me.logandregister;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.activity.MainActivity;
 import com.example.dllo.colorfulchoice.base.BaseAty;
+
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Coder: JiaHaiRan
  * created on 16/9/23 16:23
  */
 
-public class LogInActivity extends BaseAty{
+public class LogInActivity extends BaseAty {
 
     private Button logInBtn, guestBtn, registerBtn;
     private EditText countEt, passwordEt;
@@ -48,17 +54,29 @@ public class LogInActivity extends BaseAty{
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.log_in_login_btn :
+            case R.id.log_in_login_btn:
 
                 if (countEt.length() == 0) {
                     Toast.makeText(this, "请您输入账号", Toast.LENGTH_SHORT).show();
-                } else if (passwordEt.length() == 0){
+                } else if (passwordEt.length() == 0) {
                     Toast.makeText(this, "请您输入密码", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "welcome to ColorChoice", Toast.LENGTH_SHORT).show();
-
-                    Intent startIntent = new Intent(LogInActivity.this, MainActivity.class);
-                    startActivity(startIntent);
+                    BmobUser user = new BmobUser();
+                    user.setUsername(countEt.getText().toString());
+                    user.setPassword(passwordEt.getText().toString());
+                    user.login(new SaveListener<Object>() {
+                        @Override
+                        public void done(Object o, BmobException e) {
+                            if (e == null) {
+                                Toast.makeText(LogInActivity.this, "登录success", Toast.LENGTH_SHORT).show();
+                                Intent startIntent = new Intent(LogInActivity.this, MainActivity.class);
+                                startActivity(startIntent);
+                            } else {
+                                Toast.makeText(LogInActivity.this, "请检查账号密码或者网络", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    
                 }
 
 
@@ -66,7 +84,7 @@ public class LogInActivity extends BaseAty{
                 break;
 
 
-            case R.id.log_in_guest_btn :
+            case R.id.log_in_guest_btn:
 
                 //游客模式
                 Intent guestIntent = new Intent(LogInActivity.this, MainActivity.class);
@@ -74,7 +92,7 @@ public class LogInActivity extends BaseAty{
                 break;
 
 
-            case R.id.log_in_register_btn :
+            case R.id.log_in_register_btn:
 
                 //点击注册
                 Intent registerIntent = new Intent(LogInActivity.this, RegisterActivity.class);
@@ -90,7 +108,7 @@ public class LogInActivity extends BaseAty{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case 111 :
+            case 111:
                 if (requestCode == 17) {
                     countEt.setText(data.getStringExtra("count"));
                     passwordEt.setText(data.getStringExtra("password"));

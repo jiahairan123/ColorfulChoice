@@ -14,6 +14,8 @@ import com.example.dllo.colorfulchoice.me.MeFragment;
 import com.example.dllo.colorfulchoice.picture.PictureFragment;
 import com.example.dllo.colorfulchoice.video.VideoFragment;
 
+import cn.bmob.v3.Bmob;
+
 public class MainActivity extends BaseAty implements RadioGroup.OnCheckedChangeListener {
 
 
@@ -35,6 +37,10 @@ public class MainActivity extends BaseAty implements RadioGroup.OnCheckedChangeL
 
     @Override
     protected void initData() {
+        //Bmob 默认初始化在Application的onCreate方法里
+        Bmob.initialize(this, "dbefaba740eb9abcd0ccf17f0079d1c1");
+
+
         NotmalTab.getInstance();
     }
 

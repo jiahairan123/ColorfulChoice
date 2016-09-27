@@ -242,16 +242,6 @@
         </ScrollView>
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/me_circle_btn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@mipmap/opt" />
-
-
     </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

@@ -2,14 +2,18 @@ package com.example.dllo.colorfulchoice.me;
 
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.me.logandregister.LogInActivity;
 
+import cn.bmob.v3.BmobUser;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -20,8 +24,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MeFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout myPicture, signDesigner, wishList, newsCenter, adviceAndQuestion;
     private DrawerLayout mDrawerLayout;
-    private FrameLayout mFrameLayout;
-    private CircleImageView civ;
+    private FrameLayout dummyFrameLayout;
+    private CircleImageView civ, clickLogin;
+    private BmobUser currentUser;
+    private View loginMode, guestMode;
+    private Button exitBtn, loginBtn;
+    private TextView countName, noName;
+
+
     //我 界面
     //注意命名规范
     @Override
@@ -31,30 +41,83 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initView() {
+        //占位布局
+        dummyFrameLayout = bindView(R.id.me_frame_layout_dummy);
+        //我的画报
         myPicture = bindView(R.id.me_my_picture);
+        //喜欢的设计师
         signDesigner = bindView(R.id.me_sign_designer);
+        //愿望清单
         wishList = bindView(R.id.me_wish_list);
+        //信息中心
         newsCenter = bindView(R.id.me_news_center);
+        //建议与意见
         adviceAndQuestion = bindView(R.id.me_advice_question);
 
-        civ = bindView(R.id.me_circle_btn);
-        civ.setOnClickListener(this);
+        //账号已经登录模式的
+        loginMode = LayoutInflater.from(mContext).inflate(R.layout.login_ll, null);
+        exitBtn = (Button) loginMode.findViewById(R.id.exit_count);
+        countName = (TextView) loginMode.findViewById(R.id.count_name);
+        exitBtn.setOnClickListener(this);
+
+        //未登录状态
+        guestMode = LayoutInflater.from(mContext).inflate(R.layout.not_login_ll, null);
+        loginBtn = (Button) guestMode.findViewById(R.id.log_your_count);
+        noName = (TextView) guestMode.findViewById(R.id.no_count_name);
+        clickLogin = (CircleImageView) guestMode.findViewById(R.id.click_to_log_in);
+        clickLogin.setOnClickListener(this);
+        loginBtn.setOnClickListener(this);
 
     }
+
+
 
     @Override
     protected void initData() {
 
+        //获取当前的用户
+        currentUser = BmobUser.getCurrentUser();
+        if (currentUser != null) {
+            dummyFrameLayout.removeAllViews();
+            dummyFrameLayout.addView(loginMode);
+            countName.setText(currentUser.getUsername());
+        } else {
+            dummyFrameLayout.removeAllViews();
+            dummyFrameLayout.addView(guestMode);
+        }
     }
-
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.me_circle_btn :
 
+        switch (v.getId()) {
+
+            case R.id.log_your_count:
                 Intent logInIntent = new Intent(getActivity(), LogInActivity.class);
                 getActivity().startActivity(logInIntent);
+                break;
+
+
+            case R.id.click_to_log_in:
+                Intent logInIntent1 = new Intent(getActivity(), LogInActivity.class);
+                getActivity().startActivity(logInIntent1);
+                break;
+
+
+            case R.id.exit_count :
+                BmobUser.logOut();
+
+                BmobUser user1 = BmobUser.getCurrentUser();
+                if (user1 == null) {
+                    dummyFrameLayout.removeAllViews();
+                    dummyFrameLayout.addView(guestMode);
+
+                } else {
+                    dummyFrameLayout.removeAllViews();
+                    dummyFrameLayout.addView(loginMode);
+                    countName.setText(currentUser.getUsername());
+                }
+                break;
         }
     }
 }
