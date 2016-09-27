@@ -3,6 +3,7 @@ package com.example.dllo.colorfulchoice.goodthing.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
 import com.example.dllo.colorfulchoice.custom.GrapeGridView;
+import com.example.dllo.colorfulchoice.database.DBTools;
+import com.example.dllo.colorfulchoice.database.GoodThings;
 import com.example.dllo.colorfulchoice.goodthing.activity.NormalTwoActivity;
 import com.example.dllo.colorfulchoice.goodthing.bean.PopTwoBean;
 import com.example.dllo.colorfulchoice.goodthing.eventbus.EventBusPosition;
@@ -107,19 +110,6 @@ public class NormalFragment extends BaseFragment {
                 showPopUpWindow(view);
             }
         });
-
-        // TODO 收藏点击事件
-        mPullRefreshGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                ImageView imageView = (ImageView) view.findViewById(R.id.item_normal_cry_iv);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                    }
-                });
-            }
-        });
     }
 
     private void showPopUpWindow(View view) {
@@ -203,18 +193,42 @@ public class NormalFragment extends BaseFragment {
 
                         mPullRefreshGridView.onRefreshComplete();
 
-                        // item 的点击事件
-                        mPullRefreshGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        ImageView imageCry =  viewHolder.getView(R.id.item_normal_cry_iv);
+                        ImageView imageSmile = viewHolder.getView(R.id.item_normal_smail_iv);
+                        imageCry.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                int jiahairan = been.get(position).getId();
-                                Intent intent = new Intent(getActivity(), NormalTwoActivity.class);
-                                intent.putExtra("id", jiahairan);
-                                getActivity().startActivity(intent);
+                            public void onClick(View view) {
+                                Toast.makeText(getContext(), "动画" + position, Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
+                        imageSmile.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                GoodThings goodThings = new GoodThings();
+                                goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
+                                // 插入数据库
+                                DBTools.getInstance(getContext()).insertGoodThing(goodThings);
+                                Log.d("NormalFragment", "goodThings:" + goodThings);
 
                             }
                         });
+
+
+
+                    }
+                });
+
+                // item 的点击事件
+                mPullRefreshGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                        int id1 = been.get(position).getId();
+                        Intent intent = new Intent(getActivity(), NormalTwoActivity.class);
+                        intent.putExtra("id", id1);
+                        getActivity().startActivity(intent);
+
+                        // 进来先查一圈数据库, 已经收藏了再次点击就取消收藏, 没收藏过点击就收藏
 
                     }
                 });
