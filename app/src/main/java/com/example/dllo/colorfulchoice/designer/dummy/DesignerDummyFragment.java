@@ -6,10 +6,14 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
+import com.example.dllo.colorfulchoice.base.MyApp;
+import com.example.dllo.colorfulchoice.database.DBTools;
+import com.example.dllo.colorfulchoice.database.DesignerSign;
 import com.example.dllo.colorfulchoice.designer.bean.DesignerBean;
 import com.example.dllo.colorfulchoice.designer.detail.DesignerDetailsActivity;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
@@ -78,11 +82,12 @@ public class DesignerDummyFragment extends BaseFragment {
                 // Item 监听
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
+                        Button button = (Button) view.findViewById(R.id.item_designer_btn);
+                        button.bringToFront();
                         Intent intent = new Intent(getActivity(), DesignerDetailsActivity.class);
                         final int id1 = designerBean.getData().getDesigners().get(position).getId();
-                        Log.d("DesignerDummyFragment", "id1:" + id1);
                         intent.putExtra("id", id1);
                         getActivity().startActivity(intent);
                     }

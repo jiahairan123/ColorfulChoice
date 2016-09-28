@@ -9,7 +9,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_marginTop="50dp"
         android:id="@+id/register_count_img"
-        android:background="@mipmap/ic_launcher"
+        android:src="@mipmap/default_img"
         android:layout_width="70dp"
         android:layout_height="70dp" />
 
@@ -27,7 +27,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_below="@+id/register_count_img"
-        android:background="@mipmap/ic_launcher"
+        android:src="@mipmap/default_pw"
         android:layout_width="70dp"
         android:layout_height="70dp" />
 

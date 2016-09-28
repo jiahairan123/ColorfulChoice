@@ -1,6 +1,7 @@
 package com.example.dllo.colorfulchoice.database;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.dllo.colorfulchoice.base.MyApp;
 
@@ -22,12 +23,14 @@ import rx.schedulers.Schedulers;
 public class DBTools {
 
     private static String TAG = DBTools.class.getSimpleName();
+
     private static DBTools instance;
     private static Context appContext;
     private DaoSession mDaosession;
     private GoodThingsDao goodThingsDao;
     private ExecutorService threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
     private Query query;
+    private static DesignerSignDao designerSignDao;
 
     private DBTools() {
 
@@ -35,6 +38,7 @@ public class DBTools {
 
     // 单例模式
     public static DBTools getInstance(Context context) {
+
         if (instance == null) {
             instance = new DBTools();
             if (appContext == null) {
@@ -42,6 +46,8 @@ public class DBTools {
             }
             instance.mDaosession = MyApp.getDaoSession();
             instance.goodThingsDao = instance.mDaosession.getGoodThingsDao();
+
+            designerSignDao = instance.mDaosession.getDesignerSignDao();
         }
         return instance;
     }
@@ -73,20 +79,6 @@ public class DBTools {
         return false;
     }
 
-    // 同步用户名查询
-    public void queryUserName(final String finaUrl, final String finaUser) {
-        threadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                Query query = goodThingsDao.queryBuilder().where(GoodThingsDao.Properties.ImgUrl
-                        .eq(finaUrl), GoodThingsDao.Properties.Username.eq(finaUser))
-                        .build();
-
-                List list = query.list();
-            }
-        });
-    }
-
     // 同步用户名删除
     public void deleteGood(final String str, String finaUser) {
         threadPool.execute(new Runnable() {
@@ -105,7 +97,7 @@ public class DBTools {
         });
     }
 
-    //
+    // 同步用户名查询
     public void queryUser(final String finaUrl, final String finaUser) {
         threadPool.execute(new Runnable() {
             @Override
@@ -131,5 +123,27 @@ public class DBTools {
         });
     }
 
+    //designer的收藏
+    public void insertSignDesigner(final DesignerSign designerSign) {
+        Log.d("Sysout", "diaoyong");
+    Observable.create(new Observable.OnSubscribe<DesignerSign>() {
+        @Override
+        public void call(Subscriber<? super DesignerSign> subscriber) {
+            Log.d("Sysout", "Insert");
+            designerSignDao.insert(designerSign);
+        }
+    }).observeOn(Schedulers.io())
+    .subscribeOn(AndroidSchedulers.mainThread())
+    .subscribe(new Action1<DesignerSign>() {
+        @Override
+        public void call(DesignerSign designerSign) {
+        }
+    }, new Action1<Throwable>() {
+        @Override
+        public void call(Throwable throwable) {
+
+        }
+    });
+    }
 
 }
