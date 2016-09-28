@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -40,6 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
+import rx.functions.Action1;
 
 /**
  * Created by mayinling on 16/9/13.
@@ -60,7 +62,7 @@ public class NormalFragment extends BaseFragment {
     private String url;
     private List<NormalBean.DataBean.ProductsBean> been;
     private BmobUser bmobUser;
-
+    private int count;
 
     public static NormalFragment getInstance(String tab) {
         Bundle bundle = new Bundle();
@@ -209,33 +211,40 @@ public class NormalFragment extends BaseFragment {
                             }
                         });
 
+                        DBTools.getInstance(getContext()).queryUser(productsBean.getCover_images().get(0), bmobUser.getUsername(), new Action1<List<GoodThings>>() {
+                            @Override
+                            public void call(List<GoodThings> goodThingses) {
+                                // 获得查询后返回的数据
+                                count = goodThingses.size();
+                            }
+                        });
+
+                        // TODO 点击事件穿透
                         imageSmile.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
-                                if (bmobUser == null) {
-                                    Log.d("TAGGG", "onClick: bmobUser is null");
-                                }
-                                // 点击之后, 先查一遍数据库
-                                ArrayList<GoodThings> goodThingses = new ArrayList<GoodThings>();
-                                DBTools.getInstance(getContext()).queryUser(productsBean.getCover_images().get(0), bmobUser.getUsername(),goodThingses);
-                                if (goodThingses.size() == 0){
-                                    imageSmile.setBackgroundResource(R.mipmap.ic_launcher);
-
+                                if (count > 0) {
+                                    Log.d("NormalFragment", "coun---------t:" + count);
+                                    imageSmile.setBackgroundResource(R.mipmap.cry);
                                     // 存数据库
                                     GoodThings goodThings = new GoodThings();
                                     goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
-
                                     DBTools.getInstance(getContext()).insertGoodThing(goodThings);
-                                    Log.d("NormalFragment", "goodThings:" + goodThings);
+                                    Toast.makeText(getContext(), "取消收藏", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    // 取消收藏
-                                    imageSmile.setBackgroundResource(R.mipmap.smile);
+                                    Log.d("NormalFragment", "count********:" + count);
+                                    count  ++;
+                                    imageSmile.setImageResource(R.mipmap.smilese);
+                                    ScaleAnimation sa = new ScaleAnimation(0, 20, 0, 20);
+                                    sa.setDuration(1000);
+                                    sa.setRepeatCount(1);
+                                    imageSmile.startAnimation(sa);
                                     DBTools.getInstance(getContext()).deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
-                                    Toast.makeText(mContext, "取消收藏", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show();
                                 }
-
                             }
+
                         });
                     }
                 });
@@ -244,16 +253,13 @@ public class NormalFragment extends BaseFragment {
                 mPullRefreshGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                        int id1 = been.get(position).getId();
+                        int jiahairan = been.get(position).getId();
                         Intent intent = new Intent(getActivity(), NormalTwoActivity.class);
-                        intent.putExtra("id", id1);
+                        intent.putExtra("id", jiahairan);
                         getActivity().startActivity(intent);
-
-                        // 进来先查一圈数据库, 已经收藏了再次点击就取消收藏, 没收藏过点击就收藏
 
                     }
                 });
-
             }
 
             @Override
