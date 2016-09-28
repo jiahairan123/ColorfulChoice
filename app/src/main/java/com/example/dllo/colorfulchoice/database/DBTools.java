@@ -15,6 +15,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -23,7 +24,6 @@ import rx.schedulers.Schedulers;
 public class DBTools {
 
     private static String TAG = DBTools.class.getSimpleName();
-
     private static DBTools instance;
     private static Context appContext;
     private DaoSession mDaosession;
@@ -79,6 +79,7 @@ public class DBTools {
         return false;
     }
 
+
     // 同步用户名删除
     public void deleteGood(final String str, String finaUser) {
         threadPool.execute(new Runnable() {
@@ -97,53 +98,55 @@ public class DBTools {
         });
     }
 
+
     // 同步用户名查询
-    public void queryUser(final String finaUrl, final String finaUser) {
-        threadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                Observable.create(new Observable.OnSubscribe<List<GoodThings>>() {
+    public void queryUser(final String finaUrl, final String finaUser, Action1<List<GoodThings>> action1) {
+
+        Observable.just(finaUrl, finaUrl)
+                .flatMap(new Func1<String, Observable<List<GoodThings>>>() {
                     @Override
-                    public void call(Subscriber<? super List<GoodThings>> subscriber) {
+                    public Observable<List<GoodThings>> call(String s) {
                         query = goodThingsDao.queryBuilder().where(GoodThingsDao.Properties.ImgUrl
                                 .eq(finaUrl), GoodThingsDao.Properties.Username.eq(finaUser))
                                 .build();
+                        List<GoodThings> goodThingses = query.list();
+                        return Observable.just(goodThingses);
                     }
-                })
-                        .observeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Action1<List<GoodThings>>() {
-                            @Override
-                            public void call(List<GoodThings> goodThingses) {
-                                // 拿到查询的结果
-                                List list = query.list();
-                            }
-                        });
-            }
-        });
+                }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(action1);
+
     }
 
     //designer的收藏
+
     public void insertSignDesigner(final DesignerSign designerSign) {
         Log.d("Sysout", "diaoyong");
-    Observable.create(new Observable.OnSubscribe<DesignerSign>() {
-        @Override
-        public void call(Subscriber<? super DesignerSign> subscriber) {
-            Log.d("Sysout", "Insert");
-            designerSignDao.insert(designerSign);
-        }
-    }).observeOn(Schedulers.io())
-    .subscribeOn(AndroidSchedulers.mainThread())
-    .subscribe(new Action1<DesignerSign>() {
-        @Override
-        public void call(DesignerSign designerSign) {
-        }
-    }, new Action1<Throwable>() {
-        @Override
-        public void call(Throwable throwable) {
+        Observable.create(new Observable.OnSubscribe<DesignerSign>() {
+            @Override
+            public void call(Subscriber<? super DesignerSign> subscriber) {
+                Log.d("Sysout", "Insert");
+                designerSignDao.insert(designerSign);
+            }
+        }).observeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<DesignerSign>() {
+                    @Override
+                    public void call(DesignerSign designerSign) {
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
 
-        }
-    });
+                    }
+                });
     }
 
 }
+
+
+
+
+
+
+
