@@ -20,13 +20,11 @@ package io.vov.vitamio.widget;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Rect;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -345,19 +343,20 @@ public class MediaController extends FrameLayout {
       if (mFromXml) {
         setVisibility(View.VISIBLE);
       } else {
-        int[] location = new int[2];
+//        int[] location = new int[2];
 
-        mAnchor.getLocationOnScreen(location);
+//        mAnchor.getLocationOnScreen(location);
 
           /**
            * 下面的rect可能就是对控制器位置的设置
            */
 
-        Rect anchorRect = new Rect(location[0], location[1], location[0] + mAnchor.getWidth(),mAnchor.getHeight() - 50);
+//        Rect anchorRect = new Rect(location[0], location[1], location[0] + mAnchor.getWidth(),mAnchor.getHeight() - 50);
 
         mWindow.setAnimationStyle(mAnimStyle);
         setWindowLayoutType();
-        mWindow.showAtLocation(mAnchor, Gravity.NO_GRAVITY, anchorRect.left, anchorRect.bottom);
+       // mWindow.showAtLocation(mAnchor, Gravity.NO_GRAVITY, anchorRect.left, anchorRect.bottom);
+        mWindow.showAsDropDown(mAnchor,0,-220);
       }
       mShowing = true;
       if (mShownListener != null)

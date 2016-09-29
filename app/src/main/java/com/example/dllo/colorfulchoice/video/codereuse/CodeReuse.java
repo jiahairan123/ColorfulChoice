@@ -34,14 +34,17 @@ public class CodeReuse {
     private NetTool netTool;
     private Context mContext;
     private XListView xListView;
-    private int addNum;
+    private int addNum = 0;
 
-    public CodeReuse (Context mContext,XListView xListView,int addNum){
+    public CodeReuse (Context mContext,XListView xListView){
         this.mContext = mContext;
         this.xListView = xListView;
-        this.addNum = addNum;
         resultBeanList = new ArrayList<>();
         netTool = new NetTool();
+    }
+
+    public void setAddNum(int addNum) {
+        this.addNum = addNum;
     }
 
     public void getBean(String url, String cookie) {
@@ -81,12 +84,14 @@ public class CodeReuse {
         xListView.stopLoadMore();
     }
 
-    public void onRefresh(String url){
+    public void onRefresh(String url,int addNum){
+        this.addNum = addNum;
         resultBeanList.clear();
         getBean(url, URLValue.VIDEO_COOKIE);
     }
 
-    public void onLoadMore(String url){
+    public void onLoadMore(String url,int addNum){
+        this.addNum = addNum;
         getBean(url,URLValue.VIDEO_COOKIE);
     }
 
@@ -94,19 +99,45 @@ public class CodeReuse {
         private Handler mHandler;
         private Handler handler;
         private Context context;
+        private int playPosition = -1;
         private CommonViewHolder videoViewHolder = null;
+        private List<CommonViewHolder> viewHolderList;
 
         public CodeReuseAdapter(List<VideoBean.ResultBean> beanList, Context context, int id) {
             super(beanList, context, id);
             this.context = context;
+            viewHolderList = new ArrayList<>();
         }
 
         @Override
         public void setData(final VideoBean.ResultBean resultBean, final CommonViewHolder viewHolder) {
             viewHolder.setImage(R.id.video_picture, resultBean.getImage());
+            Log.d("CodeReuseAdapter", resultBean.getImage());
             viewHolder.setText(R.id.video_title, resultBean.getTitle());
+//
+//            if(viewHolderList.size() == 0){
+//                viewHolderList.add(viewHolder);
+//            }else {
+//                int i = 0;
+//                for (; i < viewHolderList.size(); i++) {
+//                    if(viewHolderList.get(i) == viewHolder){
+//                        break;
+//                    }
+//                }
+//                if(i == viewHolderList.size()){
+//                    viewHolderList.add(viewHolder);
+//                }
+//            }
+//            Log.d("CodeReuseAdapter", "当前界面的最后item的位置信息是" + xListView.getLastVisiblePosition());
+//            Log.d("CodeReuseAdapter", "当前界面的最初item的位置信息是" + xListView.getFirstVisiblePosition());
+//            Log.d("CodeReuseAdapter", "该listView中共new了" + viewHolderList.size() + "个item");
+
+//            Log.d("CodeReuseAdapter", "父类布局的id是" + viewHolder.getView(R.id.rl_up));
+
             if (videoViewHolder != null) {
-                if (videoViewHolder.getPosition() < xListView.getFirstVisiblePosition() || videoViewHolder.getPosition() > xListView.getLastVisiblePosition()) {
+//                Log.d("CodeReuseAdapter", "滑动时的位置信息为" + videoViewHolder.getPosition());
+                if (playPosition < xListView.getFirstVisiblePosition() || playPosition > (xListView.getLastVisiblePosition())) {
+                    Log.d("CodeReuseAdapter", "每一次的刷新都会运行到这里吗");
                     videoViewHolder.getView(R.id.video_item_video_view).setVisibility(View.GONE);
                     videoViewHolder.getView(R.id.rl_top).setVisibility(View.VISIBLE);
                     if (((VideoView) videoViewHolder.getView(R.id.video_item_video_view)).isPlaying()) {
@@ -127,6 +158,8 @@ public class CodeReuse {
                         }
                     }
                     videoViewHolder = viewHolder;
+                    playPosition = videoViewHolder.getPosition();
+                    Log.d("CodeReuseAdapter", "正在播放的视频的位置信息" + videoViewHolder.getPosition());
                     VideoView videoView = videoViewHolder.getView(R.id.video_item_video_view);
                     videoViewHolder.getView(R.id.rl_top).setVisibility(View.GONE);
                     videoView.setVisibility(View.VISIBLE);

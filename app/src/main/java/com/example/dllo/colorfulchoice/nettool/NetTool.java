@@ -5,11 +5,14 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+
 import com.bumptech.glide.Glide;
 import com.example.dllo.colorfulchoice.base.MyApp;
 import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -47,10 +50,7 @@ public class NetTool {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
                 handler.post(new HandlerRunnable<T>(gson.fromJson(response.body().string(), tClass), netListener));
-
-
             }
         });
 
@@ -100,10 +100,10 @@ public class NetTool {
                 if (response.isSuccessful()) {
 
                     String gsonString = response.body().string();
-                    Log.d("GetVideoByOkHttpPost", gsonString);
+//                    Log.d("GetVideoByOkHttpPost", gsonString);
 
 //                    getVideo.onSuccess(gson.fromJson(gsonString, tClass));
-                    handler.post(new HandlerRunnable<>(gson.fromJson(gsonString, tClass),getVideo));
+                    handler.post(new HandlerRunnable<>(gson.fromJson(gsonString, tClass), getVideo));
                 } else {
                     Log.d("GetVideoByOkHttpPost", "请检测你的网络是否连接");
                 }

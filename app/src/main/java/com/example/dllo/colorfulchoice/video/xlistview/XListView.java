@@ -129,7 +129,7 @@ public class XListView extends ListView implements OnScrollListener {
 	public void setPullRefreshEnable(boolean enable) {
 		mEnablePullRefresh = enable;
 		if (!mEnablePullRefresh) { // disable, hide the content
-			mHeaderViewContent.setVisibility(View.INVISIBLE);
+			mHeaderViewContent.setVisibility(View.GONE);
 		} else {
 			mHeaderViewContent.setVisibility(View.VISIBLE);
 		}
@@ -268,8 +268,6 @@ public class XListView extends ListView implements OnScrollListener {
 		}
 	}
 
-
-	//TODO 下面的这个方法是个监听,一会再看
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
 		if (mLastY == -1) {

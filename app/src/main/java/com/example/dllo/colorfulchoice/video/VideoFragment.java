@@ -6,6 +6,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
@@ -30,12 +40,15 @@ import java.util.List;
  * created on 16/9/13 11:32
  */
 
-public class VideoFragment extends BaseFragment {
+public class VideoFragment extends BaseFragment implements View.OnClickListener{
     // 视频 fragment
     private TabLayout tbVideo;
     private ViewPager vpVideo;
+    private ImageView btnPoppup;
     private List<Fragment> fragmentList;
     private List<String> stringList;
+    private PopupWindow popupWindow;
+    private static int judgePosition = 0;
 
     @Override
     protected int setLayout() {
@@ -46,8 +59,11 @@ public class VideoFragment extends BaseFragment {
     protected void initView() {
         vpVideo = bindView(R.id.vp_video);
         tbVideo = bindView(R.id.tb_video);
+        btnPoppup = bindView(R.id.btn_poppup_windows);
+        btnPoppup.setOnClickListener(this);
         fragmentList = new ArrayList<>();
         stringList = new ArrayList<>();
+        popupWindow = new PopupWindow(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
     @Override
@@ -81,6 +97,112 @@ public class VideoFragment extends BaseFragment {
         tbVideo.setupWithViewPager(vpVideo);
         tbVideo.setSelectedTabIndicatorColor(0x00);
         tbVideo.setTabTextColors(Color.BLACK,0xFFFF4500);
+        tabPopupWin();
+        if(popupWindow != null && popupWindow.isShowing()){
+            popupWindow.dismiss();
+            return;
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_poppup_windows:
+                if(popupWindow != null && popupWindow.isShowing()){
+                    popupWindow.dismiss();
+                    view.setBackgroundResource(R.mipmap.poppup_start);
+                    return;
+                }else {
+                    tabPopupWin();
+                    popupWindow.showAsDropDown(view,0,5);
+                    view.setBackgroundResource(R.mipmap.poppup_end);
+                    Log.d("VideoFragment", "点击了一次popupwindows");
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(popupWindow != null && popupWindow.isShowing()){
+            popupWindow.dismiss();
+            btnPoppup.setBackgroundResource(R.mipmap.poppup_start);
+        }
+    }
+
+    private void tabPopupWin() {
+        View tabView = LayoutInflater.from(mContext).inflate(R.layout.video_popup_tab,null,false);
+        RecyclerView recycler = (RecyclerView) tabView.findViewById(R.id.popup_recycle_view);
+        final MyRecyclerAdapter recyclerAdapter = new MyRecyclerAdapter();
+        recycler.setAdapter(recyclerAdapter);
+        GridLayoutManager manager = new GridLayoutManager(mContext,3);
+        recycler.setLayoutManager(manager);
+        popupWindow.setContentView(tabView);
+//        popupWindow.setOutsideTouchable(true);
+        vpVideo.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                judgePosition = position;
+                recyclerAdapter.notifyDataSetChanged();
+                if(popupWindow != null && popupWindow.isShowing()){
+                    popupWindow.dismiss();
+                    btnPoppup.setBackgroundResource(R.mipmap.poppup_start);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.PopViewHolder>{
+        @Override
+        public MyRecyclerAdapter.PopViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View popView = LayoutInflater.from(mContext).inflate(R.layout.video_popup_tab_btn,parent,false);
+            return new PopViewHolder(popView);
+        }
+
+        @Override
+        public void onBindViewHolder(MyRecyclerAdapter.PopViewHolder holder, final int position) {
+            if(judgePosition == position){
+                holder.button.setTextColor(0xFFFF4500);
+            }else {
+                holder.button.setTextColor(Color.BLACK);
+            }
+            holder.button.setText(stringList.get(position));
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    vpVideo.setCurrentItem(position);
+                    judgePosition = position;
+                    notifyDataSetChanged();
+                    popupWindow.dismiss();
+                    btnPoppup.setBackgroundResource(R.mipmap.poppup_start);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            Log.d("MyRecyclerAdapter", "stringList.size():" + stringList.size());
+            return stringList.size();
+        }
+
+        public class PopViewHolder extends RecyclerView.ViewHolder {
+            private Button button;
+            public PopViewHolder(View itemView) {
+                super(itemView);
+                button = (Button) itemView.findViewById(R.id.popup_recycle_view_btn);
+            }
+        }
     }
 
     public class MyViewPager extends FragmentPagerAdapter {

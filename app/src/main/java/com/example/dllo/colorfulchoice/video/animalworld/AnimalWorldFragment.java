@@ -1,23 +1,20 @@
 package com.example.dllo.colorfulchoice.video.animalworld;
 
-import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.widget.ListView;
-
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
-import com.example.dllo.colorfulchoice.base.CommonAdapter;
-import com.example.dllo.colorfulchoice.base.CommonViewHolder;
-import com.example.dllo.colorfulchoice.video.VideoBean;
-
-import java.util.List;
+import com.example.dllo.colorfulchoice.nettool.URLValue;
+import com.example.dllo.colorfulchoice.video.codereuse.CodeReuse;
+import com.example.dllo.colorfulchoice.video.xlistview.XListView;
 
 /**
  * Created by ${马庭凯} on 16/9/13.
  */
 
-public class AnimalWorldFragment extends BaseFragment{
-    private ListView listView;
+public class AnimalWorldFragment extends BaseFragment implements XListView.IXListViewListener{
+    private XListView xListView;
+    private int informationQuantity = 0;
+    private CodeReuse codeReuse;
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_video_child;
@@ -25,23 +22,29 @@ public class AnimalWorldFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        listView = bindView(R.id.fragment_video_child_list_view);
+        xListView = bindView(R.id.fragment_video_child_list_view);
+        codeReuse = new CodeReuse(mContext,xListView);
     }
 
     @Override
     protected void initData() {
-
+        xListView.setPullLoadEnable(true);
+        xListView.setXListViewListener(this);
+        String url = URLValue.VIDEO_FIRST_URL + informationQuantity + URLValue.VIDEO_SECOND_URL + (informationQuantity += 20) + URLValue.VIDEO_THIRD_URL + URLValue.VIDEO_ANIMALWORLD + URLValue.VIDEO_FOURTH_URL;
+        codeReuse.setAddNum(20);
+        codeReuse.getBean(url,URLValue.VIDEO_COOKIE);
     }
 
-//    public class AnimalWorldAdapter extends CommonAdapter<VideoBean> {
-//        public AnimalWorldAdapter(List<VideoBean> beanList, Context context, int id,) {
-//            super(beanList, context, id);
-//        }
-//
-//        @Override
-//        public void setData(VideoBean videoBean, CommonViewHolder viewHolder) {
-//
-//        }
-//    }
+    @Override
+    public void onRefresh() {
+        informationQuantity = 0;
+        String url = URLValue.VIDEO_FIRST_URL + informationQuantity + URLValue.VIDEO_SECOND_URL + (informationQuantity += 20) + URLValue.VIDEO_THIRD_URL + URLValue.VIDEO_ANIMALWORLD + URLValue.VIDEO_FOURTH_URL;
+        codeReuse.onRefresh(url,20);
+    }
 
+    @Override
+    public void onLoadMore() {
+        String url = URLValue.VIDEO_FIRST_URL + informationQuantity + URLValue.VIDEO_SECOND_URL + (informationQuantity += 5) + URLValue.VIDEO_THIRD_URL + URLValue.VIDEO_ANIMALWORLD + URLValue.VIDEO_FOURTH_URL;
+        codeReuse.onLoadMore(url,5);
+    }
 }
