@@ -25,9 +25,6 @@ public class WelcomeToColorfurChoiceActivity extends BaseAty {
 
     @Override
     protected int setLayout() {
-//        if (intentjudge) {
-//            finish();
-//        }
         return R.layout.activity_welcome;
     }
 

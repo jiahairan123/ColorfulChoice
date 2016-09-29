@@ -1,11 +1,11 @@
 package com.example.dllo.colorfulchoice.database;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.example.dllo.colorfulchoice.base.MyApp;
 
 import org.greenrobot.greendao.query.Query;
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -25,29 +25,29 @@ public class DBTools {
 
     private static String TAG = DBTools.class.getSimpleName();
     private static DBTools instance;
-    private static Context appContext;
     private DaoSession mDaosession;
     private GoodThingsDao goodThingsDao;
     private ExecutorService threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
     private Query query;
     private static DesignerSignDao designerSignDao;
+    private DBVideoViewDao dbVideoViewDao;
 
     private DBTools() {
 
     }
 
     // 单例模式
-    public static DBTools getInstance(Context context) {
-
+    public static DBTools getInstance() {
         if (instance == null) {
-            instance = new DBTools();
-            if (appContext == null) {
-                appContext = context.getApplicationContext();
+            synchronized (DBTools.class) {
+                if (instance == null) {
+                    instance = new DBTools();
+                    instance.mDaosession = MyApp.getDaoSession();
+                    instance.goodThingsDao = instance.mDaosession.getGoodThingsDao();
+                    designerSignDao = instance.mDaosession.getDesignerSignDao();
+                    instance.dbVideoViewDao = instance.mDaosession.getDBVideoViewDao();
+                }
             }
-            instance.mDaosession = MyApp.getDaoSession();
-            instance.goodThingsDao = instance.mDaosession.getGoodThingsDao();
-
-            designerSignDao = instance.mDaosession.getDesignerSignDao();
         }
         return instance;
     }
@@ -78,7 +78,6 @@ public class DBTools {
         }
         return false;
     }
-
 
     // 同步用户名删除
     public void deleteGood(final String str, String finaUser) {
@@ -115,7 +114,6 @@ public class DBTools {
                 }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(action1);
-
     }
 
     //designer的收藏
@@ -133,6 +131,7 @@ public class DBTools {
                 .subscribe(new Action1<DesignerSign>() {
                     @Override
                     public void call(DesignerSign designerSign) {
+
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -140,6 +139,31 @@ public class DBTools {
 
                     }
                 });
+    }
+
+    //增加视频的收藏
+    public void insertVideoView(List<DBVideoView> dbVideoViewList) {
+        if (dbVideoViewDao != null) {
+            dbVideoViewDao.deleteAll();
+            dbVideoViewDao.insertInTx(dbVideoViewList);
+        }
+    }
+
+    //删除视频的收藏
+    public void deleteVideoView(List<DBVideoView> dbVideoViewList) {
+        if (dbVideoViewDao != null) {
+            dbVideoViewDao.deleteInTx(dbVideoViewList);
+        }
+    }
+
+    //查询(或取出)所有的项
+    public List<DBVideoView> queryVideoView() {
+        List<DBVideoView> dbVideoViewList = null;
+        if (dbVideoViewDao != null) {
+            QueryBuilder<DBVideoView> queryBuilder = dbVideoViewDao.queryBuilder();
+            dbVideoViewList = queryBuilder.list();
+        }
+        return dbVideoViewList;
     }
 
 }

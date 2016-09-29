@@ -2,10 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
+    <com.example.dllo.colorfulchoice.activity.FireWorks
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@mipmap/welcome_picture"/>
+        android:layout_height="match_parent" />
     <TextView
         android:id="@+id/welcome_skip"
         android:layout_width="wrap_content"

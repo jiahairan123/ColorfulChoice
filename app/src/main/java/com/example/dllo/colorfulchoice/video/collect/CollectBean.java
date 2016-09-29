@@ -1,5 +1,7 @@
 package com.example.dllo.colorfulchoice.video.collect;
 
+import com.example.dllo.colorfulchoice.database.DBVideoView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  */
 
 public class CollectBean {
-    private List<ResultBean> resultBeanList;
+    private List<DBVideoView> resultBeanList;
     private static CollectBean collectBean = null;
     private CollectBean(){
         resultBeanList = new ArrayList<>();
@@ -24,51 +26,15 @@ public class CollectBean {
         return collectBean;
     }
 
-    public List<ResultBean> getResultBeanList() {
+    public List<DBVideoView> getResultBeanList() {
         return resultBeanList;
     }
 
-    public void setResultBeanList(List<ResultBean> resultBeanList) {
+    public void setResultBeanList(List<DBVideoView> resultBeanList) {
         this.resultBeanList = resultBeanList;
     }
 
-    public void setResultBeanList(ResultBean resultBean){
-        resultBeanList.add(resultBean);
-    }
-
-    public class ResultBean{
-        private String itemId;
-        private String title;
-        private String date;
-        private String image;
-        private String videoUrl;
-
-        public ResultBean(String itemId, String title, String date, String image, String videoUrl) {
-            this.itemId = itemId;
-            this.title = title;
-            this.date = date;
-            this.image = image;
-            this.videoUrl = videoUrl;
-        }
-
-        public String getItemId() {
-            return itemId;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public String getImage() {
-            return image;
-        }
-
-        public String getVideoUrl() {
-            return videoUrl;
-        }
+    public void setResultBeanList(DBVideoView dbVideoView){
+        resultBeanList.add(dbVideoView);
     }
 }

@@ -24,10 +24,10 @@ import com.example.dllo.colorfulchoice.custom.GrapeGridView;
 import com.example.dllo.colorfulchoice.database.DBTools;
 import com.example.dllo.colorfulchoice.database.GoodThings;
 import com.example.dllo.colorfulchoice.goodthing.activity.NormalTwoActivity;
-import com.example.dllo.colorfulchoice.goodthing.bean.PopTwoBean;
-import com.example.dllo.colorfulchoice.goodthing.eventbus.EventBusPosition;
 import com.example.dllo.colorfulchoice.goodthing.bean.NormalBean;
 import com.example.dllo.colorfulchoice.goodthing.bean.PopBean;
+import com.example.dllo.colorfulchoice.goodthing.bean.PopTwoBean;
+import com.example.dllo.colorfulchoice.goodthing.eventbus.EventBusPosition;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -37,7 +37,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
@@ -211,7 +210,7 @@ public class NormalFragment extends BaseFragment {
                             }
                         });
 
-                        DBTools.getInstance(getContext()).queryUser(productsBean.getCover_images().get(0), bmobUser.getUsername(), new Action1<List<GoodThings>>() {
+                        DBTools.getInstance().queryUser(productsBean.getCover_images().get(0), bmobUser.getUsername(), new Action1<List<GoodThings>>() {
                             @Override
                             public void call(List<GoodThings> goodThingses) {
                                 // 获得查询后返回的数据
@@ -230,7 +229,7 @@ public class NormalFragment extends BaseFragment {
                                     // 存数据库
                                     GoodThings goodThings = new GoodThings();
                                     goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
-                                    DBTools.getInstance(getContext()).insertGoodThing(goodThings);
+                                    DBTools.getInstance().insertGoodThing(goodThings);
                                     Toast.makeText(getContext(), "取消收藏", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.d("NormalFragment", "count********:" + count);
@@ -240,7 +239,7 @@ public class NormalFragment extends BaseFragment {
                                     sa.setDuration(1000);
                                     sa.setRepeatCount(1);
                                     imageSmile.startAnimation(sa);
-                                    DBTools.getInstance(getContext()).deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
+                                    DBTools.getInstance().deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
                                     Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show();
                                 }
                             }

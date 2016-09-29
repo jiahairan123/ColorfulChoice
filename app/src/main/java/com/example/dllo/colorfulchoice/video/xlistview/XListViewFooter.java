@@ -36,10 +36,10 @@ public class XListViewFooter extends LinearLayout {
 
 	
 	public void setState(int state) {
-		mProgressBar.setVisibility(View.GONE);
-//		if (state == STATE_READY) {
-//			mProgressBar.setVisibility(View.GONE);
-//		} else
+//		mProgressBar.setVisibility(View.GONE);
+		if (state == STATE_READY) {
+			mProgressBar.setVisibility(View.GONE);
+		} else
 		if (state == STATE_LOADING) {
 			mProgressBar.setVisibility(View.VISIBLE);
 		}

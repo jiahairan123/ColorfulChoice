@@ -1,15 +1,16 @@
 package com.example.dllo.colorfulchoice.video.codereuse;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
+import com.example.dllo.colorfulchoice.database.DBVideoView;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 import com.example.dllo.colorfulchoice.video.VideoBean;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.BmobUser;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 
@@ -36,7 +38,7 @@ public class CodeReuse {
     private XListView xListView;
     private int addNum = 0;
 
-    public CodeReuse (Context mContext,XListView xListView){
+    public CodeReuse(Context mContext, XListView xListView) {
         this.mContext = mContext;
         this.xListView = xListView;
         resultBeanList = new ArrayList<>();
@@ -84,15 +86,15 @@ public class CodeReuse {
         xListView.stopLoadMore();
     }
 
-    public void onRefresh(String url,int addNum){
+    public void onRefresh(String url, int addNum) {
         this.addNum = addNum;
         resultBeanList.clear();
         getBean(url, URLValue.VIDEO_COOKIE);
     }
 
-    public void onLoadMore(String url,int addNum){
+    public void onLoadMore(String url, int addNum) {
         this.addNum = addNum;
-        getBean(url,URLValue.VIDEO_COOKIE);
+        getBean(url, URLValue.VIDEO_COOKIE);
     }
 
     public class CodeReuseAdapter extends CommonAdapter<VideoBean.ResultBean> {
@@ -184,37 +186,40 @@ public class CodeReuse {
             viewHolder.getView(R.id.video_collect).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    handler = new Handler(new Handler.Callback() {
-                        @Override
-                        public boolean handleMessage(Message message) {
-                            switch (message.what) {
-                                case 0:
-                                    CollectBean.getInstance().setResultBeanList(CollectBean.getInstance().new ResultBean(resultBean.getItemid(), resultBean.getTitle(), resultBean.getDate(), resultBean.getImage(), resultBean.getVideo_url()));
-                                    viewHolder.setBackground(R.id.video_collect, R.mipmap.star);
-                                    Log.d("RecommendAdapter", "CollectBean.getInstance().getResultBeanList().size():" + CollectBean.getInstance().getResultBeanList().size());
-                                    break;
-                                case 1:
-                                    Log.d("RecommendAdapter", "对收藏信息进行了一次判断");
-                                    CollectBean.getInstance().getResultBeanList().remove((int) message.obj);
-                                    Log.d("RecommendAdapter", "CollectBean.getInstance().getResultBeanList().size():" + CollectBean.getInstance().getResultBeanList().size());
-                                    viewHolder.setBackground(R.id.video_collect, R.mipmap.star_gray);
-                                    break;
+                    if(BmobUser.getCurrentUser() != null){
+                        Toast.makeText(mContext, "您还没有登录,请先登录然后在收藏", Toast.LENGTH_SHORT).show();
+                    }else {
+                        handler = new Handler(new Handler.Callback() {
+                            @Override
+                            public boolean handleMessage(Message message) {
+                                switch (message.what) {
+                                    case 0:
+                                        DBVideoView dbVideoView = new DBVideoView();
+                                        dbVideoView.setUserName(BmobUser.getCurrentUser().getUsername());
+                                        dbVideoView.setItemId(resultBean.getItemid());
+                                        dbVideoView.setTitle(resultBean.getTitle());
+                                        dbVideoView.setDate(resultBean.getDate());
+                                        dbVideoView.setImage(resultBean.getImage());
+                                        dbVideoView.setVideoUrl(resultBean.getVideo_url());
+                                        CollectBean.getInstance().setResultBeanList(dbVideoView);
+                                        viewHolder.setBackground(R.id.video_collect, R.mipmap.star);
+                                        Log.d("RecommendAdapter", "CollectBean.getInstance().getResultBeanList().size():" + CollectBean.getInstance().getResultBeanList().size());
+                                        break;
+                                    case 1:
+                                        Log.d("RecommendAdapter", "对收藏信息进行了一次判断");
+                                        CollectBean.getInstance().getResultBeanList().remove((int) message.obj);
+                                        Log.d("RecommendAdapter", "CollectBean.getInstance().getResultBeanList().size():" + CollectBean.getInstance().getResultBeanList().size());
+                                        viewHolder.setBackground(R.id.video_collect, R.mipmap.star_gray);
+                                        break;
+                                }
+                                return false;
                             }
-                            return false;
-                        }
-                    });
-                    Log.d("RecommendAdapter", "Thread.currentThread().getId():" + Thread.currentThread().getId());
-                    JudgeCollectChange.getInstance().judgeCollectExit(resultBean.getItemid(), handler);
-                }
-            });
-            viewHolder.getView(R.id.video_comment).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent();
-                    //跳转到评论页面
+                        });
+                        Log.d("RecommendAdapter", "Thread.currentThread().getId():" + Thread.currentThread().getId());
+                        JudgeCollectChange.getInstance().judgeCollectExit(resultBean.getItemid(), handler);
+                    }
                 }
             });
         }
     }
-
 }

@@ -67,7 +67,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         clickLogin = (CircleImageView) guestMode.findViewById(R.id.click_to_log_in);
         clickLogin.setOnClickListener(this);
         loginBtn.setOnClickListener(this);
-
     }
 
 

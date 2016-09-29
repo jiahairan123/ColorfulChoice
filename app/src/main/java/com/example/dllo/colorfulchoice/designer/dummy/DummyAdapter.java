@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dllo.colorfulchoice.R;
@@ -16,8 +15,6 @@ import com.example.dllo.colorfulchoice.base.MyApp;
 import com.example.dllo.colorfulchoice.database.DBTools;
 import com.example.dllo.colorfulchoice.database.DesignerSign;
 import com.example.dllo.colorfulchoice.designer.bean.DesignerBean;
-
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -84,7 +81,7 @@ public class DummyAdapter extends BaseAdapter {
                 designerSign.setLabel(bean.getLabel());
                 designerSign.setPersonImgUrl(bean.getAvatar_url());
                 designerSign.setImgUrl(bean.getRecommend_images().get(0));
-                DBTools.getInstance(MyApp.getContext()).insertSignDesigner(designerSign);
+                DBTools.getInstance().insertSignDesigner(designerSign);
             }
         });
 

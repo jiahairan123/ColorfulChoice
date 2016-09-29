@@ -19,7 +19,10 @@ import android.widget.PopupWindow;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
+import com.example.dllo.colorfulchoice.database.DBTools;
+import com.example.dllo.colorfulchoice.database.DBVideoView;
 import com.example.dllo.colorfulchoice.video.animalworld.AnimalWorldFragment;
+import com.example.dllo.colorfulchoice.video.collect.CollectBean;
 import com.example.dllo.colorfulchoice.video.cutepet.CutePetFragment;
 import com.example.dllo.colorfulchoice.video.euphonious.EuphoniousFragment;
 import com.example.dllo.colorfulchoice.video.huggies.HuggiesFragment;
@@ -105,6 +108,13 @@ public class VideoFragment extends BaseFragment implements View.OnClickListener{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        List<DBVideoView> dbVideoViewList = DBTools.getInstance().queryVideoView();
+        CollectBean.getInstance().setResultBeanList(dbVideoViewList);
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_poppup_windows:
@@ -129,6 +139,7 @@ public class VideoFragment extends BaseFragment implements View.OnClickListener{
             popupWindow.dismiss();
             btnPoppup.setBackgroundResource(R.mipmap.poppup_start);
         }
+        DBTools.getInstance().insertVideoView(CollectBean.getInstance().getResultBeanList());
     }
 
     private void tabPopupWin() {
