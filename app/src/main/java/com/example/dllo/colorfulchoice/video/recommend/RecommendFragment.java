@@ -1,5 +1,7 @@
 package com.example.dllo.colorfulchoice.video.recommend;
 
+import android.util.Log;
+
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
@@ -31,6 +33,7 @@ public class RecommendFragment extends BaseFragment implements XListView.IXListV
         xListView.setPullLoadEnable(true);
         xListView.setXListViewListener(this);
         String url = URLValue.VIDEO_FIRST_URL + informationQuantity + URLValue.VIDEO_SECOND_URL + (informationQuantity += 20) + URLValue.VIDEO_THIRD_URL + URLValue.VIDEO_RECOMMEND + URLValue.VIDEO_FOURTH_URL;
+        Log.d("RecommendFragment", url);
         codeReuse.setAddNum(20);
         codeReuse.getBean(url,URLValue.VIDEO_COOKIE);
     }

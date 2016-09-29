@@ -362,11 +362,11 @@ public class VideoView extends SurfaceView implements MediaController.MediaPlaye
 //			lp.width = (full || windowRatio < videoRatio) ? windowWidth : (int) (videoRatio * windowHeight);
 //			lp.height = (full || windowRatio > videoRatio) ? windowHeight : (int) (windowWidth / videoRatio);
 //		}
-//        ViewGroup parent = (ViewGroup) getParent();
-        lp.width = myWidth;
-        lp.height = myHeight;
+        ViewGroup parent = (ViewGroup) getParent();
+        lp.width = parent.getWidth();
+        lp.height = parent.getHeight();
 
-//		setLayoutParams(lp);
+		setLayoutParams(lp);
         getHolder().setFixedSize(mSurfaceWidth, mSurfaceHeight);
 //        Log.d("VIDEO: %dx%dx%f, Surface: %dx%d, LP: %dx%d, Window: %dx%dx%f", mVideoWidth, mVideoHeight, mVideoAspectRatio, mSurfaceWidth, mSurfaceHeight, lp.width, lp.height, windowWidth, windowHeight, windowRatio);
         mVideoLayout = layout;
