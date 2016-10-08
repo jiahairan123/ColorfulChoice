@@ -206,23 +206,17 @@ public class NormalFragment extends BaseFragment {
                         mPullRefreshGridView.onRefreshComplete();
 
                         imageCry = viewHolder.getView(R.id.item_normal_cry_iv);
-                        imageCry.bringToFront();
                         imageSmile = viewHolder.getView(R.id.item_normal_smail_iv);
-                        imageSmile.bringToFront();
                         imageCry.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(getContext(), "动画" + position, Toast.LENGTH_SHORT).show();
+                                imageCry.setBackgroundResource(R.mipmap.cryse);
+                                Toast.makeText(getContext(), "不喜欢" + position, Toast.LENGTH_SHORT).show();
                             }
                         });
 
-
-                            bmobUser = BmobUser.getCurrentUser();
-
+                        bmobUser = BmobUser.getCurrentUser();
                         if (bmobUser != null) {
-
-
-
                         DBTools.getInstance().queryUser(productsBean.getCover_images().get(0), bmobUser.getUsername(), new Action1<List<GoodThings>>() {
                             @Override
                             public void call(List<GoodThings> goodThingses) {
@@ -230,25 +224,18 @@ public class NormalFragment extends BaseFragment {
                                 count = goodThingses.size();
                             }
                         });
-
-
                         } else {
-
                             Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
                         }
 
-                        Log.d("Sysout", "setOnClick");
-                        // TODO 点击事件穿透
                         imageSmile.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 if (count > 0) {
-                                    Log.d("Sysout", "coun---------t:" + count);
-                                    imageSmile.setBackgroundResource(R.mipmap.cry);
+                                    imageSmile.setBackgroundResource(R.mipmap.smile);
                                     DBTools.getInstance().deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
                                     Toast.makeText(getContext(), "取消收藏", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Log.d("NormalFragment", "count********:" + count);
                                     count  ++;
                                     imageSmile.setImageResource(R.mipmap.smilese);
                                     ScaleAnimation sa = new ScaleAnimation(0, 10, 0, 10);
@@ -268,6 +255,7 @@ public class NormalFragment extends BaseFragment {
                 });
 
                 // item 的点击事件
+
                 mPullRefreshGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -325,12 +313,10 @@ public class NormalFragment extends BaseFragment {
                                                     @Override
                                                     public void onClick(View v) {
                                                         if (count > 0) {
-                                                            Log.d("Sysout", "coun---------t:" + count);
                                                             imageSmile.setBackgroundResource(R.mipmap.cry);
                                                             DBTools.getInstance().deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
                                                             Toast.makeText(getContext(), "取消收藏", Toast.LENGTH_SHORT).show();
                                                         } else {
-                                                            Log.d("NormalFragment", "count********:" + count);
                                                             count  ++;
                                                             imageSmile.setImageResource(R.mipmap.smilese);
                                                             ScaleAnimation sa = new ScaleAnimation(0, 10, 0, 10);
