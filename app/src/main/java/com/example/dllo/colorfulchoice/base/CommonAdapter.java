@@ -32,6 +32,12 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
         this.integerList = integerList;
     }
 
+    public void refresh(List<T> beanList){
+        this.beanList.clear();
+        this.beanList = beanList;
+        notifyDataSetChanged();
+    }
+
     public CommonAdapter(List<T> beanList, Context context, int id) {
         this.beanList = beanList;
         if(context == null){

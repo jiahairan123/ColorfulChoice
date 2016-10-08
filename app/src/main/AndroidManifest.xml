@@ -27,12 +27,12 @@
 
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation" />
-        <activity android:name=".activity.MainActivity" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+           />
 
-        <activity
-            android:name=".activity.WelcomeToColorfurChoiceActivity"
+        <activity android:name=".activity.MainActivity"
             android:launchMode="singleTop">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -45,7 +45,7 @@
         <activity android:name=".goodthing.activity.NormalTwoActivity" />
         <activity android:name=".me.logandregister.LogInActivity" />
         <activity android:name=".me.logandregister.RegisterActivity" />
-
+        <activity android:name=".me.logandregister.CollActivity"/>
     </application>
 
 

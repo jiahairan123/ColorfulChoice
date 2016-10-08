@@ -120,7 +120,7 @@
                     android:layout_marginTop="1dp">
 
                     <RelativeLayout
-
+                        android:id="@+id/collection_rl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
