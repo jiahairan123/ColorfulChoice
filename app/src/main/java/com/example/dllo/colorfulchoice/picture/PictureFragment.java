@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
@@ -17,7 +16,6 @@ import com.example.dllo.colorfulchoice.picture.onclickpicture.PictureContentActi
 import com.wirelesspienetwork.overview.model.OverviewAdapter;
 import com.wirelesspienetwork.overview.model.ViewHolder;
 import com.wirelesspienetwork.overview.views.Overview;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

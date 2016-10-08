@@ -1,17 +1,13 @@
 package com.example.dllo.colorfulchoice.me.logandregister;
 
-import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dllo.colorfulchoice.R;
-import com.example.dllo.colorfulchoice.activity.MainActivity;
 import com.example.dllo.colorfulchoice.base.BaseAty;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -68,9 +64,6 @@ public class RegisterActivity extends BaseAty {
                         public void done(Object o, BmobException e) {
                             if (e == null) {
 
-                                Log.d("RegisterActivity", "恭喜您, 注册成功");
-                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                startActivity(intent);
                                 finish();
 
                             } else {

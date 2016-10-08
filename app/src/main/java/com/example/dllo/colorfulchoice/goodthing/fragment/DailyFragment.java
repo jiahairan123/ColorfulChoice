@@ -53,7 +53,6 @@ public class DailyFragment extends BaseFragment {
             @Override
             public void onSuccess(DailyBean dailyBean) {
 
-
                 adapter = new CommonAdapter<DailyBean.DataBean.ProductsBean>(dailyBean.getData().getProducts(), getContext(), R.layout.item_daily) {
 
                     @Override
@@ -65,7 +64,6 @@ public class DailyFragment extends BaseFragment {
                         viewHolder.setImage(R.id.item_daily_avatar_url, bean.getDesigner().getAvatar_url());
                         viewHolder.setImage(R.id.item_daily_cover_images, bean.getCover_images().get(0));
 
-
                     }
                 };
                 listView.setAdapter(adapter);
@@ -76,8 +74,6 @@ public class DailyFragment extends BaseFragment {
                 Toast.makeText(mContext, "网络连接错误", Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
     }
 }

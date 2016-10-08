@@ -23,6 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class MeFragment extends BaseFragment implements View.OnClickListener {
+
     private LinearLayout myPicture, signDesigner, wishList, newsCenter, adviceAndQuestion;
     private DrawerLayout mDrawerLayout;
     private FrameLayout dummyFrameLayout;
@@ -32,9 +33,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private Button exitBtn, loginBtn;
     private TextView countName, noName;
 
-
-    //我 界面
-    //注意命名规范
     @Override
     protected int setLayout() {
         return R.layout.fragment_me;
@@ -69,8 +67,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         clickLogin.setOnClickListener(this);
         loginBtn.setOnClickListener(this);
     }
-
-
 
     @Override
     protected void initData() {

@@ -49,7 +49,6 @@ public class LogInActivity extends BaseAty {
 
     }
 
-
     @Override
     public void onClick(View v) {
 
@@ -82,8 +81,9 @@ public class LogInActivity extends BaseAty {
 
             case R.id.log_in_guest_btn:
                 //游客模式
-                Intent guestIntent = new Intent(LogInActivity.this, MainActivity.class);
-                startActivity(guestIntent);
+//                Intent guestIntent = new Intent(LogInActivity.this, MainActivity.class);
+//                startActivity(guestIntent);
+                finish();
                 break;
 
 
@@ -91,6 +91,7 @@ public class LogInActivity extends BaseAty {
                 //点击注册
                 Intent registerIntent = new Intent(LogInActivity.this, RegisterActivity.class);
                 startActivity(registerIntent);
+                finish();
                 break;
         }
 
