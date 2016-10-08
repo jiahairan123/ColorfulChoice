@@ -201,51 +201,7 @@ public class NormalFragment extends BaseFragment{
                         viewHolder.setImage(R.id.item_normal_cover_images, productsBean.getCover_images().get(0));
                         been = normalBean.getData().getProducts();
                         mPullRefreshGridView.onRefreshComplete();
-<<<<<<< HEAD
 
-                        imageCry = viewHolder.getView(R.id.item_normal_cry_iv);
-                        imageSmile = viewHolder.getView(R.id.item_normal_smail_iv);
-                        imageCry.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                imageCry.setBackgroundResource(R.mipmap.cryse);
-                                Toast.makeText(getContext(), "不喜欢" + position, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                        bmobUser = BmobUser.getCurrentUser();
-                        if (bmobUser != null) {
-                        DBTools.getInstance().queryUser(productsBean.getCover_images().get(0), bmobUser.getUsername(), new Action1<List<GoodThings>>() {
-                            @Override
-                            public void call(List<GoodThings> goodThingses) {
-                                // 获得查询后返回的数据
-                                count = goodThingses.size();
-                            }
-                        });
-                        } else {
-                            Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
-                        }
-
-                        imageSmile.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (count > 0) {
-                                    imageSmile.setBackgroundResource(R.mipmap.smile);
-                                    DBTools.getInstance().deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
-                                    Toast.makeText(getContext(), "取消收藏", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    count  ++;
-                                    imageSmile.setImageResource(R.mipmap.smilese);
-                                    ScaleAnimation sa = new ScaleAnimation(0, 10, 0, 10);
-                                    sa.setDuration(1000);
-                                    sa.setRepeatCount(0);
-                                    imageSmile.startAnimation(sa);
-                                    // 存数据库
-                                    GoodThings goodThings = new GoodThings();
-                                    goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
-                                    DBTools.getInstance().insertGoodThing(goodThings);
-                                    Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show();
-=======
                         bmobUser = BmobUser.getCurrentUser();
                         if (bmobUser != null) {
                             // 查询数据库
@@ -282,7 +238,6 @@ public class NormalFragment extends BaseFragment{
                                             Toast.makeText(getContext(), "不喜欢", Toast.LENGTH_SHORT).show();
                                         }
                                         break;
->>>>>>> adf01026443f7a6707a766f213cd25601a5a37e3
                                 }
                             }
                         });
@@ -303,6 +258,7 @@ public class NormalFragment extends BaseFragment{
                 });
 
             }
+
 
             @Override
             public void onError(String errorMsg) {
