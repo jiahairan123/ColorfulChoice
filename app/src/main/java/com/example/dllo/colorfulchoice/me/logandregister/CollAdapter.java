@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.MyApp;
 import com.example.dllo.colorfulchoice.database.GoodThings;
@@ -51,6 +52,8 @@ public class CollAdapter extends BaseAdapter{
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        Glide.with(MyApp.getContext()).load(goodThingses.get(position).getImgUrl()).into(viewHolder.imageView);
         return convertView;
     }
 

@@ -211,7 +211,7 @@ public class NormalFragment extends BaseFragment{
                                 }
                             });
                         } else {
-                            Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
                         }
 
                         radioGroup = viewHolder.getView(R.id.item_radio_group);
@@ -224,7 +224,7 @@ public class NormalFragment extends BaseFragment{
                                         if (count == 0) {
                                             GoodThings goodThings = new GoodThings();
                                             goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
-                                            goodThings.setUsername(bmobUser.getUsername());
+//                                            goodThings.setUsername(bmobUser.getUsername());
                                             DBTools.getInstance().insertGoodThing(goodThings);
                                             Toast.makeText(mContext, "喜欢", Toast.LENGTH_SHORT).show();
                                         } else {
@@ -345,8 +345,7 @@ public class NormalFragment extends BaseFragment{
                                                                 if (count == 0){
                                                                     GoodThings goodThings = new GoodThings();
                                                                     goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
-                                                                    goodThings.setUsername(bmobUser.getUsername());
-                                                                    Log.d("Sysout", "goodThings:" + goodThings);
+//                                                                    goodThings.setUsername(bmobUser.getUsername());
                                                                     DBTools.getInstance().insertGoodThing(goodThings);
                                                                     Toast.makeText(mContext, "喜欢", Toast.LENGTH_SHORT).show();
                                                                 } else {
