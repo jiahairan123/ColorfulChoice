@@ -72,23 +72,31 @@
                 android:textSize="15dp" />
         </LinearLayout>
 
-        <ImageView
+        <RadioGroup
+            android:id="@+id/item_radio_group"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <RadioButton
             android:id="@+id/item_normal_cry_iv"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
             android:layout_marginRight="7dp"
             android:layout_marginTop="25dp"
+            android:button="@null"
             android:layout_toLeftOf="@+id/item_normal_smail_iv"
-            android:src="@mipmap/cry" />
+            android:background="@drawable/smile" />
 
-
-        <ImageView
+        <RadioButton
             android:id="@+id/item_normal_smail_iv"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:button="@null"
             android:layout_alignParentRight="true"
             android:layout_marginTop="25dp"
-            android:src="@mipmap/smile" />
+            android:background="@drawable/cry" />
+        </RadioGroup>
 
     </RelativeLayout>
 

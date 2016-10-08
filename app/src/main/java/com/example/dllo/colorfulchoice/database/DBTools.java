@@ -3,6 +3,7 @@ package com.example.dllo.colorfulchoice.database;
 import android.util.Log;
 
 import com.example.dllo.colorfulchoice.base.MyApp;
+import com.example.dllo.colorfulchoice.me.CollBean;
 
 import org.greenrobot.greendao.query.Query;
 
@@ -99,7 +100,7 @@ public class DBTools {
     // 同步用户名查询
     public void queryUser(final String finaUrl, final String finaUser, Action1<List<GoodThings>> action1) {
 
-        Observable.just(finaUrl, finaUrl)
+        Observable.just(finaUrl, finaUser)
                 .flatMap(new Func1<String, Observable<List<GoodThings>>>() {
                     @Override
                     public Observable<List<GoodThings>> call(String s) {
@@ -108,6 +109,23 @@ public class DBTools {
                                 .build();
                         List<GoodThings> goodThingses = query.list();
                         return Observable.just(goodThingses);
+                    }
+                }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(action1);
+    }
+
+    // 收藏用
+    public void queryColl(final String userfina, Action1<List<GoodThings>> action1){
+        Observable.just(userfina)
+                .flatMap(new Func1<String, Observable<List<GoodThings>>>() {
+                    @Override
+                    public Observable<List<GoodThings>> call(String s) {
+                        query = goodThingsDao.queryBuilder().where(GoodThingsDao.Properties.Username
+                        .eq(userfina))
+                                .build();
+                        List<GoodThings> list = query.list();
+                        return Observable.just(list);
                     }
                 }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
