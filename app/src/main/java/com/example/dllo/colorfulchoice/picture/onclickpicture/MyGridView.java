@@ -10,6 +10,7 @@ import android.widget.GridView;
  */
 
 public class MyGridView extends GridView {
+
     public MyGridView(Context context) {
         super(context);
     }

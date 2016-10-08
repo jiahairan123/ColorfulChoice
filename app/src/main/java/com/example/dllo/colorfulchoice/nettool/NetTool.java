@@ -100,9 +100,7 @@ public class NetTool {
                 if (response.isSuccessful()) {
 
                     String gsonString = response.body().string();
-//                    Log.d("GetVideoByOkHttpPost", gsonString);
 
-//                    getVideo.onSuccess(gson.fromJson(gsonString, tClass));
                     handler.post(new HandlerRunnable<>(gson.fromJson(gsonString, tClass), getVideo));
                 } else {
                     Log.d("GetVideoByOkHttpPost", "请检测你的网络是否连接");
@@ -110,7 +108,6 @@ public class NetTool {
             }
         });
     }
-
 
     public void getImage(String source, GetBitMap getBitMap) throws ExecutionException, InterruptedException {
         Log.d("NetTool", source);

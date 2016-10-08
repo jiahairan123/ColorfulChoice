@@ -2,6 +2,7 @@ package com.example.dllo.colorfulchoice.me;
 
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -79,6 +80,22 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         if (currentUser != null) {
             dummyFrameLayout.removeAllViews();
             dummyFrameLayout.addView(loginMode);
+            countName.setText(currentUser.getUsername());
+        } else {
+            dummyFrameLayout.removeAllViews();
+            dummyFrameLayout.addView(guestMode);
+        }
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        currentUser = BmobUser.getCurrentUser();
+        if (currentUser != null) {
+            dummyFrameLayout.removeAllViews();
+            dummyFrameLayout.addView(loginMode);
+            Log.d("MeFragment", currentUser.getUsername().toString());
             countName.setText(currentUser.getUsername());
         } else {
             dummyFrameLayout.removeAllViews();

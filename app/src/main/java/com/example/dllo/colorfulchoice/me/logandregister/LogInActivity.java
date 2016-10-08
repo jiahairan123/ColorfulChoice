@@ -68,8 +68,7 @@ public class LogInActivity extends BaseAty {
                         public void done(Object o, BmobException e) {
                             if (e == null) {
                                 Toast.makeText(LogInActivity.this, "登录success", Toast.LENGTH_SHORT).show();
-                                Intent startIntent = new Intent(LogInActivity.this, MainActivity.class);
-                                startActivity(startIntent);
+                                finish();
                             } else {
                                 Toast.makeText(LogInActivity.this, "请检查账号密码或者网络", Toast.LENGTH_SHORT).show();
                             }
