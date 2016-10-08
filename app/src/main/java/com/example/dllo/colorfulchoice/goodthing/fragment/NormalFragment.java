@@ -195,6 +195,7 @@ public class NormalFragment extends BaseFragment {
                         viewHolder.setText(R.id.item_normal_lable, productsBean.getDesigner().getLabel());
                         viewHolder.setImage(R.id.item_normal_avatar_url, productsBean.getDesigner().getAvatar_url());
                         viewHolder.setImage(R.id.item_normal_cover_images, productsBean.getCover_images().get(0));
+
                         been = normalBean.getData().getProducts();
 
                         mPullRefreshGridView.onRefreshComplete();
@@ -233,7 +234,7 @@ public class NormalFragment extends BaseFragment {
                                     Toast.makeText(getContext(), "取消收藏", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.d("NormalFragment", "count********:" + count);
-                                    count  ++;
+                                    count++;
                                     imageSmile.setImageResource(R.mipmap.smilese);
                                     ScaleAnimation sa = new ScaleAnimation(0, 20, 0, 20);
                                     sa.setDuration(1000);

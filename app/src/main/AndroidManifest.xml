@@ -28,8 +28,8 @@
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation" />
-
         <activity android:name=".activity.MainActivity" />
+
         <activity
             android:name=".activity.WelcomeToColorfurChoiceActivity"
             android:launchMode="singleTop">
@@ -45,7 +45,7 @@
         <activity android:name=".goodthing.activity.NormalTwoActivity" />
         <activity android:name=".me.logandregister.LogInActivity" />
         <activity android:name=".me.logandregister.RegisterActivity" />
-        
+
     </application>
 
 
