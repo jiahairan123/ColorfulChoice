@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
+import com.example.dllo.colorfulchoice.base.MyApp;
 import com.example.dllo.colorfulchoice.me.logandregister.CollActivity;
 import com.example.dllo.colorfulchoice.me.logandregister.LogInActivity;
 
@@ -64,7 +65,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         exitBtn.setOnClickListener(this);
 
         //未登录状态
-        guestMode = LayoutInflater.from(mContext).inflate(R.layout.not_login_ll, null);
+        guestMode = LayoutInflater.from(MyApp.getContext()).inflate(R.layout.not_login_ll, null);
         loginBtn = (Button) guestMode.findViewById(R.id.log_your_count);
         noName = (TextView) guestMode.findViewById(R.id.no_count_name);
         clickLogin = (CircleImageView) guestMode.findViewById(R.id.click_to_log_in);

@@ -43,7 +43,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
         if(context == null){
             Log.d("CommonAdapter", "llll");
         }
-        inflater = LayoutInflater.from(context);
+        inflater = LayoutInflater.from(MyApp.getContext());
         convertViewId = id;
 
     }
