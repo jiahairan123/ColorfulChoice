@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
 import com.example.dllo.colorfulchoice.video.animalworld.AnimalWorldFragment;
@@ -32,7 +31,6 @@ import com.example.dllo.colorfulchoice.video.sister.SisterFragment;
 import com.example.dllo.colorfulchoice.video.smallmovie.SmallMovieFragment;
 import com.example.dllo.colorfulchoice.video.sports.SportsFragment;
 import com.example.dllo.colorfulchoice.video.variety.VarietyFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,18 +98,12 @@ public class VideoFragment extends BaseFragment implements View.OnClickListener{
         tbVideo.setupWithViewPager(vpVideo);
         tbVideo.setSelectedTabIndicatorColor(0x00);
         tbVideo.setTabTextColors(Color.BLACK,0xFFFF4500);
+        judgePosition = 0;
         tabPopupWin();
         if(popupWindow != null && popupWindow.isShowing()){
             popupWindow.dismiss();
             return;
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-//        List<DBVideoView> dbVideoViewList = DBTools.getInstance().queryVideoView();
-//        CollectBean.getInstance().setResultBeanList(dbVideoViewList);
     }
 
     @Override

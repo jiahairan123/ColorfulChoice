@@ -111,14 +111,15 @@ public class CodeReuse {
             viewHolder.setImage(R.id.video_picture, resultBean.getImage());
             Log.d("CodeReuseAdapter", resultBean.getImage());
             viewHolder.setText(R.id.video_title, resultBean.getTitle());
-            if(BmobUser.getCurrentUser() != null) {
-                if (DBTools.getInstance().queryVideoView(BmobUser.getCurrentUser().getUsername(),resultBean.getItemid())){
+            if (BmobUser.getCurrentUser() != null) {
+                DBVideoView getDBVideoView = DBTools.getInstance().queryVideoView(BmobUser.getCurrentUser().getUsername(), resultBean.getItemid());
+                if (getDBVideoView != null) {
                     viewHolder.setBackground(R.id.video_collect, R.mipmap.star);
-                }else {
+                } else {
                     viewHolder.setBackground(R.id.video_collect, R.mipmap.star_gray);
                 }
-            }else {
-                viewHolder.setBackground(R.id.video_collect,R.mipmap.star_gray);
+            } else {
+                viewHolder.setBackground(R.id.video_collect, R.mipmap.star_gray);
             }
 
             if (videoViewHolder != null) {
@@ -158,21 +159,22 @@ public class CodeReuse {
             viewHolder.getView(R.id.video_collect).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(BmobUser.getCurrentUser() == null){
+                    if (BmobUser.getCurrentUser() == null) {
                         Toast.makeText(mContext, "您还没有登录,请先登录然后在收藏", Toast.LENGTH_SHORT).show();
-                    }else {
-                        DBVideoView dbVideoView = new DBVideoView();
-                        dbVideoView.setUserName(BmobUser.getCurrentUser().getUsername());
-                        dbVideoView.setItemId(resultBean.getItemid());
-                        dbVideoView.setTitle(resultBean.getTitle());
-                        dbVideoView.setDate(resultBean.getDate());
-                        dbVideoView.setImage(resultBean.getImage());
-                        dbVideoView.setVideoUrl(resultBean.getVideo_url());
-                        if (DBTools.getInstance().queryVideoView(BmobUser.getCurrentUser().getUsername(),resultBean.getItemid())){
+                    } else {
+                        DBVideoView getDBVideoView = DBTools.getInstance().queryVideoView(BmobUser.getCurrentUser().getUsername(), resultBean.getItemid());
+                        if (getDBVideoView != null) {
                             Log.d("RecommendAdapter", "对收藏信息进行了一次判断");
-                            DBTools.getInstance().deleteVideoView(dbVideoView);
+                            DBTools.getInstance().deleteVideoView(getDBVideoView);
                             viewHolder.setBackground(R.id.video_collect, R.mipmap.star_gray);
-                        }else {
+                        } else {
+                            DBVideoView dbVideoView = new DBVideoView();
+                            dbVideoView.setUserName(BmobUser.getCurrentUser().getUsername());
+                            dbVideoView.setItemId(resultBean.getItemid());
+                            dbVideoView.setTitle(resultBean.getTitle());
+                            dbVideoView.setDate(resultBean.getDate());
+                            dbVideoView.setImage(resultBean.getImage());
+                            dbVideoView.setVideoUrl(resultBean.getVideo_url());
                             DBTools.getInstance().insertVideoView(dbVideoView);
                             viewHolder.setBackground(R.id.video_collect, R.mipmap.star);
                         }
