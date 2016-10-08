@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -24,11 +25,10 @@ import com.example.dllo.colorfulchoice.custom.GrapeGridView;
 import com.example.dllo.colorfulchoice.database.DBTools;
 import com.example.dllo.colorfulchoice.database.GoodThings;
 import com.example.dllo.colorfulchoice.goodthing.activity.NormalTwoActivity;
-import com.example.dllo.colorfulchoice.goodthing.bean.PopTwoBean;
-import com.example.dllo.colorfulchoice.goodthing.eventbus.EventBusPosition;
 import com.example.dllo.colorfulchoice.goodthing.bean.NormalBean;
 import com.example.dllo.colorfulchoice.goodthing.bean.PopBean;
-import com.example.dllo.colorfulchoice.me.logandregister.LogInActivity;
+import com.example.dllo.colorfulchoice.goodthing.bean.PopTwoBean;
+import com.example.dllo.colorfulchoice.goodthing.eventbus.EventBusPosition;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -38,7 +38,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
@@ -48,7 +47,7 @@ import rx.functions.Action1;
  * Created by mayinling on 16/9/13.
  * 复用的fragment
  */
-public class NormalFragment extends BaseFragment {
+public class NormalFragment extends BaseFragment{
 
     private PullToRefreshGridView mPullRefreshGridView;
     private GridView mGridView;
@@ -64,8 +63,10 @@ public class NormalFragment extends BaseFragment {
     private List<NormalBean.DataBean.ProductsBean> been;
     private BmobUser bmobUser;
     private int count;
-    private ImageView imageCry;
-    private ImageView imageSmile;
+    private RadioButton imageCry;
+    private RadioButton imageSmile;
+    private RadioGroup radioGroup;
+
 
     public static NormalFragment getInstance(String tab) {
         Bundle bundle = new Bundle();
@@ -179,7 +180,6 @@ public class NormalFragment extends BaseFragment {
         myPopUpWindow.showAsDropDown(view);
     }
 
-
     @Override
     protected void initData() {
         Bundle bundle = getArguments();
@@ -190,20 +190,18 @@ public class NormalFragment extends BaseFragment {
         netTool.getNetData(url, NormalBean.class, new NetTool.NetListener<NormalBean>() {
             @Override
             public void onSuccess(final NormalBean normalBean) {
-
                 mPullRefreshGridView.setAdapter(new CommonAdapter<NormalBean.DataBean.ProductsBean>(normalBean.getData().getProducts(),
                         mContext, R.layout.item_normal) {
                     @Override
-                    public void setData(final NormalBean.DataBean.ProductsBean productsBean, CommonViewHolder viewHolder) {
-
+                    public void setData(final NormalBean.DataBean.ProductsBean productsBean, final CommonViewHolder viewHolder) {
                         viewHolder.setText(R.id.item_normal_name_describe, productsBean.getName());
                         viewHolder.setText(R.id.item_normal_name, productsBean.getDesigner().getName());
                         viewHolder.setText(R.id.item_normal_lable, productsBean.getDesigner().getLabel());
                         viewHolder.setImage(R.id.item_normal_avatar_url, productsBean.getDesigner().getAvatar_url());
                         viewHolder.setImage(R.id.item_normal_cover_images, productsBean.getCover_images().get(0));
                         been = normalBean.getData().getProducts();
-
                         mPullRefreshGridView.onRefreshComplete();
+<<<<<<< HEAD
 
                         imageCry = viewHolder.getView(R.id.item_normal_cry_iv);
                         imageSmile = viewHolder.getView(R.id.item_normal_smail_iv);
@@ -247,9 +245,46 @@ public class NormalFragment extends BaseFragment {
                                     goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
                                     DBTools.getInstance().insertGoodThing(goodThings);
                                     Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show();
+=======
+                        bmobUser = BmobUser.getCurrentUser();
+                        if (bmobUser != null) {
+                            // 查询数据库
+                            DBTools.getInstance().queryUser(productsBean.getCover_images().get(0), bmobUser.getUsername(), new Action1<List<GoodThings>>() {
+                                @Override
+                                public void call(List<GoodThings> goodThingses) {
+                                    count = goodThingses.size();
+                                }
+                            });
+                        } else {
+//                            Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
+                        }
+
+                        radioGroup = viewHolder.getView(R.id.item_radio_group);
+                        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                                switch (checkedId) {
+                                    case R.id.item_normal_smail_iv:
+                                        // 存数据库
+                                        if (count == 0) {
+                                            GoodThings goodThings = new GoodThings();
+                                            goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
+//                                            goodThings.setUsername(bmobUser.getUsername());
+                                            DBTools.getInstance().insertGoodThing(goodThings);
+                                            Toast.makeText(mContext, "喜欢", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(mContext, "已经添加成功", Toast.LENGTH_SHORT).show();
+                                        }
+                                        break;
+                                    case R.id.item_normal_cry_iv:
+                                        if (count > 0) {
+                                            DBTools.getInstance().deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
+                                            Toast.makeText(getContext(), "不喜欢", Toast.LENGTH_SHORT).show();
+                                        }
+                                        break;
+>>>>>>> adf01026443f7a6707a766f213cd25601a5a37e3
                                 }
                             }
-
                         });
                     }
                 });
@@ -259,13 +294,14 @@ public class NormalFragment extends BaseFragment {
                 mPullRefreshGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                        int jiahairan = been.get(position).getId();
+                        int id1 = been.get(position).getId();
                         Intent intent = new Intent(getActivity(), NormalTwoActivity.class);
-                        intent.putExtra("id", jiahairan);
+                        intent.putExtra("id", id1);
                         getActivity().startActivity(intent);
 
                     }
                 });
+
             }
 
             @Override
@@ -300,17 +336,56 @@ public class NormalFragment extends BaseFragment {
                                                 viewHolder.setText(R.id.item_normal_lable, productsBean.getDesigner().getLabel());
                                                 viewHolder.setImage(R.id.item_normal_avatar_url, productsBean.getDesigner().getAvatar_url());
                                                 viewHolder.setImage(R.id.item_normal_cover_images, productsBean.getCover_images().get(0));
+                                                been = normalBean.getData().getProducts();
+
                                                 mPullRefreshGridView.onRefreshComplete();
 
-                                                imageCry.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        Toast.makeText(getContext(), "不喜欢", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
+//                                                imageCry.setOnClickListener(new View.OnClickListener() {
+//                                                    @Override
+//                                                    public void onClick(View v) {
+//                                                        Toast.makeText(getContext(), "不喜欢", Toast.LENGTH_SHORT).show();
+//                                                    }
+//                                                });
+//
+//                                                imageSmile.setOnClickListener(new View.OnClickListener() {
+//                                                    @Override
+//                                                    public void onClick(View v) {
+//                                                        if (count > 0) {
+//                                                            Log.d("Sysout", "coun---------t:" + count);
+//                                                            imageSmile.setBackgroundResource(R.mipmap.cry);
+//                                                            DBTools.getInstance().deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
+//                                                            Toast.makeText(getContext(), "取消收藏", Toast.LENGTH_SHORT).show();
+//                                                        } else {
+//                                                            Log.d("NormalFragment", "count********:" + count);
+//                                                            count  ++;
+//
+//                                                            ScaleAnimation sa = new ScaleAnimation(0, 10, 0, 10);
+//                                                            sa.setDuration(1000);
+//                                                            sa.setRepeatCount(0);
+//                                                            imageSmile.startAnimation(sa);
+//                                                            // 存数据库
+//                                                            GoodThings goodThings = new GoodThings();
+//                                                            goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
+//                                                            DBTools.getInstance().insertGoodThing(goodThings);
+//                                                            Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show();
+//                                                        }
+//                                                    }
+//
+//                                                });
 
-                                                imageSmile.setOnClickListener(new View.OnClickListener() {
+
+                                                // 查询数据库
+//                                                DBTools.getInstance().queryUser(productsBean.getCover_images().get(0), bmobUser.getUsername(), new Action1<List<GoodThings>>() {
+//                                                    @Override
+//                                                    public void call(List<GoodThings> goodThingses) {
+//                                                        count = goodThingses.size();
+//                                                    }
+//                                                });
+
+                                                radioGroup = viewHolder.getView(R.id.item_radio_group);
+                                                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                                                     @Override
+<<<<<<< HEAD
                                                     public void onClick(View v) {
                                                         if (count > 0) {
                                                             imageSmile.setBackgroundResource(R.mipmap.cry);
@@ -328,10 +403,30 @@ public class NormalFragment extends BaseFragment {
                                                             goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
                                                             DBTools.getInstance().insertGoodThing(goodThings);
                                                             Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show();
+=======
+                                                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                                                        switch (checkedId){
+                                                            case R.id.item_normal_smail_iv:
+                                                                // 存数据库
+                                                                if (count == 0){
+                                                                    GoodThings goodThings = new GoodThings();
+                                                                    goodThings.setImgUrl(normalBean.getData().getProducts().get(position).getCover_images().get(0));
+//                                                                    goodThings.setUsername(bmobUser.getUsername());
+                                                                    DBTools.getInstance().insertGoodThing(goodThings);
+                                                                    Toast.makeText(mContext, "喜欢", Toast.LENGTH_SHORT).show();
+                                                                } else {
+                                                                    Toast.makeText(mContext, "已经添加成功", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                                break;
+                                                            case R.id.item_normal_cry_iv:
+                                                                    DBTools.getInstance().deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
+                                                                    Toast.makeText(getContext(), "不喜欢", Toast.LENGTH_SHORT).show();
+                                                                break;
+>>>>>>> adf01026443f7a6707a766f213cd25601a5a37e3
                                                         }
                                                     }
-
                                                 });
+
 
                                             }
                                         });
@@ -385,6 +480,8 @@ public class NormalFragment extends BaseFragment {
                 });
             }
 
+
+
             @Override
             public void onError(String errorMsg) {
                 Toast.makeText(mContext, "网络连接错误", Toast.LENGTH_SHORT).show();
@@ -392,6 +489,5 @@ public class NormalFragment extends BaseFragment {
         });
 
     }
-
-
 }
+

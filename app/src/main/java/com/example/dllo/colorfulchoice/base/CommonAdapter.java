@@ -27,9 +27,15 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
         if(context == null){
             Log.d("CommonAdapter", "llll");
         }
-        inflater = LayoutInflater.from(context);
+        inflater = LayoutInflater.from(MyApp.getContext());
         convertViewId = id;
         this.integerList = integerList;
+    }
+
+    public void refresh(List<T> beanList){
+        this.beanList.clear();
+        this.beanList = beanList;
+        notifyDataSetChanged();
     }
 
     public CommonAdapter(List<T> beanList, Context context, int id) {

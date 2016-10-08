@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
+import com.example.dllo.colorfulchoice.me.logandregister.CollActivity;
 import com.example.dllo.colorfulchoice.me.logandregister.LogInActivity;
 
 import cn.bmob.v3.BmobUser;
@@ -32,6 +35,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private View loginMode, guestMode;
     private Button exitBtn, loginBtn;
     private TextView countName, noName;
+    private RelativeLayout relativeLayout;
 
     @Override
     protected int setLayout() {
@@ -66,6 +70,24 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         clickLogin = (CircleImageView) guestMode.findViewById(R.id.click_to_log_in);
         clickLogin.setOnClickListener(this);
         loginBtn.setOnClickListener(this);
+
+        relativeLayout = bindView(R.id.collection_rl);
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 查看我的心愿单
+                BmobUser user = BmobUser.getCurrentUser();
+                if (user == null){
+                    Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getContext(), CollActivity.class);
+
+                    startActivity(intent);
+                }
+
+            }
+        });
+
     }
 
     @Override
