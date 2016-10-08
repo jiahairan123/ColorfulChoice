@@ -39,8 +39,6 @@ public class MainActivity extends BaseAty implements RadioGroup.OnCheckedChangeL
     protected void initData() {
         //Bmob 默认初始化在Application的onCreate方法里
         Bmob.initialize(this, "dbefaba740eb9abcd0ccf17f0079d1c1");
-
-
         NotmalTab.getInstance();
     }
 

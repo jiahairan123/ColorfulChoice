@@ -177,16 +177,16 @@ public class DBTools {
     }
 
     //收藏时查询
-    public boolean queryVideoView(String userName, String itemId) {
+    public DBVideoView queryVideoView(String userName, String itemId) {
         List<DBVideoView> dbVideoViewList = null;
         if (dbVideoViewDao != null) {
             dbVideoViewList = dbVideoViewDao.queryBuilder().where(DBVideoViewDao.Properties.UserName.eq(userName),
                     DBVideoViewDao.Properties.ItemId.eq(itemId)).build().list();
             if (dbVideoViewList.size() > 0) {
-                return true;
+                return dbVideoViewList.get(0);
             }
         }
-        return false;
+        return null;
     }
 
     //保存时对视频数据库去重

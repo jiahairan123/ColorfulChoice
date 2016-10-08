@@ -65,14 +65,6 @@ public class XListViewFooter extends LinearLayout {
 		mProgressBar.setVisibility(View.GONE);
 	}
 	
-	
-	/**
-	 * loading status 
-	 */
-	public void loading() {
-		mProgressBar.setVisibility(View.VISIBLE);
-	}
-	
 	/**
 	 * hide footer when disable pull load more
 	 */
@@ -96,10 +88,7 @@ public class XListViewFooter extends LinearLayout {
 		LinearLayout moreView = (LinearLayout)LayoutInflater.from(mContext).inflate(R.layout.xlistview_footer, null);
 		addView(moreView);
 		moreView.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-		
 		mContentView = moreView.findViewById(R.id.xlistview_footer_content);
 		mProgressBar = moreView.findViewById(R.id.xlistview_footer_progressbar);
 	}
-	
-	
 }
