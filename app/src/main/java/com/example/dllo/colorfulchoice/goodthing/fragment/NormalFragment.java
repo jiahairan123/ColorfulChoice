@@ -24,10 +24,10 @@ import com.example.dllo.colorfulchoice.custom.GrapeGridView;
 import com.example.dllo.colorfulchoice.database.DBTools;
 import com.example.dllo.colorfulchoice.database.GoodThings;
 import com.example.dllo.colorfulchoice.goodthing.activity.NormalTwoActivity;
-import com.example.dllo.colorfulchoice.goodthing.bean.NormalBean;
-import com.example.dllo.colorfulchoice.goodthing.bean.PopBean;
 import com.example.dllo.colorfulchoice.goodthing.bean.PopTwoBean;
 import com.example.dllo.colorfulchoice.goodthing.eventbus.EventBusPosition;
+import com.example.dllo.colorfulchoice.goodthing.bean.NormalBean;
+import com.example.dllo.colorfulchoice.goodthing.bean.PopBean;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -37,6 +37,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
@@ -195,7 +196,6 @@ public class NormalFragment extends BaseFragment {
                         viewHolder.setText(R.id.item_normal_lable, productsBean.getDesigner().getLabel());
                         viewHolder.setImage(R.id.item_normal_avatar_url, productsBean.getDesigner().getAvatar_url());
                         viewHolder.setImage(R.id.item_normal_cover_images, productsBean.getCover_images().get(0));
-
                         been = normalBean.getData().getProducts();
 
                         mPullRefreshGridView.onRefreshComplete();
@@ -234,11 +234,11 @@ public class NormalFragment extends BaseFragment {
                                     Toast.makeText(getContext(), "取消收藏", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.d("NormalFragment", "count********:" + count);
-                                    count++;
+                                    count  ++;
                                     imageSmile.setImageResource(R.mipmap.smilese);
-                                    ScaleAnimation sa = new ScaleAnimation(0, 20, 0, 20);
+                                    ScaleAnimation sa = new ScaleAnimation(0, 10, 0, 10);
                                     sa.setDuration(1000);
-                                    sa.setRepeatCount(1);
+                                    sa.setRepeatCount(0);
                                     imageSmile.startAnimation(sa);
                                     DBTools.getInstance().deleteGood(productsBean.getCover_images().get(0), bmobUser.getUsername());
                                     Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show();
