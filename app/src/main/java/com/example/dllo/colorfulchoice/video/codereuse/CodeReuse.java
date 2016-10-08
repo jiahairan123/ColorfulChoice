@@ -1,8 +1,6 @@
 package com.example.dllo.colorfulchoice.video.codereuse;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -10,12 +8,11 @@ import android.widget.Toast;
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.CommonAdapter;
 import com.example.dllo.colorfulchoice.base.CommonViewHolder;
+import com.example.dllo.colorfulchoice.database.DBTools;
 import com.example.dllo.colorfulchoice.database.DBVideoView;
 import com.example.dllo.colorfulchoice.nettool.NetTool;
 import com.example.dllo.colorfulchoice.nettool.URLValue;
 import com.example.dllo.colorfulchoice.video.VideoBean;
-import com.example.dllo.colorfulchoice.video.collect.CollectBean;
-import com.example.dllo.colorfulchoice.video.collect.JudgeCollectChange;
 import com.example.dllo.colorfulchoice.video.xlistview.XListView;
 
 import java.io.IOException;
@@ -98,17 +95,15 @@ public class CodeReuse {
     }
 
     public class CodeReuseAdapter extends CommonAdapter<VideoBean.ResultBean> {
-        private Handler mHandler;
-        private Handler handler;
         private Context context;
         private int playPosition = -1;
         private CommonViewHolder videoViewHolder = null;
-        private List<CommonViewHolder> viewHolderList;
+//        private List<CommonViewHolder> viewHolderList;
 
         public CodeReuseAdapter(List<VideoBean.ResultBean> beanList, Context context, int id) {
             super(beanList, context, id);
             this.context = context;
-            viewHolderList = new ArrayList<>();
+//            viewHolderList = new ArrayList<>();
         }
 
         @Override
@@ -116,28 +111,17 @@ public class CodeReuse {
             viewHolder.setImage(R.id.video_picture, resultBean.getImage());
             Log.d("CodeReuseAdapter", resultBean.getImage());
             viewHolder.setText(R.id.video_title, resultBean.getTitle());
-//
-//            if(viewHolderList.size() == 0){
-//                viewHolderList.add(viewHolder);
-//            }else {
-//                int i = 0;
-//                for (; i < viewHolderList.size(); i++) {
-//                    if(viewHolderList.get(i) == viewHolder){
-//                        break;
-//                    }
-//                }
-//                if(i == viewHolderList.size()){
-//                    viewHolderList.add(viewHolder);
-//                }
-//            }
-//            Log.d("CodeReuseAdapter", "当前界面的最后item的位置信息是" + xListView.getLastVisiblePosition());
-//            Log.d("CodeReuseAdapter", "当前界面的最初item的位置信息是" + xListView.getFirstVisiblePosition());
-//            Log.d("CodeReuseAdapter", "该listView中共new了" + viewHolderList.size() + "个item");
-
-//            Log.d("CodeReuseAdapter", "父类布局的id是" + viewHolder.getView(R.id.rl_up));
+            if(BmobUser.getCurrentUser() != null) {
+                if (DBTools.getInstance().queryVideoView(BmobUser.getCurrentUser().getUsername(),resultBean.getItemid())){
+                    viewHolder.setBackground(R.id.video_collect, R.mipmap.star);
+                }else {
+                    viewHolder.setBackground(R.id.video_collect, R.mipmap.star_gray);
+                }
+            }else {
+                viewHolder.setBackground(R.id.video_collect,R.mipmap.star_gray);
+            }
 
             if (videoViewHolder != null) {
-//                Log.d("CodeReuseAdapter", "滑动时的位置信息为" + videoViewHolder.getPosition());
                 if (playPosition < xListView.getFirstVisiblePosition() || playPosition > (xListView.getLastVisiblePosition())) {
                     Log.d("CodeReuseAdapter", "每一次的刷新都会运行到这里吗");
                     videoViewHolder.getView(R.id.video_item_video_view).setVisibility(View.GONE);
@@ -171,52 +155,27 @@ public class CodeReuse {
                     videoView.requestFocus();
                 }
             });
-            mHandler = new Handler(new Handler.Callback() {
-                @Override
-                public boolean handleMessage(Message message) {
-                    if (message.what == 1) {
-                        viewHolder.setBackground(R.id.video_collect, R.mipmap.star);
-                    } else if (message.what == 0) {
-                        viewHolder.setBackground(R.id.video_collect, R.mipmap.star_gray);
-                    }
-                    return false;
-                }
-            });
-            JudgeCollectChange.getInstance().judgeCollectExit(resultBean.getItemid(), mHandler);
             viewHolder.getView(R.id.video_collect).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(BmobUser.getCurrentUser() != null){
+                    if(BmobUser.getCurrentUser() == null){
                         Toast.makeText(mContext, "您还没有登录,请先登录然后在收藏", Toast.LENGTH_SHORT).show();
                     }else {
-                        handler = new Handler(new Handler.Callback() {
-                            @Override
-                            public boolean handleMessage(Message message) {
-                                switch (message.what) {
-                                    case 0:
-                                        DBVideoView dbVideoView = new DBVideoView();
-                                        dbVideoView.setUserName(BmobUser.getCurrentUser().getUsername());
-                                        dbVideoView.setItemId(resultBean.getItemid());
-                                        dbVideoView.setTitle(resultBean.getTitle());
-                                        dbVideoView.setDate(resultBean.getDate());
-                                        dbVideoView.setImage(resultBean.getImage());
-                                        dbVideoView.setVideoUrl(resultBean.getVideo_url());
-                                        CollectBean.getInstance().setResultBeanList(dbVideoView);
-                                        viewHolder.setBackground(R.id.video_collect, R.mipmap.star);
-                                        Log.d("RecommendAdapter", "CollectBean.getInstance().getResultBeanList().size():" + CollectBean.getInstance().getResultBeanList().size());
-                                        break;
-                                    case 1:
-                                        Log.d("RecommendAdapter", "对收藏信息进行了一次判断");
-                                        CollectBean.getInstance().getResultBeanList().remove((int) message.obj);
-                                        Log.d("RecommendAdapter", "CollectBean.getInstance().getResultBeanList().size():" + CollectBean.getInstance().getResultBeanList().size());
-                                        viewHolder.setBackground(R.id.video_collect, R.mipmap.star_gray);
-                                        break;
-                                }
-                                return false;
-                            }
-                        });
-                        Log.d("RecommendAdapter", "Thread.currentThread().getId():" + Thread.currentThread().getId());
-                        JudgeCollectChange.getInstance().judgeCollectExit(resultBean.getItemid(), handler);
+                        DBVideoView dbVideoView = new DBVideoView();
+                        dbVideoView.setUserName(BmobUser.getCurrentUser().getUsername());
+                        dbVideoView.setItemId(resultBean.getItemid());
+                        dbVideoView.setTitle(resultBean.getTitle());
+                        dbVideoView.setDate(resultBean.getDate());
+                        dbVideoView.setImage(resultBean.getImage());
+                        dbVideoView.setVideoUrl(resultBean.getVideo_url());
+                        if (DBTools.getInstance().queryVideoView(BmobUser.getCurrentUser().getUsername(),resultBean.getItemid())){
+                            Log.d("RecommendAdapter", "对收藏信息进行了一次判断");
+                            DBTools.getInstance().deleteVideoView(dbVideoView);
+                            viewHolder.setBackground(R.id.video_collect, R.mipmap.star_gray);
+                        }else {
+                            DBTools.getInstance().insertVideoView(dbVideoView);
+                            viewHolder.setBackground(R.id.video_collect, R.mipmap.star);
+                        }
                     }
                 }
             });

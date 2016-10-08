@@ -19,10 +19,8 @@ import android.widget.PopupWindow;
 
 import com.example.dllo.colorfulchoice.R;
 import com.example.dllo.colorfulchoice.base.BaseFragment;
-import com.example.dllo.colorfulchoice.database.DBTools;
-import com.example.dllo.colorfulchoice.database.DBVideoView;
 import com.example.dllo.colorfulchoice.video.animalworld.AnimalWorldFragment;
-import com.example.dllo.colorfulchoice.video.collect.CollectBean;
+import com.example.dllo.colorfulchoice.video.collect.CollectFragment;
 import com.example.dllo.colorfulchoice.video.cutepet.CutePetFragment;
 import com.example.dllo.colorfulchoice.video.euphonious.EuphoniousFragment;
 import com.example.dllo.colorfulchoice.video.huggies.HuggiesFragment;
@@ -83,6 +81,7 @@ public class VideoFragment extends BaseFragment implements View.OnClickListener{
         fragmentList.add(new EuphoniousFragment());
         fragmentList.add(new SportsFragment());
         fragmentList.add(new CutePetFragment());
+        fragmentList.add(new CollectFragment());
         stringList.add("推荐");
         stringList.add("爆笑");
         stringList.add("综艺范");
@@ -95,6 +94,7 @@ public class VideoFragment extends BaseFragment implements View.OnClickListener{
         stringList.add("悦耳");
         stringList.add("运动");
         stringList.add("萌宠萌娃");
+        stringList.add("收藏");
         MyViewPager myViewPager = new MyViewPager(getChildFragmentManager());
         vpVideo.setAdapter(myViewPager);
         tbVideo.setupWithViewPager(vpVideo);
@@ -110,8 +110,8 @@ public class VideoFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onStart() {
         super.onStart();
-        List<DBVideoView> dbVideoViewList = DBTools.getInstance().queryVideoView();
-        CollectBean.getInstance().setResultBeanList(dbVideoViewList);
+//        List<DBVideoView> dbVideoViewList = DBTools.getInstance().queryVideoView();
+//        CollectBean.getInstance().setResultBeanList(dbVideoViewList);
     }
 
     @Override
@@ -139,7 +139,7 @@ public class VideoFragment extends BaseFragment implements View.OnClickListener{
             popupWindow.dismiss();
             btnPoppup.setBackgroundResource(R.mipmap.poppup_start);
         }
-        DBTools.getInstance().insertVideoView(CollectBean.getInstance().getResultBeanList());
+//        DBTools.getInstance().insertVideoView(CollectBean.getInstance().getResultBeanList());
     }
 
     private void tabPopupWin() {

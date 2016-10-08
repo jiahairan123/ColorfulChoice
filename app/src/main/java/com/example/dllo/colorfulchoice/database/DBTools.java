@@ -5,7 +5,6 @@ import android.util.Log;
 import com.example.dllo.colorfulchoice.base.MyApp;
 
 import org.greenrobot.greendao.query.Query;
-import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -144,26 +143,63 @@ public class DBTools {
     //增加视频的收藏
     public void insertVideoView(List<DBVideoView> dbVideoViewList) {
         if (dbVideoViewDao != null) {
-            dbVideoViewDao.deleteAll();
-            dbVideoViewDao.insertInTx(dbVideoViewList);
+            for (int i = 0; i < dbVideoViewList.size(); i++) {
+                if (!queryVideoView(dbVideoViewList.get(i))) {
+                    dbVideoViewDao.insert(dbVideoViewList.get(i));
+                }
+            }
+        }
+    }
+
+    //单个视频收藏的添加
+    public void insertVideoView(DBVideoView dbVideoView) {
+        if (dbVideoViewDao != null) {
+            if (!queryVideoView(dbVideoView)) {
+                dbVideoViewDao.insert(dbVideoView);
+            }
         }
     }
 
     //删除视频的收藏
-    public void deleteVideoView(List<DBVideoView> dbVideoViewList) {
+    public void deleteVideoView(DBVideoView dbVideoView) {
         if (dbVideoViewDao != null) {
-            dbVideoViewDao.deleteInTx(dbVideoViewList);
+            dbVideoViewDao.delete(dbVideoView);
         }
     }
 
-    //查询(或取出)所有的项
-    public List<DBVideoView> queryVideoView() {
+    //按用户查询
+    public List<DBVideoView> queryVideoView(String userName) {
         List<DBVideoView> dbVideoViewList = null;
         if (dbVideoViewDao != null) {
-            QueryBuilder<DBVideoView> queryBuilder = dbVideoViewDao.queryBuilder();
-            dbVideoViewList = queryBuilder.list();
+            dbVideoViewList = dbVideoViewDao.queryBuilder().where(DBVideoViewDao.Properties.UserName.eq(userName)).build().list();
         }
         return dbVideoViewList;
+    }
+
+    //收藏时查询
+    public boolean queryVideoView(String userName, String itemId) {
+        List<DBVideoView> dbVideoViewList = null;
+        if (dbVideoViewDao != null) {
+            dbVideoViewList = dbVideoViewDao.queryBuilder().where(DBVideoViewDao.Properties.UserName.eq(userName),
+                    DBVideoViewDao.Properties.ItemId.eq(itemId)).build().list();
+            if (dbVideoViewList.size() > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //保存时对视频数据库去重
+    public boolean queryVideoView(DBVideoView dbVideoView) {
+        List<DBVideoView> dbVideoViewList;
+        if (dbVideoView != null) {
+            dbVideoViewList = dbVideoViewDao.queryBuilder().where(DBVideoViewDao.Properties.UserName.eq(dbVideoView.getUserName()),
+                    DBVideoViewDao.Properties.ItemId.eq(dbVideoView.getItemId())).build().list();
+            if (dbVideoViewList.size() > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
